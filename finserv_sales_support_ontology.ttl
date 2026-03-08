@@ -1,0 +1,145 @@
+
+@prefix : <http://example.org/finserv-ops#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <http://schema.org/> .
+
+: a owl:Ontology ;
+  dcterms:title "FinServ Sales & Support Ontology" ;
+  dcterms:description "An ontology for a synthetic sales + support operations dataset (customers, products, opportunities, support tickets, activities, CSAT, notes)." ;
+  dcterms:creator "M365 Copilot" ;
+  dcterms:license "https://creativecommons.org/licenses/by/4.0/" ;
+  owl:versionInfo "v1.0" .
+
+###########
+# Classes #
+###########
+
+:Customer a owl:Class ;
+  rdfs:label "Customer" ;
+  rdfs:comment "An organization or account purchasing software/services." .
+
+:Product a owl:Class ;
+  rdfs:label "Product" ;
+  rdfs:comment "A software product or SKU sold to customers." .
+
+:Opportunity a owl:Class ;
+  rdfs:label "Sales Opportunity" ;
+  rdfs:comment "A sales opportunity (New/Expansion/Project/Renewal)." .
+
+:OpportunityActivity a owl:Class ;
+  rdfs:label "Opportunity Activity" ;
+  rdfs:comment "An interaction related to a sales opportunity (call, meeting, email, etc.)." .
+
+:SupportTicket a owl:Class ;
+  rdfs:label "Support Ticket" ;
+  rdfs:comment "A customer support incident/ticket." .
+
+:SupportActivity a owl:Class ;
+  rdfs:label "Support Activity" ;
+  rdfs:comment "An interaction related to a support ticket (note, update, assignment, etc.)." .
+
+:CSATObservation a owl:Class ;
+  rdfs:label "CSAT Observation" ;
+  rdfs:comment "Monthly customer satisfaction score (1..5) per customer and month." .
+
+:OpportunityNote a owl:Class ;
+  rdfs:label "Opportunity Note" ;
+  rdfs:comment "Free-text notes with optional tags capturing delivery or other risks." .
+
+######################
+# Concept Enumerations
+######################
+
+:SeverityScheme a skos:ConceptScheme ; skos:prefLabel "Ticket Severity" .
+:SeverityLow a skos:Concept ; skos:inScheme :SeverityScheme ; skos:prefLabel "Low" .
+:SeverityMedium a skos:Concept ; skos:inScheme :SeverityScheme ; skos:prefLabel "Medium" .
+:SeverityHigh a skos:Concept ; skos:inScheme :SeverityScheme ; skos:prefLabel "High" .
+:SeverityCritical a skos:Concept ; skos:inScheme :SeverityScheme ; skos:prefLabel "Critical" .
+
+:OppStatusScheme a skos:ConceptScheme ; skos:prefLabel "Opportunity Status" .
+:OppOpen a skos:Concept ; skos:inScheme :OppStatusScheme ; skos:prefLabel "Open" .
+:OppWon a skos:Concept ; skos:inScheme :OppStatusScheme ; skos:prefLabel "Won" .
+:OppLost a skos:Concept ; skos:inScheme :OppStatusScheme ; skos:prefLabel "Lost" .
+
+:OppTypeScheme a skos:ConceptScheme ; skos:prefLabel "Opportunity Type" .
+:OppNew a skos:Concept ; skos:inScheme :OppTypeScheme ; skos:prefLabel "New" .
+:OppExpansion a skos:Concept ; skos:inScheme :OppTypeScheme ; skos:prefLabel "Expansion" .
+:OppProject a skos:Concept ; skos:inScheme :OppTypeScheme ; skos:prefLabel "Project" .
+:OppRenewal a skos:Concept ; skos:inScheme :OppTypeScheme ; skos:prefLabel "Renewal" .
+
+####################
+# Object properties #
+####################
+
+:hasCustomer a owl:ObjectProperty ; rdfs:domain owl:Thing ; rdfs:range :Customer ; rdfs:label "has customer" .
+:hasProduct a owl:ObjectProperty ; rdfs:domain owl:Thing ; rdfs:range :Product ; rdfs:label "has product" .
+:hasActivity a owl:ObjectProperty ; rdfs:domain owl:Thing ; rdfs:range owl:Thing ; rdfs:label "has activity" .
+:hasNote a owl:ObjectProperty ; rdfs:domain :Opportunity ; rdfs:range :OpportunityNote ; rdfs:label "has note" .
+:relatesToOpportunity a owl:ObjectProperty ; rdfs:domain owl:Thing ; rdfs:range :Opportunity ; rdfs:label "relates to opportunity" .
+:relatesToTicket a owl:ObjectProperty ; rdfs:domain owl:Thing ; rdfs:range :SupportTicket ; rdfs:label "relates to ticket" .
+
+###################
+# Data properties #
+###################
+
+schema:identifier a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "identifier" .
+:customerName a owl:DatatypeProperty ; rdfs:domain :Customer ; rdfs:range xsd:string ; rdfs:label "customer name" .
+:productName a owl:DatatypeProperty ; rdfs:domain :Product ; rdfs:range xsd:string ; rdfs:label "product name" .
+:productLine a owl:DatatypeProperty ; rdfs:domain :Product ; rdfs:range xsd:string ; rdfs:label "product line" .
+
+:amount a owl:DatatypeProperty ; rdfs:domain :Opportunity ; rdfs:range xsd:decimal ; rdfs:label "amount" .
+:probability a owl:DatatypeProperty ; rdfs:domain :Opportunity ; rdfs:range xsd:decimal ; rdfs:label "probability" .
+:expectedCloseDate a owl:DatatypeProperty ; rdfs:domain :Opportunity ; rdfs:range xsd:date ; rdfs:label "expected close date" .
+:stage a owl:DatatypeProperty ; rdfs:domain :Opportunity ; rdfs:range xsd:string ; rdfs:label "stage" .
+:stageLastChangedAt a owl:DatatypeProperty ; rdfs:domain :Opportunity ; rdfs:range xsd:dateTime ; rdfs:label "stage last changed at" .
+:status a owl:DatatypeProperty ; rdfs:domain :Opportunity ; rdfs:range xsd:string ; rdfs:label "status" .
+:type a owl:DatatypeProperty ; rdfs:domain :Opportunity ; rdfs:range xsd:string ; rdfs:label "type" .
+
+:activityAt a owl:DatatypeProperty ; rdfs:range xsd:dateTime ; rdfs:label "activity at" .
+:activityType a owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "activity type" .
+
+:openedAt a owl:DatatypeProperty ; rdfs:domain :SupportTicket ; rdfs:range xsd:date ; rdfs:label "opened at" .
+:closedAt a owl:DatatypeProperty ; rdfs:domain :SupportTicket ; rdfs:range xsd:date ; rdfs:label "closed at" .
+:severity a owl:DatatypeProperty ; rdfs:domain :SupportTicket ; rdfs:range xsd:string ; rdfs:label "severity" .
+:slaBreachFlag a owl:DatatypeProperty ; rdfs:domain :SupportTicket ; rdfs:range xsd:boolean ; rdfs:label "SLA breach flag" .
+:ticketStatus a owl:DatatypeProperty ; rdfs:domain :SupportTicket ; rdfs:range xsd:string ; rdfs:label "ticket status" .
+
+:csat a owl:DatatypeProperty ; rdfs:domain :CSATObservation ; rdfs:range xsd:integer ; rdfs:label "csat score (1..5)" .
+:month a owl:DatatypeProperty ; rdfs:domain :CSATObservation ; rdfs:range xsd:integer ; rdfs:label "month 1..12" .
+
+:noteAt a owl:DatatypeProperty ; rdfs:domain :OpportunityNote ; rdfs:range xsd:dateTime ; rdfs:label "note at" .
+:noteText a owl:DatatypeProperty ; rdfs:domain :OpportunityNote ; rdfs:range xsd:string ; rdfs:label "note text" .
+:tags a owl:DatatypeProperty ; rdfs:domain :OpportunityNote ; rdfs:range xsd:string ; rdfs:label "tags" .
+
+#############################
+# Domain-specific semantics #
+#############################
+
+# Opportunity relationships
+:Opportunity rdfs:subClassOf [ a owl:Restriction ; owl:onProperty :hasCustomer ; owl:someValuesFrom :Customer ] ,
+                                 [ a owl:Restriction ; owl:onProperty :hasProduct ; owl:someValuesFrom :Product ] .
+
+# Activities link back to their parent records
+:OpportunityActivity rdfs:subClassOf [ a owl:Restriction ; owl:onProperty :relatesToOpportunity ; owl:someValuesFrom :Opportunity ] .
+:SupportActivity rdfs:subClassOf [ a owl:Restriction ; owl:onProperty :relatesToTicket ; owl:someValuesFrom :SupportTicket ] .
+
+# Derivation note: last activity is not stored on Opportunity/Ticket and must be computed from activities
+:derivedLastActivityAt a owl:DatatypeProperty ; rdfs:range xsd:dateTime ; rdfs:label "derived last activity at" ;
+  rdfs:comment "Not persisted in source tables. Compute as MAX(activityAt) over related activities for the entity." .
+
+# Map identifiers
+:Customer rdfs:subClassOf [ a owl:Restriction ; owl:onProperty schema:identifier ; owl:someValuesFrom xsd:string ] .
+:Product rdfs:subClassOf [ a owl:Restriction ; owl:onProperty schema:identifier ; owl:someValuesFrom xsd:string ] .
+:Opportunity rdfs:subClassOf [ a owl:Restriction ; owl:onProperty schema:identifier ; owl:someValuesFrom xsd:string ] .
+:SupportTicket rdfs:subClassOf [ a owl:Restriction ; owl:onProperty schema:identifier ; owl:someValuesFrom xsd:string ] .
+
+# Severity and Status suggested controlled vocabularies (modelled via skos).
+:severity rdfs:comment "Values should align to SeverityScheme: Low | Medium | High | Critical." .
+:status rdfs:comment "Values should align to OppStatusScheme: Open | Won | Lost." .
+:type rdfs:comment "Values should align to OppTypeScheme: New | Expansion | Project | Renewal." .
+
