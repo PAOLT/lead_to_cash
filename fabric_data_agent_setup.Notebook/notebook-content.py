@@ -55,7 +55,7 @@ from fabric.dataagent.client import (
 # CELL ********************
 
 # Name your agent and the Lakehouse to bind
-AGENT_DISPLAY_NAME = 'FinServ Sales & Support Agent'
+AGENT_DISPLAY_NAME = 'FinServ Sales Agent LH'
 LAKEHOUSE_NAME = 'ops_data' 
 SCHEMA = 'dbo'
 
