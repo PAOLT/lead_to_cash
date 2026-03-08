@@ -116,7 +116,8 @@ for c in customers:
     for m in range(1, 13):
         seasonal_adj = 1 if (m in (2,3) and c["customer_id"] == "C003") else 0
         val = max(1, min(5, base + random.choice([-1,0,0,0,1]) + seasonal_adj))
-        csat_rows.append({"customer_id": c["customer_id"], "month": m, "csat": val})
+        month = TODAY - timedelta(days=m*30)
+        csat_rows.append({"customer_id": c["customer_id"], "month": month, "csat": val})
 csat_rows[:3]
 
 # METADATA ********************
@@ -338,7 +339,7 @@ schema_products = T.StructType([
 
 schema_csats = T.StructType([
     T.StructField("customer_id", T.StringType(), False),
-    T.StructField("month", T.IntegerType(), False),
+    T.StructField("month", T.DateType(), False),
     T.StructField("csat", T.IntegerType(), False)
 ])
 
@@ -444,20 +445,6 @@ df_opportunity_notes = spark.createDataFrame(opportunity_notes, schema_opportuni
 (df_sales_opps.write.format("delta").mode("overwrite").saveAsTable("sales_opportunities"))
 (df_sales_activities.write.format("delta").mode("overwrite").saveAsTable("sales_activities"))
 (df_opportunity_notes.write.format("delta").mode("overwrite").saveAsTable("opportunity_notes"))
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-print("✅ Tables created (v2, no last_activity on opp/ticket):")
-for t in ["customers","products","csat_by_month","support_tickets","support_activities","sales_opportunities","sales_activities","opportunity_notes"]:
-    print(" -", t)
-
 
 # METADATA ********************
 
