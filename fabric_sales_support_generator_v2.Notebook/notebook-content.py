@@ -5,6 +5,18 @@
 # META {
 # META   "kernel_info": {
 # META     "name": "synapse_pyspark"
+# META   },
+# META   "dependencies": {
+# META     "lakehouse": {
+# META       "default_lakehouse": "867de34a-41e2-44a4-83ed-789a8e3feb01",
+# META       "default_lakehouse_name": "ops_data",
+# META       "default_lakehouse_workspace_id": "beeadc18-d85e-4c30-89e9-fa6b3fc07736",
+# META       "known_lakehouses": [
+# META         {
+# META           "id": "867de34a-41e2-44a4-83ed-789a8e3feb01"
+# META         }
+# META       ]
+# META     }
 # META   }
 # META }
 
@@ -33,6 +45,15 @@ random.seed(42)
 TODAY = date.today()
 START_DATE = date(TODAY.year-1, 7, 1)
 END_DATE = TODAY
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
 
 # ----------------------------
 # Dimension tables
@@ -77,6 +98,15 @@ def skew_recent(customer_id: str, base_start: date = START_DATE, base_end: date 
         return rand_date(recent_start, base_end) if random.random() < 0.75 else rand_date(base_start, base_end)
     return rand_date(base_start, base_end)
 
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 # ----------------------------
 # csat_by_month (exactly 3 columns)
 # ----------------------------
@@ -87,6 +117,16 @@ for c in customers:
         seasonal_adj = 1 if (m in (2,3) and c["customer_id"] == "C003") else 0
         val = max(1, min(5, base + random.choice([-1,0,0,0,1]) + seasonal_adj))
         csat_rows.append({"customer_id": c["customer_id"], "month": m, "csat": val})
+csat_rows[:3]
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
 
 # ----------------------------
 # Support tickets & activities (NO last_activity on ticket)
@@ -145,6 +185,15 @@ for c in customers:
             support_act_id_seq += 1
 
         ticket_id_seq += 1
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
 
 # ----------------------------
 # Opportunities, sales activities, notes (NO last_activity on opp)
@@ -261,6 +310,15 @@ for c in customers:
 
         opp_id_seq += 1
 
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 # ----------------------------
 # Create Spark DataFrames (schemas without last_activity)
 # ----------------------------
@@ -348,6 +406,15 @@ schema_opportunity_notes = T.StructType([
     T.StructField("tags", T.StringType(), True)
 ])
 
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 # Create DataFrames
 
 df_customers = spark.createDataFrame(customers, schema_customers)
@@ -359,6 +426,15 @@ df_sales_opps = spark.createDataFrame(sales_opportunities, schema_sales_opps)
 df_sales_activities = spark.createDataFrame(sales_activities, schema_sales_activities)
 df_opportunity_notes = spark.createDataFrame(opportunity_notes, schema_opportunity_notes)
 
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 # Persist as Delta & register tables
 (df_customers.write.format("delta").mode("overwrite").saveAsTable("customers"))
 (df_products.write.format("delta").mode("overwrite").saveAsTable("products"))
@@ -368,6 +444,15 @@ df_opportunity_notes = spark.createDataFrame(opportunity_notes, schema_opportuni
 (df_sales_opps.write.format("delta").mode("overwrite").saveAsTable("sales_opportunities"))
 (df_sales_activities.write.format("delta").mode("overwrite").saveAsTable("sales_activities"))
 (df_opportunity_notes.write.format("delta").mode("overwrite").saveAsTable("opportunity_notes"))
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
 
 print("✅ Tables created (v2, no last_activity on opp/ticket):")
 for t in ["customers","products","csat_by_month","support_tickets","support_activities","sales_opportunities","sales_activities","opportunity_notes"]:
