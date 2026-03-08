@@ -1,0 +1,36 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "af7be93a-e07e-4d8f-a057-b47f57c31640",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "note_id",
+        "targetPropertyId": "5711500447300230183"
+      },
+      {
+        "sourceColumnName": "note_at",
+        "targetPropertyId": "5711500452049910074"
+      },
+      {
+        "sourceColumnName": "note_type",
+        "targetPropertyId": "5711500454155298574"
+      },
+      {
+        "sourceColumnName": "note_text",
+        "targetPropertyId": "5711500451134483410"
+      },
+      {
+        "sourceColumnName": "tags",
+        "targetPropertyId": "5711500452342518919"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "8e3feb01-789a-83ed-44a4-41e2867de34a",
+      "sourceTableName": "opportunity_notes",
+      "sourceSchema": "dbo"
+    }
+  }
+}

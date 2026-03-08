@@ -1,0 +1,36 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "c929cf61-5041-410b-b57b-9d3da77c1125",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "activity_id",
+        "targetPropertyId": "5715241226893154257"
+      },
+      {
+        "sourceColumnName": "activity_at",
+        "targetPropertyId": "5715241228911332381"
+      },
+      {
+        "sourceColumnName": "description",
+        "targetPropertyId": "5715241226836074013"
+      },
+      {
+        "sourceColumnName": "type",
+        "targetPropertyId": "5715241228789072962"
+      },
+      {
+        "sourceColumnName": "contact_name",
+        "targetPropertyId": "5715241227306673601"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "8e3feb01-789a-83ed-44a4-41e2867de34a",
+      "sourceTableName": "sales_activities",
+      "sourceSchema": "dbo"
+    }
+  }
+}

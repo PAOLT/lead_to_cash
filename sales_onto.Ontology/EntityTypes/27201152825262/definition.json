@@ -4,10 +4,48 @@
   "namespace": "usertypes",
   "baseEntityTypeId": null,
   "name": "sales_note",
-  "entityIdParts": [],
-  "displayNamePropertyId": null,
+  "entityIdParts": [
+    "5711500447300230183"
+  ],
+  "displayNamePropertyId": "5711500454155298574",
   "namespaceType": "Custom",
   "visibility": "Visible",
-  "properties": [],
+  "properties": [
+    {
+      "id": "5711500447300230183",
+      "name": "note_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5711500452049910074",
+      "name": "note_at",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime"
+    },
+    {
+      "id": "5711500454155298574",
+      "name": "note_type",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5711500451134483410",
+      "name": "note_text",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5711500452342518919",
+      "name": "tags",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    }
+  ],
   "timeseriesProperties": []
 }

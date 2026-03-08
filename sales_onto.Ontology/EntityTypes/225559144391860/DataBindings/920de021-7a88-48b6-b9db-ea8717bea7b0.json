@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
-  "id": "87dd8145-3741-4a52-b20a-95086c159dab",
+  "id": "920de021-7a88-48b6-b9db-ea8717bea7b0",
   "dataBindingConfiguration": {
     "dataBindingType": "TimeSeries",
     "timestampColumnName": "month",
