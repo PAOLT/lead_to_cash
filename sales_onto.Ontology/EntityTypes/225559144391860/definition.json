@@ -4,10 +4,49 @@
   "namespace": "usertypes",
   "baseEntityTypeId": null,
   "name": "customer",
-  "entityIdParts": [],
-  "displayNamePropertyId": null,
+  "entityIdParts": [
+    "5667810737017928722"
+  ],
+  "displayNamePropertyId": "5667810744142786009",
   "namespaceType": "Custom",
   "visibility": "Visible",
-  "properties": [],
-  "timeseriesProperties": []
+  "properties": [
+    {
+      "id": "5667810737017928722",
+      "name": "customer_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5667810744142786009",
+      "name": "customer_name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5667810742995050712",
+      "name": "country",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    }
+  ],
+  "timeseriesProperties": [
+    {
+      "id": "5697501343344582961",
+      "name": "month",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime"
+    },
+    {
+      "id": "5697501339638020908",
+      "name": "csat",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "BigInt"
+    }
+  ]
 }

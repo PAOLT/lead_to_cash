@@ -1,0 +1,29 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "87dd8145-3741-4a52-b20a-95086c159dab",
+  "dataBindingConfiguration": {
+    "dataBindingType": "TimeSeries",
+    "timestampColumnName": "month",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "customer_id",
+        "targetPropertyId": "5667810737017928722"
+      },
+      {
+        "sourceColumnName": "month",
+        "targetPropertyId": "5697501343344582961"
+      },
+      {
+        "sourceColumnName": "csat",
+        "targetPropertyId": "5697501339638020908"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "8e3feb01-789a-83ed-44a4-41e2867de34a",
+      "sourceTableName": "csat_by_month",
+      "sourceSchema": "dbo"
+    }
+  }
+}
