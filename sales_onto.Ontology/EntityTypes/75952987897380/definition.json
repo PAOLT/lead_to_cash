@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/entityType/1.0.0/schema.json",
+  "id": "75952987897380",
+  "namespace": "usertypes",
+  "baseEntityTypeId": null,
+  "name": "sales_opportunity",
+  "entityIdParts": [],
+  "displayNamePropertyId": null,
+  "namespaceType": "Custom",
+  "visibility": "Visible",
+  "properties": [],
+  "timeseriesProperties": []
+}
