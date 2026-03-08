@@ -1,5 +1,12 @@
 # Fabric notebook source
 
+# METADATA ********************
+
+# META {
+# META   "kernel_info": {
+# META     "name": "synapse_pyspark"
+# META   }
+# META }
 
 # MARKDOWN ********************
 
@@ -7,7 +14,7 @@
 # - No `last_activity` columns on opportunities or support tickets.
 # - Last activity must be inferred from `sales_activities` and `support_activities`.
 # 
-**Run steps**: Attach your Lakehouse, then run the code cell.
+# **Run steps**: Attach your Lakehouse, then run the code cell.
 
 
 # CELL ********************
@@ -366,3 +373,10 @@ print("✅ Tables created (v2, no last_activity on opp/ticket):")
 for t in ["customers","products","csat_by_month","support_tickets","support_activities","sales_opportunities","sales_activities","opportunity_notes"]:
     print(" -", t)
 
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
