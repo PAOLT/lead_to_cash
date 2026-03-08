@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataAgent",
+    "displayName": "FinServ Sales & Support Agent"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f25cc654-054e-aa13-4a81-dd3c2e0ca2ca"
+  }
+}

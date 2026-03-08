@@ -1,49 +1,70 @@
 # Fabric notebook source
 
+# METADATA ********************
+
+# META {
+# META   "kernel_info": {
+# META     "name": "jupyter",
+# META     "jupyter_kernel_name": "python3.11"
+# META   }
+# META }
 
 # MARKDOWN ********************
 
-# # Fabric Data Agent Setup (Python Notebook)
+# # Fabric Data Agent Setup
 # 
 # This notebook creates and configures a **Microsoft Fabric Data Agent** over the Lakehouse tables generated in this workspace (sales + support operations demo).
 # 
-**Key points**
+# Key points**
 # - The agent is created programmatically (Preview SDK).
 # - It adds your **Lakehouse** as a data source and selects the demo tables.
 # - It configures **global instructions** and **data‑source instructions** so the agent understands how to query your schema (e.g., how to derive last activity from activities).
-# - Finally, it **publishes** the agent so you can use it from Copilot in Fabric or connect it from Microsoft Copilot Studio.
+# - Finally, it **publishes** the agent so you can use it from other agents via MCP.
 
 
 # CELL ********************
 
-%pip install -U fabric-data-agent-sdk
+%pip install fabric-data-agent-sdk
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
 
 # CELL ********************
 
-# ----- Configuration -----
 from datetime import date
 import json
 
+from fabric.dataagent.client import (
+    FabricDataAgentManagement,
+    create_data_agent,
+    delete_data_agent,
+)
+ 
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
+
+# CELL ********************
+
 # Name your agent and the Lakehouse to bind
 AGENT_DISPLAY_NAME = 'FinServ Sales & Support Agent'
-LAKEHOUSE_NAME = None  # If None, will try to use the attached Lakehouse in this notebook
-
-# Discover tables from the attached Lakehouse via Spark catalog
-try:
-    tables = [t.name for t in spark.catalog.listTables() if t.tableType in ('MANAGED','EXTERNAL')]
-except Exception as e:
-    tables = []
+LAKEHOUSE_NAME = 'ops_data' 
+SCHEMA = 'dbo'
 
 # Expected demo tables (created by the generator v2)
-EXPECTED = [
+TABLE_NAMES = [
     'customers','products','csat_by_month',
     'support_tickets','support_activities',
     'sales_opportunities','sales_activities','opportunity_notes'
  ]
-FOUND = [t for t in EXPECTED if t in tables]
-MISSING = [t for t in EXPECTED if t not in tables]
-print('Found tables:', FOUND)
-print('Missing  :', MISSING)
 
 # ---- Agent instructions ----
 GLOBAL_INSTRUCTIONS = f'''
@@ -68,7 +89,7 @@ Reasoning guidelines:
 - For "slip risk" this month, consider: no recent activity (14+ days), stage stagnant (>21 days), delivery risk notes.
 - For "renewal risk": low expansion pipeline, high incident volume, SLA breaches, or low CSAT in latest month.
 
-Tables available: {FOUND}
+Tables available: {TABLE_NAMES}
 Generated on {date.today().isoformat()}.
 '''
 
@@ -84,146 +105,128 @@ Per-source guidance for the Lakehouse:
 - Avoid selecting *; project meaningful columns and include filters for the asked time window.
 '''
 
+MCP_INSTRUCTIONS = '''
+use this agent to answer to sales questions
+'''
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
 
 # CELL ********************
 
-# ----- Create & configure the Data Agent (Preview SDK) -----
-from typing import Optional
-agent = None
+data_agent = create_data_agent(AGENT_DISPLAY_NAME)
 
-def get_client():
-    # Try common import patterns seen in SDK previews
-    try:
-        from fabric_data_agent_sdk import DataAgentClient
-        return ('client', DataAgentClient())
-    except Exception:
-        pass
-    try:
-        from fabric.dataagent.client import create_data_agent  # alt preview name in blog posts
-        return ('factory', create_data_agent)
-    except Exception:
-        pass
-    return (None, None)
+# METADATA ********************
 
-kind, obj = get_client()
-if kind is None:
-    raise RuntimeError('Fabric Data Agent SDK is not available in this kernel. Make sure %pip install -U fabric-data-agent-sdk ran successfully and you are in a Fabric notebook runtime.')
-
-# Create or get agent
-if kind == 'client':
-    client = obj
-    try:
-        agent = client.create_agent(name=AGENT_DISPLAY_NAME, description='NL analytics over sales & support demo tables')
-    except Exception as e:
-        print('create_agent failed, trying get_or_create...')
-        try:
-            agent = client.get_or_create_agent(name=AGENT_DISPLAY_NAME)
-        except Exception as e2:
-            raise
-elif kind == 'factory':
-    agent = obj(AGENT_DISPLAY_NAME)
-
-print('Agent handle:', type(agent))
-
-# Add Lakehouse data source and select the demo tables
-def add_lakehouse(agent, lakehouse_name: Optional[str], tables_to_select):
-    ds = None
-    # Try a few expected SDK patterns defensively
-    for attempt in ('add_datasource','add_data_source','add_lakehouse'):
-        try:
-            fn = getattr(agent, attempt)
-            # Some SDKs infer attached Lakehouse if name is None
-            if lakehouse_name:
-                ds = fn(lakehouse_name, type='lakehouse')
-            else:
-                ds = fn(type='lakehouse')
-            break
-        except Exception as _e:
-            ds = None
-            continue
-    if ds is None:
-        print('Could not add lakehouse via SDK; you may need to add it in the UI and rerun selection.')
-        return None
-
-    # Try selecting tables (schema name can be 'dbo' in the Lakehouse SQL endpoint; Spark reports 'default')
-    for schema in ('dbo','default','public',''):
-        for t in tables_to_select:
-            try:
-                # common patterns: ds.select(schema, table) or ds.select_table(table, schema=...)
-                if hasattr(ds, 'select'):
-                    ds.select(schema, t)
-                elif hasattr(ds, 'select_table'):
-                    ds.select_table(t, schema=schema)
-            except Exception:
-                pass
-    return ds
-
-datasource = add_lakehouse(agent, LAKEHOUSE_NAME, FOUND)
-
-# Set instructions
-def set_instructions(agent, global_text: str, ds_text: str):
-    # global / meta instructions
-    for attempt in ('set_instructions','set_global_instructions','update_instructions'):
-        try:
-            getattr(agent, attempt)(global_text)
-            break
-        except Exception:
-            continue
-    # data source scope instructions
-    try:
-        if datasource is not None:
-            for attempt in ('set_instructions','set_datasource_instructions','update_instructions'):
-                try:
-                    getattr(datasource, attempt)(ds_text)
-                    break
-                except Exception:
-                    continue
-    except Exception as e:
-        print('Could not set per‑source instructions:', e)
-
-set_instructions(agent, GLOBAL_INSTRUCTIONS, DATA_SOURCE_INSTRUCTIONS)
-
-# Add a few example questions to reduce ambiguity (few‑shot)
-EXAMPLES = [
-    ("Which 10 opportunities expected to close this month are most likely to slip and why?", 
-     "Compute last activity from sales_activities; flag no activity>14d, stage stagnant>21d, or delivery risk notes."),
-    ("List renewals due in the next 90 days with low expansion pipeline or high incident volume.", 
-     "Sum open Expansion/Project amount next 90d; count support_tickets last 90d; join on customer_id."),
-    ("Which customers show rising incident counts over the last 3 months and declining expansion pipeline?", 
-     "Aggregate support_tickets by month and compare with sum(amount) of open Expansion/Project opps by month.")
- ]
-for q, hint in EXAMPLES:
-    for attempt in ('add_example','add_example_query','add_fewshot'):
-        try:
-            getattr(agent, attempt)(question=q, guidance=hint)
-            break
-        except Exception:
-            continue
-
-# Publish the agent
-published_info = None
-for attempt in ('publish','publish_agent'):
-    try:
-        published_info = getattr(agent, attempt)(description='Sales & Support demo agent over Lakehouse tables')
-        break
-    except Exception:
-        continue
-
-print('✅ Data Agent configured. If publish() succeeded, locate it in your workspace Data Agent items UI.')
-
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
 
 # CELL ********************
 
-# (Optional) REST API fallback template — requires workspaceId and Fabric OAuth token
-# See: Items - Create Data Agent (REST)
-# from azure.identity import InteractiveBrowserCredential
-# import requests
-# WORKSPACE_ID = '00000000-0000-0000-0000-000000000000'
-# cred = InteractiveBrowserCredential()
-# token = cred.get_token('https://api.fabric.microsoft.com/.default').token
-# headers = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'}
-# body = { 'displayName': AGENT_DISPLAY_NAME, 'description': 'Sales & Support demo agent' }
-# r = requests.post(f'https://api.fabric.microsoft.com/v1/workspaces/{WORKSPACE_ID}/DataAgents',
-#                   headers=headers, json=body)
-# print(r.status_code, r.text)
+data_agent.update_configuration(instructions=GLOBAL_INSTRUCTIONS)
 
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
+
+# CELL ********************
+
+datasource = data_agent.add_datasource(LAKEHOUSE_NAME, type="lakehouse")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
+
+# CELL ********************
+
+# datasource = data_agent.get_datasources()[0]
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
+
+# CELL ********************
+
+for t in TABLE_NAMES:
+    datasource.select(SCHEMA, t)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
+
+# CELL ********************
+
+datasource.pretty_print()
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
+
+# CELL ********************
+
+datasource.update_configuration(instructions=DATA_SOURCE_INSTRUCTIONS)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
+
+# CELL ********************
+
+# example_dict = {
+#     "How many customers does the company has?": "SELECT COUNT(*) AS NumberOfCustomers FROM dbo.customers"
+# }
+# datasource.add_fewshots(example_dict)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
+
+# CELL ********************
+
+data_agent.get_configuration()
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
+
+# CELL ********************
+
+data_agent.publish(description=MCP_INSTRUCTIONS)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
