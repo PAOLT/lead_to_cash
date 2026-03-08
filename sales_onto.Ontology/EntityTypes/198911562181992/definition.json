@@ -4,10 +4,34 @@
   "namespace": "usertypes",
   "baseEntityTypeId": null,
   "name": "product",
-  "entityIdParts": [],
-  "displayNamePropertyId": null,
+  "entityIdParts": [
+    "5737246343793453160"
+  ],
+  "displayNamePropertyId": "5737246350107594083",
   "namespaceType": "Custom",
   "visibility": "Visible",
-  "properties": [],
+  "properties": [
+    {
+      "id": "5737246343793453160",
+      "name": "product_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5737246350107594083",
+      "name": "product_name",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5737246352200380973",
+      "name": "product_line",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    }
+  ],
   "timeseriesProperties": []
 }

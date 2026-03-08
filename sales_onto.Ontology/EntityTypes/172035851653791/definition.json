@@ -4,10 +4,83 @@
   "namespace": "usertypes",
   "baseEntityTypeId": null,
   "name": "support_ticket",
-  "entityIdParts": [],
-  "displayNamePropertyId": null,
+  "entityIdParts": [
+    "5747102826726482839"
+  ],
+  "displayNamePropertyId": "5747102827075213003",
   "namespaceType": "Custom",
   "visibility": "Visible",
-  "properties": [],
+  "properties": [
+    {
+      "id": "5747102826726482839",
+      "name": "ticket_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5747102827053184553",
+      "name": "status",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5747102825570811691",
+      "name": "opened_at",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime"
+    },
+    {
+      "id": "5747102825764315902",
+      "name": "closed_at",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime"
+    },
+    {
+      "id": "5747102829567338719",
+      "name": "severity",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5747102826127444164",
+      "name": "priority",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5747102827081970617",
+      "name": "channel",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5747102827075213003",
+      "name": "title",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5747102825613054237",
+      "name": "sla_breach_flag",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "Boolean"
+    },
+    {
+      "id": "5747102826716616009",
+      "name": "assigned_group",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    }
+  ],
   "timeseriesProperties": []
 }

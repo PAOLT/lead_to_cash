@@ -4,10 +4,55 @@
   "namespace": "usertypes",
   "baseEntityTypeId": null,
   "name": "support_activity",
-  "entityIdParts": [],
-  "displayNamePropertyId": null,
+  "entityIdParts": [
+    "5758029436491372975"
+  ],
+  "displayNamePropertyId": "5758029433194165417",
   "namespaceType": "Custom",
   "visibility": "Visible",
-  "properties": [],
+  "properties": [
+    {
+      "id": "5758029436491372975",
+      "name": "activity_id",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5758029436092470988",
+      "name": "activity_at",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "DateTime"
+    },
+    {
+      "id": "5758029433963837454",
+      "name": "description",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5758029435816913705",
+      "name": "author",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5758029433194165417",
+      "name": "activity_type",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "String"
+    },
+    {
+      "id": "5758029436489250546",
+      "name": "minutes_spent",
+      "redefines": null,
+      "baseTypeNamespaceType": null,
+      "valueType": "BigInt"
+    }
+  ],
   "timeseriesProperties": []
 }
