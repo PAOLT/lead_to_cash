@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/contextualization/1.0.0/schema.json",
+  "id": "089339e0-fab5-4300-8033-9f2f0c9ffc7a",
+  "dataBindingTable": {
+    "workspaceId": "00000000-0000-0000-0000-000000000000",
+    "itemId": "8e3feb01-789a-83ed-44a4-41e2867de34a",
+    "sourceTableName": "support_tickets",
+    "sourceSchema": "dbo",
+    "sourceType": "LakehouseTable"
+  },
+  "sourceKeyRefBindings": [
+    {
+      "sourceColumnName": "ticket_id",
+      "targetPropertyId": "5747102826726482839"
+    }
+  ],
+  "targetKeyRefBindings": [
+    {
+      "sourceColumnName": "product_id",
+      "targetPropertyId": "5737246343793453160"
+    }
+  ]
+}
