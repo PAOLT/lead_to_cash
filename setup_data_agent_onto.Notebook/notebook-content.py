@@ -11,16 +11,13 @@
 
 # MARKDOWN ********************
 
-# # Fabric Data Agent Setup
+# # Fabric Data Agent Setup Using an Ontology
 # 
-# This notebook creates and configures a **Microsoft Fabric Data Agent** over the Lakehouse tables generated in this workspace (sales + support operations demo).
-# 
-# Key points**
-# - The agent is created programmatically (Preview SDK).
-# - It adds your **Lakehouse** as a data source and selects the demo tables.
-# - It configures **global instructions** and **data‑source instructions** so the agent understands how to query your schema (e.g., how to derive last activity from activities).
-# - Finally, it **publishes** the agent so you can use it from other agents via MCP.
+# This notebook sets up and configures a Microsoft Fabric Data Agent on top of an IQ ontology. It defines global instructions to communicate business objectives and guide agent behavior, without requiring data-source-specific query instructions. The agent is then published for reuse by other agents via MCP.
 
+# MARKDOWN ********************
+
+# ### Imports and settings
 
 # CELL ********************
 
@@ -44,6 +41,18 @@ from fabric.dataagent.client import (
     delete_data_agent,
 )
 
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
+
+# CELL ********************
+
+AGENT_DISPLAY_NAME = 'sales_agent_onto'
+ONTO_NAME = 'sales_onto'
+
 ENTITY_NAMES = ["customer", "sales_opportunity", "product", "sales_note", "sales_activity", "support_ticket", "support_activity"]
 RELS = ["customer --> sales_opportunity", "customer --> support_ticket"]
  
@@ -55,32 +64,53 @@ RELS = ["customer --> sales_opportunity", "customer --> support_ticket"]
 # META   "language_group": "jupyter_python"
 # META }
 
+# MARKDOWN ********************
+
+# ### Prompting
+
 # CELL ********************
 
-# Name your agent and the Lakehouse to bind
-AGENT_DISPLAY_NAME = 'FinServ Sales Agent Onto'
-ONTO_NAME = 'sales_onto' 
-
-# ---- Agent instructions ----
 GLOBAL_INSTRUCTIONS = f'''
-You are a Sales & Support Operations analyst for a financial software vendor serving banks.
-Work strictly from the ontology entities and relationships.
+# You are a Sales & Support Operations analyst for a financial software vendor serving banks. Your role is to answer business questions related to:
+- Sales pipeline health
+- Opportunity progression and risk
+- Customer renewals
+- Support performance and customer satisfaction
+Work exclusively with the business data provided in the approved data source.
 
-Important modelling constraints:
-- There is NO last_activity property on opportunities or tickets. When asked about "last activity" use the date properties from the respective *activities* entity.
-- Opportunity status is one of Open, Won, Lost.
-- Ticket severity can be Low, Medium, High, Critical; sla_breach_flag indicates risk.
+# Business reasoning guidelines:
+- Prioritize precise, repeatable answers grounded in data.
+- When applicable, explain the business logic behind conclusions (e.g., why an opportunity is considered at risk).
+- Provide SQL logic or summaries only when explicitly requested.
 
-Reasoning guidelines:
-- Prefer precise, reproducible answers.
-- For "slip risk" this month, consider: no recent activity (14+ days), stage stagnant (>21 days), delivery risk notes.
-- For "renewal risk": low expansion pipeline, high incident volume, SLA breaches, or low CSAT in latest month.
+# Standard business definitions:
+## Slip risk (default policy):
+  - No recent sales activity for 14+ days
+  - stage stagnant: opportunity stage unchanged for more than 21 days
+  - Seller notes expressing risks or concerns in the last 60 days
+## Renewal risk (default policy):
+  - Limited expansion pipeline: opportunities for expansion or project aggregated value is lower than 100000
+  - High volume of support incidents (3 open incidents with high severity)
+  - SLA breaches
+  - Low customer satisfaction in the most recent month
+If a question requires refining these definitions, adapt them explicitly and state the new assumptions.
+
+# Business modeling 
+## Sales opportunities:
+- type: renewal, project, expansion
+- status: open, lost or win (when close or win, the opportunity is closed).
+- stage: Discovery, Qualification, Procurement, Negotiation, Proposal
+- forecast flag: true or false
+- forecast category: pipeline, commit, best_case 
+
+## Opportunity notes:
+- note type: provide sale judgements (neutral, progress, risk)
+
+## Support tickets:
+- status: closed, open
+- severity: Medium, Low, Critical, High
+- priority: P1 (high-priority), P2, P3, P4 (low-priority)
 '''
-
-MCP_INSTRUCTIONS = '''
-use this agent to answer to sales questions
-'''
-
 
 # METADATA ********************
 
@@ -88,6 +118,27 @@ use this agent to answer to sales questions
 # META   "language": "python",
 # META   "language_group": "jupyter_python"
 # META }
+
+# CELL ********************
+
+MCP_INSTRUCTIONS = '''
+An agent providing a Sales & Support Operations Analyst for a financial software vendor serving banks. Agent's role is to answer business questions related to:
+- Sales pipeline health
+- Opportunity progression and risk
+- Customer renewals
+- Support performance and customer satisfaction
+'''
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
+
+# MARKDOWN ********************
+
+# ### Create and configure the Data Agent
 
 # CELL ********************
 
@@ -122,31 +173,13 @@ datasource = data_agent.add_datasource(ONTO_NAME, type="ontology")
 # META   "language_group": "jupyter_python"
 # META }
 
-# CELL ********************
+# MARKDOWN ********************
 
-# datasource = data_agent.get_datasources()[0]
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "jupyter_python"
-# META }
+# ### Publish the data agent (optional)
 
 # CELL ********************
 
-data_agent.get_configuration()
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "jupyter_python"
-# META }
-
-# CELL ********************
-
-data_agent.publish(description=MCP_INSTRUCTIONS)
+# data_agent.publish(description=MCP_INSTRUCTIONS)
 
 # METADATA ********************
 
