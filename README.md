@@ -37,7 +37,7 @@ The following components are provided in this repository.
 
 Currently, only the L2C ontology and related lakehouse are provided. If you already have data, building an ontology directly in Fabric portal is easy.
 
-In case you need to generate the ontology and representative data from scratch, vibe code it - follow this [video](https://github.com/microsoft/Fabric-IQ-and-Real-Time-Intelligence-assets/blob/main/Repo%20assets/").
+In case you need to generate the ontology and representative data from scratch, vibe code it - follow this [video](https://github.com/microsoft/Fabric-IQ-and-Real-Time-Intelligence-assets/blob/main/Repo%20assets/).
 
 
 ### Ground Truth Generation
