@@ -22,7 +22,7 @@
 
 # MARKDOWN ********************
 
-# # Fabric Data Agent Evaluation Notebook
+# # Evaluate sales_agent_lh data agent
 
 
 # MARKDOWN ********************
@@ -56,14 +56,12 @@ from fabric.dataagent.evaluation import get_evaluation_details
 
 # CELL ********************
 
-# Name of your Data Agent
-# data_agent_name = "FinServ Sales Agent Onto"
-data_agent_name = "FinServ Sales & Support Agent"
+data_agent_name = "sales_agent_lh"
 
-# Name of the output table to store evaluation results (default: "evaluation_output")
-table_name = f"eval_{data_agent_name}"
+# output table to store evaluation results
+table_name = f"evl.eval_{data_agent_name}"
 
-# Specify the Data Agent stage: "production" (default) or "sandbox"
+# "production" (default) or "sandbox"
 data_agent_stage = "sandbox"
 
 # METADATA ********************
@@ -75,8 +73,8 @@ data_agent_stage = "sandbox"
 
 # CELL ********************
 
-round_truth_path = "/lakehouse/default/Files/ground_truth/ground_truth.csv"
-df = pd.read_csv(round_truth_path, quotechar='"', lineterminator='\t')
+ground_truth_path = "/lakehouse/default/Files/ground_truth/ground_truth.csv"
+df = pd.read_csv(ground_truth_path, quotechar='"', lineterminator='\t')
 df = df.rename(columns={'result': 'expected_answer'})
 df = df[['question', 'expected_answer']]
 display(df[:3])
@@ -94,39 +92,19 @@ display(df[:3])
 
 # CELL ********************
 
-# Define a custom prompt for evaluating agent responses
-# critic_prompt = """
-#         Given the following query and ground truth, please determine if the most recent answer is equivalent or satifies 
-#         the ground truth. If they are numerically and semantically equivalent or satify (even with reasonable rounding), 
-#         respond with "Yes". If they clearly differ, respond with "No". If it is ambiguous or unclear, respond with "Unclear". 
-#         Return only one word: Yes, No, or Unclear..
+prompt = """
+Given the following Query and ground truth, please determine if the most recent answer is equivalent or satifies the ground truth.
+The ground truth is expressed as a SQL table, while the answer is expressed in natural language. Use the following rules and return only one score: 1,2,3,4, or 5:
+    - 1: Actual Answer is not relevant to Query or it is not coherent to True Dataset (i.e., they cover completely different data points)
+    - 2: Actual Answer relevant to Query, but it is not coherent to True Dataset (i.e., they cover quite different data points)
+    - 3: Actual Answer relevant to Query, and it is almost coherent to True Dataset (i.e., they cover compatibe data points, but they are different)
+    - 4: Actual Answer relevant to Query, and it is mostly coherent to True Dataset (i.e., they cover almost the same  data points, with a few exceptions)
+    - 5: Actual Answer is relevant to Query and it is completely coherent to True Dataset (i.e., they cover exactly the same data points)
 
-#         Query: {query}
+    Query: {query}
 
-#         Ground Truth: {expected_answer}
-# """
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-critic_prompt = """
-Given the following question and ground truth answer (expressed as a SQL table), evaluate the validity of the answer provided to the question. Using your understanding of semantics and data, assign a single score from 1 to 4 according to these guidelines:
-
-1: The answer is not relevant to the question.
-2: The answer is somewhat relevant, but substantially diverges from the ground truth data.
-3: The answer is relevant and largely coherent with the ground truth, but exhibits minor differences.
-4: The answer is fully relevant and entirely consistent with the ground truth data.
-Question: {query}
-
-Ground Truth: {expected_answer}
-
-Return only the score (1, 2, 3, or 4).
+    Expected Answer:
+    {expected_answer}
 """
 
 # METADATA ********************
@@ -143,7 +121,7 @@ evaluation_id = evaluate_data_agent(
     data_agent_name,
     table_name=table_name,
     data_agent_stage=data_agent_stage,
-    critic_prompt=critic_prompt
+    critic_prompt=prompt
 )
 
 print(f"Unique ID for the current evaluation run: {evaluation_id}")
@@ -174,12 +152,11 @@ display(eval_results_df)
 # CELL ********************
 
 # Whether to return all evaluation rows (True) or only failures (False)
-get_all_rows = False
+get_all_rows = True
 
 # Whether to print a summary of the results
 verbose = True
 
-# Retrieve evaluation details for a specific run
 eval_details = get_evaluation_details(
     evaluation_id,
     table_name,
