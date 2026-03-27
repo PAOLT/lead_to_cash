@@ -1,124 +1,65 @@
+# Experimenting with Data Agents and Ontologies in Fabric IQ
 
-# Sales & Support Operations Demo (Microsoft Fabric, v2)
+This repository provides utilities for experimenting with Data Agents and Ontologies in Fabric IQ. Accelerating Data Agent initiatives typically requires overcoming common challenges: sourcing or generating use‑case‑representative datasets, iterating on semantic modeling strategies and agent instructions, and defining robust evaluation frameworks to verify alignment with business objectives. For business‑data scenarios, the chosen data modeling paradigm—delta tables, semantic models, or ontologies—becomes an integral part of the AI system and must be explicitly evaluated.
 
-## 1. Purpose of This Example
+## Requirements 
 
-This example demonstrates how to use **Microsoft Fabric**—specifically the **Lakehouse**, **Notebooks**, and **SQL endpoint**—to create and analyze an integrated **sales + support operations** dataset for a financial software vendor. 
+A typical workflow for experimenting with ontologies in specific use cases includes the following steps:
+- When data is available, ingest it into a Fabric Lakehouse, create an ontology using the Fabric portal, and bind the ontology to the source data
+- When data is not readily available, use vibe‑coding tools (e.g., GitHub Copilot) to generate both the ontology and the corresponding realistic data in a Lakehouse 
+- Generate a ground‑truth dataset
+- Configure and evaluate Data Agents—either in Fabric or alternative frameworks—against the ground truth, experimenting with different instructions and semantic layers (e.g., ontologies, Power BI semantic models, or Lakehouse tables)
 
-It provides:
-- A **synthetic but realistic dataset** for sales, support, CSAT, and notes.
-- A **data generator notebook** to populate a Lakehouse using Delta tables.
-- An **analytics notebook** containing SQL queries that answer real business questions such as:
-  - Which opportunities are most likely to slip?
-  - Which renewals are at risk?
-  - Which accounts show rising incidents and shrinking pipeline?
+Guidance and notebooks are provided to support this workflow, accelerating the journey from ideation to implementation. These materials are intended as an enablement accelerator, not as a prescriptive, step‑by‑step guide.
 
-This structure mirrors real-world customer architectures where Fabric is used for **data engineering**, **semantic modeling**, **analytics**, and **Copilot-driven insights**.
+### Example
 
----
+This repository presents a concrete *Lead‑to‑Cash* (L2C) example for managing sales opportunities in a software company, covering:
+- Sales pipeline health
+- Opportunity lifecycle progression and risk
+- Customer renewals
+- Support performance and customer satisfaction
 
-## 2. Required Architecture
+The following schema represents the provided ontology:
 
-To successfully run this example, you need:
+![Lead to Cash Ontology definition](l2c_onto.png)
 
-### **Microsoft Fabric Workspace**
-A workspace with Fabric capacity (F SKU, P SKU, or Fabric Trial). You must be able to run **Lakehouse**, **Notebook**, and **SQL** workloads.
+Typical prompts for the L2C ontology include:
+- Top 10 opportunities most likely to slip in February 2026 and why
+- Renewals at risk in Q1 2026 due to low expansion or high incident rates
+- Which opportunities closing in H1 2026 can be accelerated
 
-### **Fabric Lakehouse**
-All generated data is stored as **Delta tables** in a Fabric Lakehouse. The Lakehouse provides:
-- ACID transactions via Delta format
-- OneLake unified storage
-- A built-in SQL analytics endpoint
-- Direct interoperability with Power BI, Copilot, and notebooks
+## Components
 
-### **Two Fabric Notebooks**
-The project includes two notebooks with distinct roles:
+The following components are provided in this repository.
 
-#### **1. `fabric_sales_support_generator_v2.ipynb` — Data Generator**
-**Intent:** Build and load a full synthetic dataset into the Lakehouse.
+### Ontology & Data Generator
 
-This notebook:
-- Creates the complete data model (customers, products, opportunities, tickets, activities, CSAT, notes)
-- Writes each dataset as a **Delta table** using `saveAsTable()`
-- Ensures realistic scenario patterns (e.g., stale opportunities, renewal risk, incident spikes)
-- Enforces updated schema (no `last_activity` on opps/tickets)
+Currently, only the L2C ontology and related lakehouse are provided. If you already have data, building an ontology directly in Fabric portal is easy.
 
-You should run this notebook **first**.
+In case you need to generate the ontology and representative data from scratch, vibe code it - follow this [video](https://github.com/microsoft/Fabric-IQ-and-Real-Time-Intelligence-assets/blob/main/Repo%20assets/").
 
-#### **2. `fabric_sales_support_sql_v2.ipynb` — Analytics & SQL Tests**
-**Intent:** Execute business-level analytics using the generated data.
 
-This notebook includes SQL for:
-- Slip risk detection
-- Renewal risk scoring
-- Pipeline vs. incidents trend analysis
-- Variants of each question
+### Ground Truth Generation
 
-The notebook automatically computes **last activity** for opportunities and support tickets using:
-```sql
-MAX(activity_at)
-```
-from their respective activities tables.
+Generating high‑quality ground truth is non‑trivial. We propose the following methodology, implemented in a reusable notebook:
 
-You should run this notebook **after generating the data**.
+- Seed a small set of manually curated test cases, each pairing a business prompt with a query used to retrieve the relevant data. In the L2C example, this consists of three business prompts and their associated Lakehouse SQL queries.
+- Manually derive simple variations from the seed cases. Although such variations could be auto‑generated, doing so would require additional validation. The L2C example uses manual variations (e.g., adjusting time horizons, filtering by different products, or overriding policies defined in Data Agent instructions).
+- Use an LLM to generate prompt rephrasings while keeping the underlying queries unchanged.
 
----
+The L2C example starts from three seed test cases, each expanded with three manual variations and three LLM‑generated rephrasings, resulting in a total of 27 test cases.
 
-## 3. How to Re-run Everything
+### Data Agent Generator
 
-### **Step 1 — Upload Both Notebooks**
-Upload the following files into your Fabric workspace:
-- `fabric_sales_support_generator_v2.ipynb`
-- `fabric_sales_support_sql_v2.ipynb`
+Notebooks are provided to generate two Fabric Data Agents (one using the L2C ontology and one using the corresponding lakehouse). These serve as reusable templates for creating additional Data Agents. 
 
-### **Step 2 — Attach a Lakehouse**
-For both notebooks:
-1. Open the notebook in Fabric.
-2. In the left pane, click **+ Add** → **Lakehouse**.
-3. Select or create the Lakehouse you want to use.
+### Evaluation
 
-### **Step 3 — Run the Data Generator Notebook**
-Open `fabric_sales_support_generator_v2.ipynb` and run all cells.
+Evaluation uses the Fabric Data Agent SDK with a custom LLM-as-judge prompt. The evaluation notebook can be reused as a template.
 
-When successful, it prints:
-```
-✅ Tables created (v2, no last_activity on opp/ticket):
- - customers
- - products
- - csat_by_month
- - support_tickets
- - support_activities
- - sales_opportunities
- - sales_activities
- - opportunity_notes
-```
-This confirms that all tables are now available in the Lakehouse and SQL endpoint.
+## Provisioning in your environment
 
-### **Step 4 — Run the SQL Analytics Notebook**
-Open `fabric_sales_support_sql_v2.ipynb`.
-Ensure the **same Lakehouse** is attached.
+To provision the L2C example end-to-end, clone the GitHub repository and create a Fabric workspace linked to it. 
 
-Run all cells to execute:
-- Slip-risk analysis
-- Renewal-risk analysis
-- Incident-vs-pipeline analysis
-- Their variations (monthly, quarterly, by product line, by severity, etc.)
-
-Results appear directly in notebook outputs.
-
----
-
-## 4. Notes
-
-- Re-running the generator notebook **overwrites** the existing Delta tables.
-- The SQL notebook never writes—only reads and analyzes.
-- The entire solution is intentionally compact and reproducible, suitable for:
-  - Workshops
-  - Demos
-  - Architecture reviews
-  - Copilot + Fabric integration showcases
-  - Power BI prototype modeling
-
----
-
-Generated automatically on {datetime.date.today().isoformat()}.
+In case you wanted to experiment with your own data, reuse the provided notebooks as examples.
