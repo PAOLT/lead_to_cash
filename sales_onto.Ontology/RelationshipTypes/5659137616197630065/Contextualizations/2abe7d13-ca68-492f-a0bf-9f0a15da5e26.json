@@ -1,0 +1,23 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/contextualization/1.0.0/schema.json",
+  "id": "2abe7d13-ca68-492f-a0bf-9f0a15da5e26",
+  "dataBindingTable": {
+    "workspaceId": "00000000-0000-0000-0000-000000000000",
+    "itemId": "8e3feb01-789a-83ed-44a4-41e2867de34a",
+    "sourceTableName": "opportunity_notes",
+    "sourceSchema": "dbo",
+    "sourceType": "LakehouseTable"
+  },
+  "sourceKeyRefBindings": [
+    {
+      "sourceColumnName": "opp_id",
+      "targetPropertyId": "5706622140252327672"
+    }
+  ],
+  "targetKeyRefBindings": [
+    {
+      "sourceColumnName": "note_id",
+      "targetPropertyId": "5711500447300230183"
+    }
+  ]
+}

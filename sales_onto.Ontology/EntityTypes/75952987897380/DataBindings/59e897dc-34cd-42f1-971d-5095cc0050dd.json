@@ -1,0 +1,72 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "59e897dc-34cd-42f1-971d-5095cc0050dd",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "opp_id",
+        "targetPropertyId": "5706622140252327672"
+      },
+      {
+        "sourceColumnName": "type",
+        "targetPropertyId": "5706622146998379124"
+      },
+      {
+        "sourceColumnName": "status",
+        "targetPropertyId": "5706622148474617728"
+      },
+      {
+        "sourceColumnName": "stage",
+        "targetPropertyId": "5706622145400610839"
+      },
+      {
+        "sourceColumnName": "opened_at",
+        "targetPropertyId": "5706622146932776912"
+      },
+      {
+        "sourceColumnName": "expected_close_date",
+        "targetPropertyId": "5706622145636587300"
+      },
+      {
+        "sourceColumnName": "closed_at",
+        "targetPropertyId": "5706622146814219277"
+      },
+      {
+        "sourceColumnName": "is_forecast",
+        "targetPropertyId": "5706622144981355585"
+      },
+      {
+        "sourceColumnName": "forecast_category",
+        "targetPropertyId": "5706622145406393101"
+      },
+      {
+        "sourceColumnName": "stage_last_changed_at",
+        "targetPropertyId": "5706622148284733889"
+      },
+      {
+        "sourceColumnName": "amount",
+        "targetPropertyId": "5706622147594747820"
+      },
+      {
+        "sourceColumnName": "currency",
+        "targetPropertyId": "5706622145214458200"
+      },
+      {
+        "sourceColumnName": "probability",
+        "targetPropertyId": "5706622146353824281"
+      },
+      {
+        "sourceColumnName": "renewal_term_months",
+        "targetPropertyId": "5706622146725951364"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "8e3feb01-789a-83ed-44a4-41e2867de34a",
+      "sourceTableName": "sales_opportunities",
+      "sourceSchema": "dbo"
+    }
+  }
+}

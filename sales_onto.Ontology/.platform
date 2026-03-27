@@ -1,12 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Notebook",
-    "displayName": "lakehouse_generator",
-    "description": "New notebook"
+    "type": "Ontology",
+    "displayName": "sales_onto"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "8845bc24-d87c-971f-4232-a4d5c097ef16"
+    "logicalId": "8652d44d-844c-9ee4-4ef7-aed4bd8062ba"
   }
 }

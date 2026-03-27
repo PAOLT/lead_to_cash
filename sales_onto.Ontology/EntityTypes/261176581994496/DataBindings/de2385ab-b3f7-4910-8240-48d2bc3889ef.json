@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "de2385ab-b3f7-4910-8240-48d2bc3889ef",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "activity_id",
+        "targetPropertyId": "5758029436491372975"
+      },
+      {
+        "sourceColumnName": "activity_at",
+        "targetPropertyId": "5758029436092470988"
+      },
+      {
+        "sourceColumnName": "description",
+        "targetPropertyId": "5758029433963837454"
+      },
+      {
+        "sourceColumnName": "author",
+        "targetPropertyId": "5758029435816913705"
+      },
+      {
+        "sourceColumnName": "activity_type",
+        "targetPropertyId": "5758029433194165417"
+      },
+      {
+        "sourceColumnName": "minutes_spent",
+        "targetPropertyId": "5758029436489250546"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "8e3feb01-789a-83ed-44a4-41e2867de34a",
+      "sourceTableName": "support_activities",
+      "sourceSchema": "dbo"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/relationshipType/1.0.0/schema.json",
+  "namespace": "usertypes",
+  "id": "5659828379573538127",
+  "name": "has_ticket",
+  "namespaceType": "Custom",
+  "source": {
+    "entityTypeId": "225559144391860"
+  },
+  "target": {
+    "entityTypeId": "172035851653791"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/ontology/dataBinding/1.0.0/schema.json",
+  "id": "ae835531-7c4c-4cbd-a6a8-61b7672484d5",
+  "dataBindingConfiguration": {
+    "dataBindingType": "NonTimeSeries",
+    "propertyBindings": [
+      {
+        "sourceColumnName": "ticket_id",
+        "targetPropertyId": "5747102826726482839"
+      },
+      {
+        "sourceColumnName": "status",
+        "targetPropertyId": "5747102827053184553"
+      },
+      {
+        "sourceColumnName": "opened_at",
+        "targetPropertyId": "5747102825570811691"
+      },
+      {
+        "sourceColumnName": "closed_at",
+        "targetPropertyId": "5747102825764315902"
+      },
+      {
+        "sourceColumnName": "severity",
+        "targetPropertyId": "5747102829567338719"
+      },
+      {
+        "sourceColumnName": "priority",
+        "targetPropertyId": "5747102826127444164"
+      },
+      {
+        "sourceColumnName": "channel",
+        "targetPropertyId": "5747102827081970617"
+      },
+      {
+        "sourceColumnName": "title",
+        "targetPropertyId": "5747102827075213003"
+      },
+      {
+        "sourceColumnName": "sla_breach_flag",
+        "targetPropertyId": "5747102825613054237"
+      },
+      {
+        "sourceColumnName": "assigned_group",
+        "targetPropertyId": "5747102826716616009"
+      }
+    ],
+    "sourceTableProperties": {
+      "sourceType": "LakehouseTable",
+      "workspaceId": "00000000-0000-0000-0000-000000000000",
+      "itemId": "8e3feb01-789a-83ed-44a4-41e2867de34a",
+      "sourceTableName": "support_tickets",
+      "sourceSchema": "dbo"
+    }
+  }
+}
