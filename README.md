@@ -2,16 +2,6 @@
 
 Accelerating Data Agent initiatives typically requires overcoming common challenges: sourcing or generating use‑case‑representative datasets; iterating on semantic modeling strategies—i.e., Delta Tables, Semantic Models, and Ontologies—and agent instructions; and defining a robust evaluation framework to verify alignment with business objectives. *Lead to Cash* (L2C) is an example of experimenting with Data Agents and Fabric IQ, providing reusable yet simple assets that can be adapted to your own scenarios.
 
-## Requirements 
-
-A typical workflow for experimenting with Data Agents in specific use cases includes the following steps:
-- When data is available, ingest it into a Fabric Lakehouse, create an ontology using the Fabric portal, and bind the ontology to the source data
-- When data is not readily available, use vibe‑coding tools (e.g., GitHub Copilot) to generate both the ontology and the corresponding realistic data in a Lakehouse 
-- Generate a ground‑truth dataset
-- Configure and evaluate Data Agents—either in Fabric or alternative frameworks—against the ground truth, experimenting with different instructions and semantic layers (e.g., ontologies, Power BI semantic models, or Lakehouse tables)
-
-Guidance and notebooks are provided to support this workflow, accelerating the journey from ideation to implementation. These materials are intended as an enablement accelerator, not as a prescriptive, step‑by‑step guide.
-
 ## Lead‑to‑Cash
 
 The *Lead‑to‑Cash* (L2C) example refers to managing sales opportunities in a software company. Specifically, L2C covers:
