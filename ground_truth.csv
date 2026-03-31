@@ -1,0 +1,1285 @@
+question,sql,result	"top 10 opportunities most likely to slip in February 2026 and why. 
+
+Opportunities can slip due to either of the following:
+- stage stagnation: opportunity stage didn't change in the last 21 days 
+- no activity: no sales activities in last 14 days,
+- delivery at risk: opportunity notes indicating risk in the last 60 days
+
+Return the following fields for each opportunity being at risk of slipping:
+- opportunity ID
+- customer name
+- product name
+- opportunity expected close date
+- opportunity stage
+- forecast category
+- opportunity size
+- reason for being at risk of slipping
+
+Answer only with a table and keep the reason field as much concise as possible.","WITH last_sales_activity AS (
+ SELECT opp_id, MAX(activity_at) AS last_activity_at
+ FROM sales_activities
+ GROUP BY opp_id
+), risk_notes AS (
+ SELECT DISTINCT n.opp_id
+ FROM opportunity_notes n
+ WHERE n.note_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND (n.tags LIKE '%risk%' OR n.note_type = 'risk')
+), recent_high_sev_tickets AS (
+ SELECT DISTINCT st.customer_id, st.product_id
+ FROM support_tickets st
+ WHERE st.opened_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND st.status = 'Open'
+ AND st.severity IN ('High','Critical')
+) 
+SELECT o.opp_id, o.type, c.customer_name, p.product_name, o.stage, o.forecast_category, o.amount, o.expected_close_date,
+ CASE WHEN lsa.last_activity_at IS NULL OR DATEDIFF(day, lsa.last_activity_at, '2026-02-15') > 14 THEN 1 ELSE 0 END AS no_activity_flag,
+ CASE WHEN DATEDIFF(day, o.stage_last_changed_at, '2026-02-15') > 21 THEN 1 ELSE 0 end AS stage_stagnant_flag,
+ CASE WHEN rn.opp_id IS NOT NULL OR rht.customer_id IS NOT NULL THEN 1 ELSE 0 END AS delivery_risk_flag
+ FROM sales_opportunities o
+ LEFT JOIN last_sales_activity lsa ON lsa.opp_id = o.opp_id
+ LEFT JOIN risk_notes rn ON rn.opp_id = o.opp_id
+ LEFT JOIN recent_high_sev_tickets rht ON rht.customer_id = o.customer_id AND rht.product_id = o.product_id
+ LEFT JOIN customers c on c.customer_id = o.customer_id
+ LEFT JOIN products p on p.product_id = o.product_id
+ WHERE o.status = 'Open'
+ AND YEAR(o.expected_close_date)=YEAR('2026-02-01') AND MONTH(o.expected_close_date)=MONTH('2026-02-01')
+LIMIT 10;",| opp_id | type | customer_name | product_name | stage | forecast_category | amount | expected_close_date | no_activity_flag | stage_stagnant_flag | delivery_risk_flag |
+|:---------|:----------|:---------------------|:-----------------|:------------|:--------------------|:---------|:----------------------|:-------------------|:----------------------|:---------------------|
+| O5070 | Project | Alpine Bank | Loan Origination | Procurement | BestCase | 25000 | 2026-02-02 | 0 | 0 | 0 |
+| O5071 | Expansion | Alpine Bank | Account Ledger | Proposal | Pipeline | 180000 | 2026-02-10 | 1 | 1 | 0 |
+| O5011 | Expansion | Banco Aurora | Loan Origination | Negotiation | Commit | 120000 | 2026-02-14 | 0 | 1 | 0 |
+| O5005 | Expansion | Banco Aurora | Treasury Manager | Discovery | BestCase | 40000 | 2026-02-25 | 0 | 0 | 0 |
+| O5056 | Project | Mediterraneo Credito | Customer 360 | Discovery | BestCase | 40000 | 2026-02-05 | 1 | 1 | 0 |
+| O5022 | Project | Cassa Nova | Account Ledger | Proposal | Pipeline | 180000 | 2026-02-07 | 0 | 1 | 0 |	"Identify the top 10 opportunities most prone to slipping in February 2026 and explain why.
+
+An opportunity may slip due to one or more of the following reasons:
+- stage stagnation: no change in opportunity stage for the past 21 days
+- no activity: absence of sales activities in the last 14 days
+- delivery at risk: notes indicating delivery risk within the last 60 days
+
+For each opportunity at risk of slipping, provide the following details:
+- opportunity ID
+- customer name
+- product name
+- expected close date of the opportunity
+- current opportunity stage
+- forecast category
+- opportunity size
+- concise reason for the risk of slipping
+
+Respond only with a table, keeping the reason field as brief as possible.","WITH last_sales_activity AS (
+ SELECT opp_id, MAX(activity_at) AS last_activity_at
+ FROM sales_activities
+ GROUP BY opp_id
+), risk_notes AS (
+ SELECT DISTINCT n.opp_id
+ FROM opportunity_notes n
+ WHERE n.note_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND (n.tags LIKE '%risk%' OR n.note_type = 'risk')
+), recent_high_sev_tickets AS (
+ SELECT DISTINCT st.customer_id, st.product_id
+ FROM support_tickets st
+ WHERE st.opened_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND st.status = 'Open'
+ AND st.severity IN ('High','Critical')
+) 
+SELECT o.opp_id, o.type, c.customer_name, p.product_name, o.stage, o.forecast_category, o.amount, o.expected_close_date,
+ CASE WHEN lsa.last_activity_at IS NULL OR DATEDIFF(day, lsa.last_activity_at, '2026-02-15') > 14 THEN 1 ELSE 0 END AS no_activity_flag,
+ CASE WHEN DATEDIFF(day, o.stage_last_changed_at, '2026-02-15') > 21 THEN 1 ELSE 0 end AS stage_stagnant_flag,
+ CASE WHEN rn.opp_id IS NOT NULL OR rht.customer_id IS NOT NULL THEN 1 ELSE 0 END AS delivery_risk_flag
+ FROM sales_opportunities o
+ LEFT JOIN last_sales_activity lsa ON lsa.opp_id = o.opp_id
+ LEFT JOIN risk_notes rn ON rn.opp_id = o.opp_id
+ LEFT JOIN recent_high_sev_tickets rht ON rht.customer_id = o.customer_id AND rht.product_id = o.product_id
+ LEFT JOIN customers c on c.customer_id = o.customer_id
+ LEFT JOIN products p on p.product_id = o.product_id
+ WHERE o.status = 'Open'
+ AND YEAR(o.expected_close_date)=YEAR('2026-02-01') AND MONTH(o.expected_close_date)=MONTH('2026-02-01')
+LIMIT 10;",| opp_id | type | customer_name | product_name | stage | forecast_category | amount | expected_close_date | no_activity_flag | stage_stagnant_flag | delivery_risk_flag |
+|:---------|:----------|:---------------------|:-----------------|:------------|:--------------------|:---------|:----------------------|:-------------------|:----------------------|:---------------------|
+| O5070 | Project | Alpine Bank | Loan Origination | Procurement | BestCase | 25000 | 2026-02-02 | 0 | 0 | 0 |
+| O5071 | Expansion | Alpine Bank | Account Ledger | Proposal | Pipeline | 180000 | 2026-02-10 | 1 | 1 | 0 |
+| O5011 | Expansion | Banco Aurora | Loan Origination | Negotiation | Commit | 120000 | 2026-02-14 | 0 | 1 | 0 |
+| O5005 | Expansion | Banco Aurora | Treasury Manager | Discovery | BestCase | 40000 | 2026-02-25 | 0 | 0 | 0 |
+| O5056 | Project | Mediterraneo Credito | Customer 360 | Discovery | BestCase | 40000 | 2026-02-05 | 1 | 1 | 0 |
+| O5022 | Project | Cassa Nova | Account Ledger | Proposal | Pipeline | 180000 | 2026-02-07 | 0 | 1 | 0 |	"List the top 10 opportunities most likely to slip in February 2026 along with the reasons.
+
+Opportunities may slip due to one or more of these factors:
+- stage stagnation: no update in the opportunity stage over the past 21 days
+- no activity: no sales actions recorded in the last 14 days
+- delivery at risk: notes from the past 60 days indicating potential delivery issues
+
+For each opportunity at risk, provide the following information:
+- opportunity ID
+- customer name
+- product name
+- expected close date
+- current opportunity stage
+- forecast category
+- opportunity size
+- brief reason for the slipping risk
+
+Present the response solely as a table, ensuring the reason field is kept as concise as possible.","WITH last_sales_activity AS (
+ SELECT opp_id, MAX(activity_at) AS last_activity_at
+ FROM sales_activities
+ GROUP BY opp_id
+), risk_notes AS (
+ SELECT DISTINCT n.opp_id
+ FROM opportunity_notes n
+ WHERE n.note_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND (n.tags LIKE '%risk%' OR n.note_type = 'risk')
+), recent_high_sev_tickets AS (
+ SELECT DISTINCT st.customer_id, st.product_id
+ FROM support_tickets st
+ WHERE st.opened_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND st.status = 'Open'
+ AND st.severity IN ('High','Critical')
+) 
+SELECT o.opp_id, o.type, c.customer_name, p.product_name, o.stage, o.forecast_category, o.amount, o.expected_close_date,
+ CASE WHEN lsa.last_activity_at IS NULL OR DATEDIFF(day, lsa.last_activity_at, '2026-02-15') > 14 THEN 1 ELSE 0 END AS no_activity_flag,
+ CASE WHEN DATEDIFF(day, o.stage_last_changed_at, '2026-02-15') > 21 THEN 1 ELSE 0 end AS stage_stagnant_flag,
+ CASE WHEN rn.opp_id IS NOT NULL OR rht.customer_id IS NOT NULL THEN 1 ELSE 0 END AS delivery_risk_flag
+ FROM sales_opportunities o
+ LEFT JOIN last_sales_activity lsa ON lsa.opp_id = o.opp_id
+ LEFT JOIN risk_notes rn ON rn.opp_id = o.opp_id
+ LEFT JOIN recent_high_sev_tickets rht ON rht.customer_id = o.customer_id AND rht.product_id = o.product_id
+ LEFT JOIN customers c on c.customer_id = o.customer_id
+ LEFT JOIN products p on p.product_id = o.product_id
+ WHERE o.status = 'Open'
+ AND YEAR(o.expected_close_date)=YEAR('2026-02-01') AND MONTH(o.expected_close_date)=MONTH('2026-02-01')
+LIMIT 10;",| opp_id | type | customer_name | product_name | stage | forecast_category | amount | expected_close_date | no_activity_flag | stage_stagnant_flag | delivery_risk_flag |
+|:---------|:----------|:---------------------|:-----------------|:------------|:--------------------|:---------|:----------------------|:-------------------|:----------------------|:---------------------|
+| O5070 | Project | Alpine Bank | Loan Origination | Procurement | BestCase | 25000 | 2026-02-02 | 0 | 0 | 0 |
+| O5071 | Expansion | Alpine Bank | Account Ledger | Proposal | Pipeline | 180000 | 2026-02-10 | 1 | 1 | 0 |
+| O5011 | Expansion | Banco Aurora | Loan Origination | Negotiation | Commit | 120000 | 2026-02-14 | 0 | 1 | 0 |
+| O5005 | Expansion | Banco Aurora | Treasury Manager | Discovery | BestCase | 40000 | 2026-02-25 | 0 | 0 | 0 |
+| O5056 | Project | Mediterraneo Credito | Customer 360 | Discovery | BestCase | 40000 | 2026-02-05 | 1 | 1 | 0 |
+| O5022 | Project | Cassa Nova | Account Ledger | Proposal | Pipeline | 180000 | 2026-02-07 | 0 | 1 | 0 |	"top 10 opportunities for product \""Loan Origination\"" most likely to slip in February 2026 and why. 
+
+Opportunities can slip due to either of the following:
+- stage stagnation: opportunity stage didn't change in the last 21 days 
+- no activity: no sales activities in last 14 days,
+- delivery at risk: opportunity notes indicating risk in the last 60 days
+
+Return the following fields for each opportunity being at risk of slipping:
+- opportunity ID
+- customer name
+- product name
+- opportunity expected close date
+- opportunity stage
+- forecast category
+- opportunity size
+- reason for being at risk of slipping
+
+Answer only with a table and keep the reason field as much concise as possible.","WITH last_sales_activity AS (
+ SELECT opp_id, MAX(activity_at) AS last_activity_at
+ FROM sales_activities
+ GROUP BY opp_id
+), risk_notes AS (
+ SELECT DISTINCT n.opp_id
+ FROM opportunity_notes n
+ WHERE n.note_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND (n.tags LIKE '%risk%' OR n.note_type = 'risk')
+), recent_high_sev_tickets AS (
+ SELECT DISTINCT st.customer_id, st.product_id
+ FROM support_tickets st
+ WHERE st.opened_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND st.status = 'Open'
+ AND st.severity IN ('High','Critical')
+) 
+SELECT o.opp_id, o.type, c.customer_name, p.product_name, o.stage, o.forecast_category, o.amount, o.expected_close_date,
+ CASE WHEN lsa.last_activity_at IS NULL OR DATEDIFF(day, lsa.last_activity_at, '2026-02-15') > 14 THEN 1 ELSE 0 END AS no_activity_flag,
+ CASE WHEN DATEDIFF(day, o.stage_last_changed_at, '2026-02-15') > 21 THEN 1 ELSE 0 end AS stage_stagnant_flag,
+ CASE WHEN rn.opp_id IS NOT NULL OR rht.customer_id IS NOT NULL THEN 1 ELSE 0 END AS delivery_risk_flag
+ FROM sales_opportunities o
+ LEFT JOIN last_sales_activity lsa ON lsa.opp_id = o.opp_id
+ LEFT JOIN risk_notes rn ON rn.opp_id = o.opp_id
+ LEFT JOIN recent_high_sev_tickets rht ON rht.customer_id = o.customer_id AND rht.product_id = o.product_id
+ LEFT JOIN customers c on c.customer_id = o.customer_id
+ LEFT JOIN products p on p.product_id = o.product_id
+ WHERE o.status = 'Open'
+ AND YEAR(o.expected_close_date)=YEAR('2026-02-01') AND MONTH(o.expected_close_date)=MONTH('2026-02-01')
+ AND p.product_name = \""Loan Origination\""
+LIMIT 10;",| opp_id | type | customer_name | product_name | stage | forecast_category | amount | expected_close_date | no_activity_flag | stage_stagnant_flag | delivery_risk_flag |
+|:---------|:----------|:----------------|:-----------------|:------------|:--------------------|:---------|:----------------------|:-------------------|:----------------------|:---------------------|
+| O5070 | Project | Alpine Bank | Loan Origination | Procurement | BestCase | 25000 | 2026-02-02 | 0 | 0 | 0 |
+| O5011 | Expansion | Banco Aurora | Loan Origination | Negotiation | Commit | 120000 | 2026-02-14 | 0 | 1 | 0 |	"List the top 10 ""Loan Origination"" product opportunities most likely to delay in February 2026, along with the reasons.
+
+An opportunity may be at risk of slipping due to:
+- stage stagnation: no change in opportunity stage for the past 21 days
+- no activity: absence of sales activities in the last 14 days
+- delivery at risk: notes indicating risk within the last 60 days
+
+For each opportunity at risk, provide the following details:
+- opportunity ID
+- customer name
+- product name
+- expected close date
+- opportunity stage
+- forecast category
+- opportunity size
+- concise reason for risk of slipping
+
+Respond only with a table including these fields.","WITH last_sales_activity AS (
+ SELECT opp_id, MAX(activity_at) AS last_activity_at
+ FROM sales_activities
+ GROUP BY opp_id
+), risk_notes AS (
+ SELECT DISTINCT n.opp_id
+ FROM opportunity_notes n
+ WHERE n.note_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND (n.tags LIKE '%risk%' OR n.note_type = 'risk')
+), recent_high_sev_tickets AS (
+ SELECT DISTINCT st.customer_id, st.product_id
+ FROM support_tickets st
+ WHERE st.opened_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND st.status = 'Open'
+ AND st.severity IN ('High','Critical')
+) 
+SELECT o.opp_id, o.type, c.customer_name, p.product_name, o.stage, o.forecast_category, o.amount, o.expected_close_date,
+ CASE WHEN lsa.last_activity_at IS NULL OR DATEDIFF(day, lsa.last_activity_at, '2026-02-15') > 14 THEN 1 ELSE 0 END AS no_activity_flag,
+ CASE WHEN DATEDIFF(day, o.stage_last_changed_at, '2026-02-15') > 21 THEN 1 ELSE 0 end AS stage_stagnant_flag,
+ CASE WHEN rn.opp_id IS NOT NULL OR rht.customer_id IS NOT NULL THEN 1 ELSE 0 END AS delivery_risk_flag
+ FROM sales_opportunities o
+ LEFT JOIN last_sales_activity lsa ON lsa.opp_id = o.opp_id
+ LEFT JOIN risk_notes rn ON rn.opp_id = o.opp_id
+ LEFT JOIN recent_high_sev_tickets rht ON rht.customer_id = o.customer_id AND rht.product_id = o.product_id
+ LEFT JOIN customers c on c.customer_id = o.customer_id
+ LEFT JOIN products p on p.product_id = o.product_id
+ WHERE o.status = 'Open'
+ AND YEAR(o.expected_close_date)=YEAR('2026-02-01') AND MONTH(o.expected_close_date)=MONTH('2026-02-01')
+ AND p.product_name = \""Loan Origination\""
+LIMIT 10;",| opp_id | type | customer_name | product_name | stage | forecast_category | amount | expected_close_date | no_activity_flag | stage_stagnant_flag | delivery_risk_flag |
+|:---------|:----------|:----------------|:-----------------|:------------|:--------------------|:---------|:----------------------|:-------------------|:----------------------|:---------------------|
+| O5070 | Project | Alpine Bank | Loan Origination | Procurement | BestCase | 25000 | 2026-02-02 | 0 | 0 | 0 |
+| O5011 | Expansion | Banco Aurora | Loan Origination | Negotiation | Commit | 120000 | 2026-02-14 | 0 | 1 | 0 |	"Identify the top 10 ""Loan Origination"" product opportunities most prone to slipping in February 2026, along with the causes.
+
+An opportunity is considered at risk of slipping if it meets any of the following criteria:
+- stage stagnation: no update in the opportunity stage over the past 21 days
+- no activity: no sales actions recorded in the last 14 days
+- delivery at risk: notes mentioning risk within the previous 60 days
+
+For each opportunity at risk, list the following information:
+- opportunity ID
+- customer name
+- product name
+- expected close date
+- opportunity stage
+- forecast category
+- opportunity size
+- brief reason for the risk of slipping
+
+Provide the response solely as a table containing these fields.","WITH last_sales_activity AS (
+ SELECT opp_id, MAX(activity_at) AS last_activity_at
+ FROM sales_activities
+ GROUP BY opp_id
+), risk_notes AS (
+ SELECT DISTINCT n.opp_id
+ FROM opportunity_notes n
+ WHERE n.note_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND (n.tags LIKE '%risk%' OR n.note_type = 'risk')
+), recent_high_sev_tickets AS (
+ SELECT DISTINCT st.customer_id, st.product_id
+ FROM support_tickets st
+ WHERE st.opened_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND st.status = 'Open'
+ AND st.severity IN ('High','Critical')
+) 
+SELECT o.opp_id, o.type, c.customer_name, p.product_name, o.stage, o.forecast_category, o.amount, o.expected_close_date,
+ CASE WHEN lsa.last_activity_at IS NULL OR DATEDIFF(day, lsa.last_activity_at, '2026-02-15') > 14 THEN 1 ELSE 0 END AS no_activity_flag,
+ CASE WHEN DATEDIFF(day, o.stage_last_changed_at, '2026-02-15') > 21 THEN 1 ELSE 0 end AS stage_stagnant_flag,
+ CASE WHEN rn.opp_id IS NOT NULL OR rht.customer_id IS NOT NULL THEN 1 ELSE 0 END AS delivery_risk_flag
+ FROM sales_opportunities o
+ LEFT JOIN last_sales_activity lsa ON lsa.opp_id = o.opp_id
+ LEFT JOIN risk_notes rn ON rn.opp_id = o.opp_id
+ LEFT JOIN recent_high_sev_tickets rht ON rht.customer_id = o.customer_id AND rht.product_id = o.product_id
+ LEFT JOIN customers c on c.customer_id = o.customer_id
+ LEFT JOIN products p on p.product_id = o.product_id
+ WHERE o.status = 'Open'
+ AND YEAR(o.expected_close_date)=YEAR('2026-02-01') AND MONTH(o.expected_close_date)=MONTH('2026-02-01')
+ AND p.product_name = \""Loan Origination\""
+LIMIT 10;",| opp_id | type | customer_name | product_name | stage | forecast_category | amount | expected_close_date | no_activity_flag | stage_stagnant_flag | delivery_risk_flag |
+|:---------|:----------|:----------------|:-----------------|:------------|:--------------------|:---------|:----------------------|:-------------------|:----------------------|:---------------------|
+| O5070 | Project | Alpine Bank | Loan Origination | Procurement | BestCase | 25000 | 2026-02-02 | 0 | 0 | 0 |
+| O5011 | Expansion | Banco Aurora | Loan Origination | Negotiation | Commit | 120000 | 2026-02-14 | 0 | 1 | 0 |	"top 10 opportunities for product \""Account Ledger\"" most likely to slip in November 2025 and why. 
+
+Return the following fields for each opportunity being at risk of slipping:
+- opportunity ID
+- customer name
+- product name
+- opportunity expected close date
+- opportunity stage
+- forecast category
+- opportunity size
+- reason for being at risk of slipping
+
+Answer only with a table and keep the reason field as much concise as possible.","WITH last_sales_activity AS (
+ SELECT opp_id, MAX(activity_at) AS last_activity_at
+ FROM sales_activities
+ GROUP BY opp_id
+), risk_notes AS (
+ SELECT DISTINCT n.opp_id
+ FROM opportunity_notes n
+ WHERE n.note_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND (n.tags LIKE '%risk%' OR n.note_type = 'risk')
+), recent_high_sev_tickets AS (
+ SELECT DISTINCT st.customer_id, st.product_id
+ FROM support_tickets st
+ WHERE st.opened_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND st.status = 'Open'
+ AND st.severity IN ('High','Critical')
+) 
+SELECT o.opp_id, o.type, c.customer_name, p.product_name, o.stage, o.forecast_category, o.amount, o.expected_close_date,
+ CASE WHEN lsa.last_activity_at IS NULL OR DATEDIFF(day, lsa.last_activity_at, '2026-02-15') > 14 THEN 1 ELSE 0 END AS no_activity_flag,
+ CASE WHEN DATEDIFF(day, o.stage_last_changed_at, '2026-02-15') > 21 THEN 1 ELSE 0 end AS stage_stagnant_flag,
+ CASE WHEN rn.opp_id IS NOT NULL OR rht.customer_id IS NOT NULL THEN 1 ELSE 0 END AS delivery_risk_flag
+ FROM sales_opportunities o
+ LEFT JOIN last_sales_activity lsa ON lsa.opp_id = o.opp_id
+ LEFT JOIN risk_notes rn ON rn.opp_id = o.opp_id
+ LEFT JOIN recent_high_sev_tickets rht ON rht.customer_id = o.customer_id AND rht.product_id = o.product_id
+ LEFT JOIN customers c on c.customer_id = o.customer_id
+ LEFT JOIN products p on p.product_id = o.product_id
+ WHERE o.status = 'Open'
+ AND YEAR(o.expected_close_date)=YEAR('2025-11-01') AND MONTH(o.expected_close_date)=MONTH('2025-11-01')
+ AND p.product_name = \""Account Ledger\""
+LIMIT 10;",| opp_id | type | customer_name | product_name | stage | forecast_category | amount | expected_close_date | no_activity_flag | stage_stagnant_flag | delivery_risk_flag |
+|:---------|:----------|:----------------|:---------------|:--------------|:--------------------|:---------|:----------------------|:-------------------|:----------------------|:---------------------|
+| O5069 | Expansion | Alpine Bank | Account Ledger | Proposal | Pipeline | 120000 | 2025-11-02 | 1 | 1 | 0 |
+| O5013 | Renewal | Cassa Nova | Account Ledger | Qualification | BestCase | 60000 | 2025-11-07 | 1 | 1 | 0 |	"List the top 10 opportunities for the product ""Account Ledger"" that are most prone to delay in closing during November 2025, along with the reasons.
+
+For each opportunity at risk of slipping, provide the following details:
+- opportunity ID
+- customer name
+- product name
+- expected close date of the opportunity
+- current opportunity stage
+- forecast category
+- size of the opportunity
+- brief reason for the potential delay
+
+Respond solely with a table, ensuring the reason field remains as brief as possible.","WITH last_sales_activity AS (
+ SELECT opp_id, MAX(activity_at) AS last_activity_at
+ FROM sales_activities
+ GROUP BY opp_id
+), risk_notes AS (
+ SELECT DISTINCT n.opp_id
+ FROM opportunity_notes n
+ WHERE n.note_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND (n.tags LIKE '%risk%' OR n.note_type = 'risk')
+), recent_high_sev_tickets AS (
+ SELECT DISTINCT st.customer_id, st.product_id
+ FROM support_tickets st
+ WHERE st.opened_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND st.status = 'Open'
+ AND st.severity IN ('High','Critical')
+) 
+SELECT o.opp_id, o.type, c.customer_name, p.product_name, o.stage, o.forecast_category, o.amount, o.expected_close_date,
+ CASE WHEN lsa.last_activity_at IS NULL OR DATEDIFF(day, lsa.last_activity_at, '2026-02-15') > 14 THEN 1 ELSE 0 END AS no_activity_flag,
+ CASE WHEN DATEDIFF(day, o.stage_last_changed_at, '2026-02-15') > 21 THEN 1 ELSE 0 end AS stage_stagnant_flag,
+ CASE WHEN rn.opp_id IS NOT NULL OR rht.customer_id IS NOT NULL THEN 1 ELSE 0 END AS delivery_risk_flag
+ FROM sales_opportunities o
+ LEFT JOIN last_sales_activity lsa ON lsa.opp_id = o.opp_id
+ LEFT JOIN risk_notes rn ON rn.opp_id = o.opp_id
+ LEFT JOIN recent_high_sev_tickets rht ON rht.customer_id = o.customer_id AND rht.product_id = o.product_id
+ LEFT JOIN customers c on c.customer_id = o.customer_id
+ LEFT JOIN products p on p.product_id = o.product_id
+ WHERE o.status = 'Open'
+ AND YEAR(o.expected_close_date)=YEAR('2025-11-01') AND MONTH(o.expected_close_date)=MONTH('2025-11-01')
+ AND p.product_name = \""Account Ledger\""
+LIMIT 10;",| opp_id | type | customer_name | product_name | stage | forecast_category | amount | expected_close_date | no_activity_flag | stage_stagnant_flag | delivery_risk_flag |
+|:---------|:----------|:----------------|:---------------|:--------------|:--------------------|:---------|:----------------------|:-------------------|:----------------------|:---------------------|
+| O5069 | Expansion | Alpine Bank | Account Ledger | Proposal | Pipeline | 120000 | 2025-11-02 | 1 | 1 | 0 |
+| O5013 | Renewal | Cassa Nova | Account Ledger | Qualification | BestCase | 60000 | 2025-11-07 | 1 | 1 | 0 |	"Identify the top 10 opportunities related to the product ""Account Ledger"" that have the highest likelihood of postponement in November 2025, including the causes.
+
+For each opportunity at risk of delay, include these details:
+- opportunity ID
+- customer name
+- product name
+- anticipated close date
+- current stage of the opportunity
+- forecast category
+- opportunity value
+- concise explanation for the risk of delay
+
+Provide your response exclusively in a table format, keeping the reason field as succinct as possible.","WITH last_sales_activity AS (
+ SELECT opp_id, MAX(activity_at) AS last_activity_at
+ FROM sales_activities
+ GROUP BY opp_id
+), risk_notes AS (
+ SELECT DISTINCT n.opp_id
+ FROM opportunity_notes n
+ WHERE n.note_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND (n.tags LIKE '%risk%' OR n.note_type = 'risk')
+), recent_high_sev_tickets AS (
+ SELECT DISTINCT st.customer_id, st.product_id
+ FROM support_tickets st
+ WHERE st.opened_at >= DATEADD(day, -60, CAST('2026-02-01' AS date))
+ AND st.status = 'Open'
+ AND st.severity IN ('High','Critical')
+) 
+SELECT o.opp_id, o.type, c.customer_name, p.product_name, o.stage, o.forecast_category, o.amount, o.expected_close_date,
+ CASE WHEN lsa.last_activity_at IS NULL OR DATEDIFF(day, lsa.last_activity_at, '2026-02-15') > 14 THEN 1 ELSE 0 END AS no_activity_flag,
+ CASE WHEN DATEDIFF(day, o.stage_last_changed_at, '2026-02-15') > 21 THEN 1 ELSE 0 end AS stage_stagnant_flag,
+ CASE WHEN rn.opp_id IS NOT NULL OR rht.customer_id IS NOT NULL THEN 1 ELSE 0 END AS delivery_risk_flag
+ FROM sales_opportunities o
+ LEFT JOIN last_sales_activity lsa ON lsa.opp_id = o.opp_id
+ LEFT JOIN risk_notes rn ON rn.opp_id = o.opp_id
+ LEFT JOIN recent_high_sev_tickets rht ON rht.customer_id = o.customer_id AND rht.product_id = o.product_id
+ LEFT JOIN customers c on c.customer_id = o.customer_id
+ LEFT JOIN products p on p.product_id = o.product_id
+ WHERE o.status = 'Open'
+ AND YEAR(o.expected_close_date)=YEAR('2025-11-01') AND MONTH(o.expected_close_date)=MONTH('2025-11-01')
+ AND p.product_name = \""Account Ledger\""
+LIMIT 10;",| opp_id | type | customer_name | product_name | stage | forecast_category | amount | expected_close_date | no_activity_flag | stage_stagnant_flag | delivery_risk_flag |
+|:---------|:----------|:----------------|:---------------|:--------------|:--------------------|:---------|:----------------------|:-------------------|:----------------------|:---------------------|
+| O5069 | Expansion | Alpine Bank | Account Ledger | Proposal | Pipeline | 120000 | 2025-11-02 | 1 | 1 | 0 |
+| O5013 | Renewal | Cassa Nova | Account Ledger | Qualification | BestCase | 60000 | 2025-11-07 | 1 | 1 | 0 |	"Renewals at risk in February, March, April 2026, due to low expansion or high incidents
+
+Opportunities can slip due to either of the following:
+- Consider low expansion when open opportunities for expansion or project aggregated value is lower than 100000
+- Consider high incidents volume when there are at least 3 open incidents of any severity
+
+Return the following fields for each renewal opportunity at risk:
+- opportunity ID
+- customer name
+- product name
+- opportunity expected close date
+- opportunity amount
+- opportunity type
+- expansion amount
+- num incidents
+- opportunity size
+- reason for being at risk
+
+Answer only with a table and keep the reason field as much concise as possible.","WITH renewals AS (
+ SELECT * FROM sales_opportunities
+ WHERE type = 'Renewal' AND MONTH(expected_close_date) BETWEEN 9 AND 12 AND YEAR(expected_close_date)=2025
+), expansion_pipeline AS (
+ SELECT customer_id, SUM(amount) AS expansion_amount
+ FROM sales_opportunities
+ WHERE status='Open' AND type IN ('Expansion','Project')
+ GROUP BY customer_id
+), incidents AS (
+ SELECT customer_id, COUNT(*) AS num_incidents
+ FROM support_tickets
+ WHERE status='Open' AND severity IN ('High', 'Critical')
+ GROUP BY customer_id
+)
+SELECT r.opp_id, c.customer_name, p.product_name, r.expected_close_date, r.amount, r.type,
+ COALESCE(ep.expansion_amount,0) AS expansion_amount,
+ COALESCE(i.num_incidents,0) AS num_incidents,
+ CASE WHEN COALESCE(ep.expansion_amount,0) < 100000 THEN 1 ELSE 0 END AS low_expansion_flag,
+ CASE WHEN COALESCE(i.num_incidents,0) >= 3 THEN 1 ELSE 0 END AS high_incident_flag
+FROM renewals r
+LEFT JOIN expansion_pipeline ep ON ep.customer_id = r.customer_id
+LEFT JOIN incidents i ON i.customer_id = r.customer_id
+LEFT JOIN customers c on c.customer_id = r.customer_id
+ LEFT JOIN products p on p.product_id = r.product_id
+WHERE COALESCE(ep.expansion_amount,0) < 100000 OR COALESCE(i.num_incidents,0) >= 3",| opp_id | customer_name | product_name | expected_close_date | amount | type | expansion_amount | num_incidents | low_expansion_flag | high_incident_flag |
+|:---------|:---------------------|:-----------------|:----------------------|:---------|:--------|:-------------------|:----------------|:---------------------|:---------------------|
+| O5063 | Alpine Bank | Loan Origination | 2025-09-08 | 85000 | Renewal | 445000 | 4 | 0 | 1 |
+| O5065 | Alpine Bank | Loan Origination | 2025-11-13 | 120000 | Renewal | 445000 | 4 | 0 | 1 |
+| O5009 | Banco Aurora | Account Ledger | 2025-12-17 | 180000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5010 | Banco Aurora | AML Monitor | 2025-11-19 | 25000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5049 | Mediterraneo Credito | Treasury Manager | 2025-11-24 | 180000 | Renewal | 90000 | 2 | 1 | 0 |
+| O5008 | Banco Aurora | Treasury Manager | 2025-12-16 | 25000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5054 | Mediterraneo Credito | KYC Orchestrator | 2025-09-24 | 120000 | Renewal | 90000 | 2 | 1 | 0 |
+| O5039 | EuroTrust Bank | Account Ledger | 2025-12-31 | 85000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5027 | EuroTrust Bank | Stress Test Pro | 2025-12-15 | 40000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5028 | EuroTrust Bank | Account Ledger | 2025-10-18 | 60000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5030 | EuroTrust Bank | Customer 360 | 2025-10-06 | 60000 | Renewal | 100000 | 5 | 0 | 1 |	"Renewals at risk during February, March, and April 2026 due to insufficient expansion or a high number of incidents
+
+Opportunities may be at risk if either condition applies:
+- Low expansion is defined as open expansion or project opportunities with a total value below 100,000
+- High incident volume is defined as having 3 or more open incidents of any severity
+
+Provide the following details for each renewal opportunity identified as at risk:
+- opportunity ID
+- customer name
+- product name
+- expected close date of the opportunity
+- opportunity amount
+- type of opportunity
+- expansion amount
+- number of incidents
+- size of the opportunity
+- concise reason for risk status
+
+Respond only with a table, keeping the reason field as brief as possible.","WITH renewals AS (
+ SELECT * FROM sales_opportunities
+ WHERE type = 'Renewal' AND MONTH(expected_close_date) BETWEEN 9 AND 12 AND YEAR(expected_close_date)=2025
+), expansion_pipeline AS (
+ SELECT customer_id, SUM(amount) AS expansion_amount
+ FROM sales_opportunities
+ WHERE status='Open' AND type IN ('Expansion','Project')
+ GROUP BY customer_id
+), incidents AS (
+ SELECT customer_id, COUNT(*) AS num_incidents
+ FROM support_tickets
+ WHERE status='Open' AND severity IN ('High', 'Critical')
+ GROUP BY customer_id
+)
+SELECT r.opp_id, c.customer_name, p.product_name, r.expected_close_date, r.amount, r.type,
+ COALESCE(ep.expansion_amount,0) AS expansion_amount,
+ COALESCE(i.num_incidents,0) AS num_incidents,
+ CASE WHEN COALESCE(ep.expansion_amount,0) < 100000 THEN 1 ELSE 0 END AS low_expansion_flag,
+ CASE WHEN COALESCE(i.num_incidents,0) >= 3 THEN 1 ELSE 0 END AS high_incident_flag
+FROM renewals r
+LEFT JOIN expansion_pipeline ep ON ep.customer_id = r.customer_id
+LEFT JOIN incidents i ON i.customer_id = r.customer_id
+LEFT JOIN customers c on c.customer_id = r.customer_id
+ LEFT JOIN products p on p.product_id = r.product_id
+WHERE COALESCE(ep.expansion_amount,0) < 100000 OR COALESCE(i.num_incidents,0) >= 3",| opp_id | customer_name | product_name | expected_close_date | amount | type | expansion_amount | num_incidents | low_expansion_flag | high_incident_flag |
+|:---------|:---------------------|:-----------------|:----------------------|:---------|:--------|:-------------------|:----------------|:---------------------|:---------------------|
+| O5063 | Alpine Bank | Loan Origination | 2025-09-08 | 85000 | Renewal | 445000 | 4 | 0 | 1 |
+| O5065 | Alpine Bank | Loan Origination | 2025-11-13 | 120000 | Renewal | 445000 | 4 | 0 | 1 |
+| O5009 | Banco Aurora | Account Ledger | 2025-12-17 | 180000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5010 | Banco Aurora | AML Monitor | 2025-11-19 | 25000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5049 | Mediterraneo Credito | Treasury Manager | 2025-11-24 | 180000 | Renewal | 90000 | 2 | 1 | 0 |
+| O5008 | Banco Aurora | Treasury Manager | 2025-12-16 | 25000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5054 | Mediterraneo Credito | KYC Orchestrator | 2025-09-24 | 120000 | Renewal | 90000 | 2 | 1 | 0 |
+| O5039 | EuroTrust Bank | Account Ledger | 2025-12-31 | 85000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5027 | EuroTrust Bank | Stress Test Pro | 2025-12-15 | 40000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5028 | EuroTrust Bank | Account Ledger | 2025-10-18 | 60000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5030 | EuroTrust Bank | Customer 360 | 2025-10-06 | 60000 | Renewal | 100000 | 5 | 0 | 1 |	"Renewals at risk in the months of February, March, and April 2026 due to either minimal expansion or a high count of incidents
+
+An opportunity is considered at risk if one of the following conditions is met:
+- Low expansion: when the combined value of open expansion or project opportunities is less than 100,000
+- High incident count: when there are 3 or more open incidents regardless of severity
+
+List the following information for each renewal opportunity flagged as at risk:
+- opportunity ID
+- customer name
+- product name
+- expected close date of the opportunity
+- opportunity amount
+- opportunity type
+- expansion amount
+- number of incidents
+- opportunity size
+- brief reason for risk
+
+Provide the response solely as a table, ensuring the reason field is as concise as possible.","WITH renewals AS (
+ SELECT * FROM sales_opportunities
+ WHERE type = 'Renewal' AND MONTH(expected_close_date) BETWEEN 9 AND 12 AND YEAR(expected_close_date)=2025
+), expansion_pipeline AS (
+ SELECT customer_id, SUM(amount) AS expansion_amount
+ FROM sales_opportunities
+ WHERE status='Open' AND type IN ('Expansion','Project')
+ GROUP BY customer_id
+), incidents AS (
+ SELECT customer_id, COUNT(*) AS num_incidents
+ FROM support_tickets
+ WHERE status='Open' AND severity IN ('High', 'Critical')
+ GROUP BY customer_id
+)
+SELECT r.opp_id, c.customer_name, p.product_name, r.expected_close_date, r.amount, r.type,
+ COALESCE(ep.expansion_amount,0) AS expansion_amount,
+ COALESCE(i.num_incidents,0) AS num_incidents,
+ CASE WHEN COALESCE(ep.expansion_amount,0) < 100000 THEN 1 ELSE 0 END AS low_expansion_flag,
+ CASE WHEN COALESCE(i.num_incidents,0) >= 3 THEN 1 ELSE 0 END AS high_incident_flag
+FROM renewals r
+LEFT JOIN expansion_pipeline ep ON ep.customer_id = r.customer_id
+LEFT JOIN incidents i ON i.customer_id = r.customer_id
+LEFT JOIN customers c on c.customer_id = r.customer_id
+ LEFT JOIN products p on p.product_id = r.product_id
+WHERE COALESCE(ep.expansion_amount,0) < 100000 OR COALESCE(i.num_incidents,0) >= 3",| opp_id | customer_name | product_name | expected_close_date | amount | type | expansion_amount | num_incidents | low_expansion_flag | high_incident_flag |
+|:---------|:---------------------|:-----------------|:----------------------|:---------|:--------|:-------------------|:----------------|:---------------------|:---------------------|
+| O5063 | Alpine Bank | Loan Origination | 2025-09-08 | 85000 | Renewal | 445000 | 4 | 0 | 1 |
+| O5065 | Alpine Bank | Loan Origination | 2025-11-13 | 120000 | Renewal | 445000 | 4 | 0 | 1 |
+| O5009 | Banco Aurora | Account Ledger | 2025-12-17 | 180000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5010 | Banco Aurora | AML Monitor | 2025-11-19 | 25000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5049 | Mediterraneo Credito | Treasury Manager | 2025-11-24 | 180000 | Renewal | 90000 | 2 | 1 | 0 |
+| O5008 | Banco Aurora | Treasury Manager | 2025-12-16 | 25000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5054 | Mediterraneo Credito | KYC Orchestrator | 2025-09-24 | 120000 | Renewal | 90000 | 2 | 1 | 0 |
+| O5039 | EuroTrust Bank | Account Ledger | 2025-12-31 | 85000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5027 | EuroTrust Bank | Stress Test Pro | 2025-12-15 | 40000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5028 | EuroTrust Bank | Account Ledger | 2025-10-18 | 60000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5030 | EuroTrust Bank | Customer 360 | 2025-10-06 | 60000 | Renewal | 100000 | 5 | 0 | 1 |	"Renewals for product \""Treasury Manager\"" at risk in February, March, April 2026, due to low expansion or high incidents
+
+Opportunities can slip due to the default policy.
+
+Return the following fields for each renewal opportunity at risk:
+- opportunity ID
+- customer name
+- product name
+- opportunity expected close date
+- opportunity amount
+- opportunity type
+- expansion amount
+- num incidents
+- opportunity size
+- reason for being at risk
+
+Answer only with a table and keep the reason field as much concise as possible.","WITH renewals AS (
+ SELECT * FROM sales_opportunities
+ WHERE type = 'Renewal' AND MONTH(expected_close_date) BETWEEN 9 AND 12 AND YEAR(expected_close_date)=2025
+), expansion_pipeline AS (
+ SELECT customer_id, SUM(amount) AS expansion_amount
+ FROM sales_opportunities
+ WHERE status='Open' AND type IN ('Expansion','Project')
+ GROUP BY customer_id
+), incidents AS (
+ SELECT customer_id, COUNT(*) AS num_incidents
+ FROM support_tickets
+ WHERE status='Open' AND severity IN ('High', 'Critical')
+ GROUP BY customer_id
+)
+SELECT r.opp_id, c.customer_name, p.product_name, r.expected_close_date, r.amount, r.type,
+ COALESCE(ep.expansion_amount,0) AS expansion_amount,
+ COALESCE(i.num_incidents,0) AS num_incidents,
+ CASE WHEN COALESCE(ep.expansion_amount,0) < 100000 THEN 1 ELSE 0 END AS low_expansion_flag,
+ CASE WHEN COALESCE(i.num_incidents,0) >= 3 THEN 1 ELSE 0 END AS high_incident_flag
+FROM renewals r
+LEFT JOIN expansion_pipeline ep ON ep.customer_id = r.customer_id
+LEFT JOIN incidents i ON i.customer_id = r.customer_id
+LEFT JOIN customers c on c.customer_id = r.customer_id
+ LEFT JOIN products p on p.product_id = r.product_id
+WHERE (COALESCE(ep.expansion_amount,0) < 100000 OR COALESCE(i.num_incidents,0) >= 3)
+AND p.product_name = \""Treasury Manager\""",| opp_id | customer_name | product_name | expected_close_date | amount | type | expansion_amount | num_incidents | low_expansion_flag | high_incident_flag |
+|:---------|:---------------------|:-----------------|:----------------------|:---------|:--------|:-------------------|:----------------|:---------------------|:---------------------|
+| O5049 | Mediterraneo Credito | Treasury Manager | 2025-11-24 | 180000 | Renewal | 90000 | 2 | 1 | 0 |
+| O5008 | Banco Aurora | Treasury Manager | 2025-12-16 | 25000 | Renewal | 220000 | 4 | 0 | 1 |	"Renewals for the product ""Treasury Manager"" are at risk in February, March, and April 2026 because of low expansion or a high number of incidents.
+
+Opportunities may be lost due to the default policy.
+
+Provide the following details for each renewal opportunity at risk:
+- opportunity ID
+- customer name
+- product name
+- expected close date of the opportunity
+- opportunity amount
+- type of opportunity
+- expansion amount
+- number of incidents
+- size of the opportunity
+- concise reason for the risk
+
+Respond only with a table, keeping the reason field as brief as possible.","WITH renewals AS (
+ SELECT * FROM sales_opportunities
+ WHERE type = 'Renewal' AND MONTH(expected_close_date) BETWEEN 9 AND 12 AND YEAR(expected_close_date)=2025
+), expansion_pipeline AS (
+ SELECT customer_id, SUM(amount) AS expansion_amount
+ FROM sales_opportunities
+ WHERE status='Open' AND type IN ('Expansion','Project')
+ GROUP BY customer_id
+), incidents AS (
+ SELECT customer_id, COUNT(*) AS num_incidents
+ FROM support_tickets
+ WHERE status='Open' AND severity IN ('High', 'Critical')
+ GROUP BY customer_id
+)
+SELECT r.opp_id, c.customer_name, p.product_name, r.expected_close_date, r.amount, r.type,
+ COALESCE(ep.expansion_amount,0) AS expansion_amount,
+ COALESCE(i.num_incidents,0) AS num_incidents,
+ CASE WHEN COALESCE(ep.expansion_amount,0) < 100000 THEN 1 ELSE 0 END AS low_expansion_flag,
+ CASE WHEN COALESCE(i.num_incidents,0) >= 3 THEN 1 ELSE 0 END AS high_incident_flag
+FROM renewals r
+LEFT JOIN expansion_pipeline ep ON ep.customer_id = r.customer_id
+LEFT JOIN incidents i ON i.customer_id = r.customer_id
+LEFT JOIN customers c on c.customer_id = r.customer_id
+ LEFT JOIN products p on p.product_id = r.product_id
+WHERE (COALESCE(ep.expansion_amount,0) < 100000 OR COALESCE(i.num_incidents,0) >= 3)
+AND p.product_name = \""Treasury Manager\""",| opp_id | customer_name | product_name | expected_close_date | amount | type | expansion_amount | num_incidents | low_expansion_flag | high_incident_flag |
+|:---------|:---------------------|:-----------------|:----------------------|:---------|:--------|:-------------------|:----------------|:---------------------|:---------------------|
+| O5049 | Mediterraneo Credito | Treasury Manager | 2025-11-24 | 180000 | Renewal | 90000 | 2 | 1 | 0 |
+| O5008 | Banco Aurora | Treasury Manager | 2025-12-16 | 25000 | Renewal | 220000 | 4 | 0 | 1 |	"Renewals for the ""Treasury Manager"" product are at risk during February, March, and April 2026 due to either minimal expansion or a high incident count.
+
+Opportunities might be missed because of the default policy.
+
+List the following information for each renewal opportunity at risk:
+- opportunity ID
+- customer name
+- product name
+- expected close date
+- opportunity amount
+- opportunity type
+- expansion amount
+- number of incidents
+- opportunity size
+- brief reason for risk
+
+Reply solely with a table, ensuring the reason field is as concise as possible.","WITH renewals AS (
+ SELECT * FROM sales_opportunities
+ WHERE type = 'Renewal' AND MONTH(expected_close_date) BETWEEN 9 AND 12 AND YEAR(expected_close_date)=2025
+), expansion_pipeline AS (
+ SELECT customer_id, SUM(amount) AS expansion_amount
+ FROM sales_opportunities
+ WHERE status='Open' AND type IN ('Expansion','Project')
+ GROUP BY customer_id
+), incidents AS (
+ SELECT customer_id, COUNT(*) AS num_incidents
+ FROM support_tickets
+ WHERE status='Open' AND severity IN ('High', 'Critical')
+ GROUP BY customer_id
+)
+SELECT r.opp_id, c.customer_name, p.product_name, r.expected_close_date, r.amount, r.type,
+ COALESCE(ep.expansion_amount,0) AS expansion_amount,
+ COALESCE(i.num_incidents,0) AS num_incidents,
+ CASE WHEN COALESCE(ep.expansion_amount,0) < 100000 THEN 1 ELSE 0 END AS low_expansion_flag,
+ CASE WHEN COALESCE(i.num_incidents,0) >= 3 THEN 1 ELSE 0 END AS high_incident_flag
+FROM renewals r
+LEFT JOIN expansion_pipeline ep ON ep.customer_id = r.customer_id
+LEFT JOIN incidents i ON i.customer_id = r.customer_id
+LEFT JOIN customers c on c.customer_id = r.customer_id
+ LEFT JOIN products p on p.product_id = r.product_id
+WHERE (COALESCE(ep.expansion_amount,0) < 100000 OR COALESCE(i.num_incidents,0) >= 3)
+AND p.product_name = \""Treasury Manager\""",| opp_id | customer_name | product_name | expected_close_date | amount | type | expansion_amount | num_incidents | low_expansion_flag | high_incident_flag |
+|:---------|:---------------------|:-----------------|:----------------------|:---------|:--------|:-------------------|:----------------|:---------------------|:---------------------|
+| O5049 | Mediterraneo Credito | Treasury Manager | 2025-11-24 | 180000 | Renewal | 90000 | 2 | 1 | 0 |
+| O5008 | Banco Aurora | Treasury Manager | 2025-12-16 | 25000 | Renewal | 220000 | 4 | 0 | 1 |	"Renewals at risk in February, March, April 2026, due to low expansion or high incidents
+
+Opportunities can slip due to either of the following:
+- Consider low expansion when open opportunities for expansion or project aggregated value is lower than 50000
+- Consider high incidents volume when there are at least 4 open incidents of any severity
+
+Return the following fields for each renewal opportunity at risk:
+- opportunity ID
+- customer name
+- product name
+- opportunity expected close date
+- opportunity amount
+- opportunity type
+- expansion amount
+- num incidents
+- opportunity size
+- reason for being at risk
+
+Answer only with a table and keep the reason field as much concise as possible.","WITH renewals AS (
+ SELECT * FROM sales_opportunities
+ WHERE type = 'Renewal' AND MONTH(expected_close_date) BETWEEN 9 AND 12 AND YEAR(expected_close_date)=2025
+), expansion_pipeline AS (
+ SELECT customer_id, SUM(amount) AS expansion_amount
+ FROM sales_opportunities
+ WHERE status='Open' AND type IN ('Expansion','Project')
+ GROUP BY customer_id
+), incidents AS (
+ SELECT customer_id, COUNT(*) AS num_incidents
+ FROM support_tickets
+ WHERE status='Open' AND severity IN ('High', 'Critical')
+ GROUP BY customer_id
+)
+SELECT r.opp_id, c.customer_name, p.product_name, r.expected_close_date, r.amount, r.type,
+ COALESCE(ep.expansion_amount,0) AS expansion_amount,
+ COALESCE(i.num_incidents,0) AS num_incidents,
+ CASE WHEN COALESCE(ep.expansion_amount,0) < 100000 THEN 1 ELSE 0 END AS low_expansion_flag,
+ CASE WHEN COALESCE(i.num_incidents,0) >= 3 THEN 1 ELSE 0 END AS high_incident_flag
+FROM renewals r
+LEFT JOIN expansion_pipeline ep ON ep.customer_id = r.customer_id
+LEFT JOIN incidents i ON i.customer_id = r.customer_id
+LEFT JOIN customers c on c.customer_id = r.customer_id
+ LEFT JOIN products p on p.product_id = r.product_id
+WHERE COALESCE(ep.expansion_amount,0) < 50000 OR COALESCE(i.num_incidents,0) >= 4",| opp_id | customer_name | product_name | expected_close_date | amount | type | expansion_amount | num_incidents | low_expansion_flag | high_incident_flag |
+|:---------|:----------------|:-----------------|:----------------------|:---------|:--------|:-------------------|:----------------|:---------------------|:---------------------|
+| O5063 | Alpine Bank | Loan Origination | 2025-09-08 | 85000 | Renewal | 445000 | 4 | 0 | 1 |
+| O5065 | Alpine Bank | Loan Origination | 2025-11-13 | 120000 | Renewal | 445000 | 4 | 0 | 1 |
+| O5009 | Banco Aurora | Account Ledger | 2025-12-17 | 180000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5010 | Banco Aurora | AML Monitor | 2025-11-19 | 25000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5008 | Banco Aurora | Treasury Manager | 2025-12-16 | 25000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5039 | EuroTrust Bank | Account Ledger | 2025-12-31 | 85000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5027 | EuroTrust Bank | Stress Test Pro | 2025-12-15 | 40000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5028 | EuroTrust Bank | Account Ledger | 2025-10-18 | 60000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5030 | EuroTrust Bank | Customer 360 | 2025-10-06 | 60000 | Renewal | 100000 | 5 | 0 | 1 |	"Renewals at risk during February, March, and April 2026 due to insufficient expansion or a high number of incidents
+
+Opportunities may be at risk if either condition applies:
+- Low expansion is defined as open expansion or project opportunities with a total value below 50,000
+- High incident volume is defined as having 4 or more open incidents of any severity
+
+Provide the following details for each renewal opportunity identified as at risk:
+- opportunity ID
+- customer name
+- product name
+- expected close date of the opportunity
+- opportunity amount
+- type of opportunity
+- expansion amount
+- number of incidents
+- size of the opportunity
+- concise reason for risk status
+
+Respond only with a table and keep the reason field brief.","WITH renewals AS (
+ SELECT * FROM sales_opportunities
+ WHERE type = 'Renewal' AND MONTH(expected_close_date) BETWEEN 9 AND 12 AND YEAR(expected_close_date)=2025
+), expansion_pipeline AS (
+ SELECT customer_id, SUM(amount) AS expansion_amount
+ FROM sales_opportunities
+ WHERE status='Open' AND type IN ('Expansion','Project')
+ GROUP BY customer_id
+), incidents AS (
+ SELECT customer_id, COUNT(*) AS num_incidents
+ FROM support_tickets
+ WHERE status='Open' AND severity IN ('High', 'Critical')
+ GROUP BY customer_id
+)
+SELECT r.opp_id, c.customer_name, p.product_name, r.expected_close_date, r.amount, r.type,
+ COALESCE(ep.expansion_amount,0) AS expansion_amount,
+ COALESCE(i.num_incidents,0) AS num_incidents,
+ CASE WHEN COALESCE(ep.expansion_amount,0) < 100000 THEN 1 ELSE 0 END AS low_expansion_flag,
+ CASE WHEN COALESCE(i.num_incidents,0) >= 3 THEN 1 ELSE 0 END AS high_incident_flag
+FROM renewals r
+LEFT JOIN expansion_pipeline ep ON ep.customer_id = r.customer_id
+LEFT JOIN incidents i ON i.customer_id = r.customer_id
+LEFT JOIN customers c on c.customer_id = r.customer_id
+ LEFT JOIN products p on p.product_id = r.product_id
+WHERE COALESCE(ep.expansion_amount,0) < 50000 OR COALESCE(i.num_incidents,0) >= 4",| opp_id | customer_name | product_name | expected_close_date | amount | type | expansion_amount | num_incidents | low_expansion_flag | high_incident_flag |
+|:---------|:----------------|:-----------------|:----------------------|:---------|:--------|:-------------------|:----------------|:---------------------|:---------------------|
+| O5063 | Alpine Bank | Loan Origination | 2025-09-08 | 85000 | Renewal | 445000 | 4 | 0 | 1 |
+| O5065 | Alpine Bank | Loan Origination | 2025-11-13 | 120000 | Renewal | 445000 | 4 | 0 | 1 |
+| O5009 | Banco Aurora | Account Ledger | 2025-12-17 | 180000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5010 | Banco Aurora | AML Monitor | 2025-11-19 | 25000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5008 | Banco Aurora | Treasury Manager | 2025-12-16 | 25000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5039 | EuroTrust Bank | Account Ledger | 2025-12-31 | 85000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5027 | EuroTrust Bank | Stress Test Pro | 2025-12-15 | 40000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5028 | EuroTrust Bank | Account Ledger | 2025-10-18 | 60000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5030 | EuroTrust Bank | Customer 360 | 2025-10-06 | 60000 | Renewal | 100000 | 5 | 0 | 1 |	"Renewals potentially at risk in February, March, and April 2026 due to limited expansion or elevated incident counts
+
+An opportunity is considered at risk if one of the following applies:
+- Limited expansion: open expansion or project opportunities total less than 50,000
+- Elevated incident count: 4 or more open incidents of any severity
+
+List the following information for each renewal opportunity flagged as at risk:
+- opportunity ID
+- customer name
+- product name
+- expected opportunity close date
+- opportunity amount
+- opportunity category
+- expansion amount
+- incident count
+- opportunity size
+- brief reason for risk
+
+Provide the response solely as a table and keep the reason field succinct.","WITH renewals AS (
+ SELECT * FROM sales_opportunities
+ WHERE type = 'Renewal' AND MONTH(expected_close_date) BETWEEN 9 AND 12 AND YEAR(expected_close_date)=2025
+), expansion_pipeline AS (
+ SELECT customer_id, SUM(amount) AS expansion_amount
+ FROM sales_opportunities
+ WHERE status='Open' AND type IN ('Expansion','Project')
+ GROUP BY customer_id
+), incidents AS (
+ SELECT customer_id, COUNT(*) AS num_incidents
+ FROM support_tickets
+ WHERE status='Open' AND severity IN ('High', 'Critical')
+ GROUP BY customer_id
+)
+SELECT r.opp_id, c.customer_name, p.product_name, r.expected_close_date, r.amount, r.type,
+ COALESCE(ep.expansion_amount,0) AS expansion_amount,
+ COALESCE(i.num_incidents,0) AS num_incidents,
+ CASE WHEN COALESCE(ep.expansion_amount,0) < 100000 THEN 1 ELSE 0 END AS low_expansion_flag,
+ CASE WHEN COALESCE(i.num_incidents,0) >= 3 THEN 1 ELSE 0 END AS high_incident_flag
+FROM renewals r
+LEFT JOIN expansion_pipeline ep ON ep.customer_id = r.customer_id
+LEFT JOIN incidents i ON i.customer_id = r.customer_id
+LEFT JOIN customers c on c.customer_id = r.customer_id
+ LEFT JOIN products p on p.product_id = r.product_id
+WHERE COALESCE(ep.expansion_amount,0) < 50000 OR COALESCE(i.num_incidents,0) >= 4",| opp_id | customer_name | product_name | expected_close_date | amount | type | expansion_amount | num_incidents | low_expansion_flag | high_incident_flag |
+|:---------|:----------------|:-----------------|:----------------------|:---------|:--------|:-------------------|:----------------|:---------------------|:---------------------|
+| O5063 | Alpine Bank | Loan Origination | 2025-09-08 | 85000 | Renewal | 445000 | 4 | 0 | 1 |
+| O5065 | Alpine Bank | Loan Origination | 2025-11-13 | 120000 | Renewal | 445000 | 4 | 0 | 1 |
+| O5009 | Banco Aurora | Account Ledger | 2025-12-17 | 180000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5010 | Banco Aurora | AML Monitor | 2025-11-19 | 25000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5008 | Banco Aurora | Treasury Manager | 2025-12-16 | 25000 | Renewal | 220000 | 4 | 0 | 1 |
+| O5039 | EuroTrust Bank | Account Ledger | 2025-12-31 | 85000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5027 | EuroTrust Bank | Stress Test Pro | 2025-12-15 | 40000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5028 | EuroTrust Bank | Account Ledger | 2025-10-18 | 60000 | Renewal | 100000 | 5 | 0 | 1 |
+| O5030 | EuroTrust Bank | Customer 360 | 2025-10-06 | 60000 | Renewal | 100000 | 5 | 0 | 1 |	"I need a list of sales opportunities to accelerate. Consider the following opportunities:
+- open opportunities with expected close date in H2 2025
+- must be in *Proposal* state
+- must have at least one delivered sales activity 
+- the last sales note type must not be \""Risk\""
+- forecast must be set to True
+
+For each of them, return the following:
+- opportunity ID
+- customer name
+- expected close date
+- forecast flag
+- product name
+- a summary of sales notes","WITH notes AS (
+SELECT
+ opp_id, 
+ max_by(note_type, note_at) AS last_signal,
+ concat_ws(
+ ';
+
+',
+ transform(
+ array_sort(
+ collect_list(named_struct('d', note_at, 's',
+ concat(date_format(note_at, 'M/d/yyyy'), ': ', note_text)
+ ))
+ ),
+ x -> x.s
+ )
+ ) AS opp_notes
+FROM opportunity_notes
+GROUP BY opp_id
+), activities AS (
+ SELECT opp_id, count(*) AS num_activities
+ FROM sales_activities
+ GROUP BY opp_id
+) 
+
+SELECT o.opp_id, c.customer_name, o.expected_close_date, o.is_forecast, p.product_name, n.last_signal, n.opp_notes
+FROM customers c
+LEFT JOIN sales_opportunities o ON o.customer_id = c.customer_id
+LEFT JOIN notes n ON n.opp_id = o.opp_id
+LEFT JOIN activities a on a.opp_id = o.opp_id
+LEFT JOIN products p on o.product_id = p.product_id
+WHERE o.status = 'Open' AND Stage = 'Proposal' AND (n.last_signal IS NULL OR n.last_signal != 'risk') AND a.num_activities>=1 AND MONTH(o.expected_close_date)>6 AND YEAR(o.expected_close_date)=2025",| opp_id | customer_name | expected_close_date | is_forecast | product_name | last_signal | opp_notes |
+|:---------|:---------------------|:----------------------|:--------------|:-------------------|:--------------|:---------------------------------------------------------------------------------|
+| O5069 | Alpine Bank | 2025-11-02 | True | Account Ledger | progress | 10/30/2025: Agreed on migration approach; phased cutover preferred. |
+| O5074 | Alpine Bank | 2025-11-29 | True | Real-Time Payments | progress | 10/9/2025: Procurement engaged; contract redlines progressing.; |
+| | | | | | | |
+| | | | | | | 10/28/2025: RTP rails walkthrough completed; treasury sees settlement benefits.; |
+| | | | | | | |
+| | | | | | | 11/10/2025: Confirmed ISO 20022 mapping; minimal gaps identified. |
+| O5055 | Mediterraneo Credito | 2025-08-24 | True | KYC Orchestrator | progress | 7/19/2025: Proposal drafted; awaiting compliance final review.; |
+| | | | | | | |
+| | | | | | | 8/1/2025: KYC workflow walkthrough successful; operations see cycle-time gains.; |
+| | | | | | | |
+| | | | | | | 8/11/2025: Confirmed risk scoring rules; supports regional variations.; |
+| | | | | | | |
+| | | | | | | 8/20/2025: Shared onboarding plan; teams aligned on responsibilities. |
+| O5027 | EuroTrust Bank | 2025-12-15 | True | Stress Test Pro | | |	"Please provide a list of sales opportunities to prioritize for acceleration. Include opportunities that meet these criteria:
+- currently open with an expected close date in the second half of 2025
+- in the *Proposal* stage
+- have at least one completed sales activity
+- the most recent sales note is not labeled as ""Risk""
+- forecast is marked as True
+
+For each opportunity, return the following details:
+- opportunity ID
+- customer name
+- expected close date
+- forecast status
+- product name
+- a summary of the sales notes","WITH notes AS (
+SELECT
+ opp_id, 
+ max_by(note_type, note_at) AS last_signal,
+ concat_ws(
+ ';
+
+',
+ transform(
+ array_sort(
+ collect_list(named_struct('d', note_at, 's',
+ concat(date_format(note_at, 'M/d/yyyy'), ': ', note_text)
+ ))
+ ),
+ x -> x.s
+ )
+ ) AS opp_notes
+FROM opportunity_notes
+GROUP BY opp_id
+), activities AS (
+ SELECT opp_id, count(*) AS num_activities
+ FROM sales_activities
+ GROUP BY opp_id
+) 
+
+SELECT o.opp_id, c.customer_name, o.expected_close_date, o.is_forecast, p.product_name, n.last_signal, n.opp_notes
+FROM customers c
+LEFT JOIN sales_opportunities o ON o.customer_id = c.customer_id
+LEFT JOIN notes n ON n.opp_id = o.opp_id
+LEFT JOIN activities a on a.opp_id = o.opp_id
+LEFT JOIN products p on o.product_id = p.product_id
+WHERE o.status = 'Open' AND Stage = 'Proposal' AND (n.last_signal IS NULL OR n.last_signal != 'risk') AND a.num_activities>=1 AND MONTH(o.expected_close_date)>6 AND YEAR(o.expected_close_date)=2025",| opp_id | customer_name | expected_close_date | is_forecast | product_name | last_signal | opp_notes |
+|:---------|:---------------------|:----------------------|:--------------|:-------------------|:--------------|:---------------------------------------------------------------------------------|
+| O5069 | Alpine Bank | 2025-11-02 | True | Account Ledger | progress | 10/30/2025: Agreed on migration approach; phased cutover preferred. |
+| O5074 | Alpine Bank | 2025-11-29 | True | Real-Time Payments | progress | 10/9/2025: Procurement engaged; contract redlines progressing.; |
+| | | | | | | |
+| | | | | | | 10/28/2025: RTP rails walkthrough completed; treasury sees settlement benefits.; |
+| | | | | | | |
+| | | | | | | 11/10/2025: Confirmed ISO 20022 mapping; minimal gaps identified. |
+| O5055 | Mediterraneo Credito | 2025-08-24 | True | KYC Orchestrator | progress | 7/19/2025: Proposal drafted; awaiting compliance final review.; |
+| | | | | | | |
+| | | | | | | 8/1/2025: KYC workflow walkthrough successful; operations see cycle-time gains.; |
+| | | | | | | |
+| | | | | | | 8/11/2025: Confirmed risk scoring rules; supports regional variations.; |
+| | | | | | | |
+| | | | | | | 8/20/2025: Shared onboarding plan; teams aligned on responsibilities. |
+| O5027 | EuroTrust Bank | 2025-12-15 | True | Stress Test Pro | | |	"Generate a list of sales opportunities to fast-track. Focus on opportunities that satisfy these conditions:
+- open with an anticipated close date in the latter half of 2025
+- currently in the *Proposal* phase
+- include at least one executed sales activity
+- the latest sales note is not categorized as ""Risk""
+- forecast flag is set to True
+
+For each opportunity, provide the following information:
+- opportunity ID
+- customer name
+- expected close date
+- forecast indicator
+- product name
+- a summary of the sales notes","WITH notes AS (
+SELECT
+ opp_id, 
+ max_by(note_type, note_at) AS last_signal,
+ concat_ws(
+ ';
+
+',
+ transform(
+ array_sort(
+ collect_list(named_struct('d', note_at, 's',
+ concat(date_format(note_at, 'M/d/yyyy'), ': ', note_text)
+ ))
+ ),
+ x -> x.s
+ )
+ ) AS opp_notes
+FROM opportunity_notes
+GROUP BY opp_id
+), activities AS (
+ SELECT opp_id, count(*) AS num_activities
+ FROM sales_activities
+ GROUP BY opp_id
+) 
+
+SELECT o.opp_id, c.customer_name, o.expected_close_date, o.is_forecast, p.product_name, n.last_signal, n.opp_notes
+FROM customers c
+LEFT JOIN sales_opportunities o ON o.customer_id = c.customer_id
+LEFT JOIN notes n ON n.opp_id = o.opp_id
+LEFT JOIN activities a on a.opp_id = o.opp_id
+LEFT JOIN products p on o.product_id = p.product_id
+WHERE o.status = 'Open' AND Stage = 'Proposal' AND (n.last_signal IS NULL OR n.last_signal != 'risk') AND a.num_activities>=1 AND MONTH(o.expected_close_date)>6 AND YEAR(o.expected_close_date)=2025",| opp_id | customer_name | expected_close_date | is_forecast | product_name | last_signal | opp_notes |
+|:---------|:---------------------|:----------------------|:--------------|:-------------------|:--------------|:---------------------------------------------------------------------------------|
+| O5069 | Alpine Bank | 2025-11-02 | True | Account Ledger | progress | 10/30/2025: Agreed on migration approach; phased cutover preferred. |
+| O5074 | Alpine Bank | 2025-11-29 | True | Real-Time Payments | progress | 10/9/2025: Procurement engaged; contract redlines progressing.; |
+| | | | | | | |
+| | | | | | | 10/28/2025: RTP rails walkthrough completed; treasury sees settlement benefits.; |
+| | | | | | | |
+| | | | | | | 11/10/2025: Confirmed ISO 20022 mapping; minimal gaps identified. |
+| O5055 | Mediterraneo Credito | 2025-08-24 | True | KYC Orchestrator | progress | 7/19/2025: Proposal drafted; awaiting compliance final review.; |
+| | | | | | | |
+| | | | | | | 8/1/2025: KYC workflow walkthrough successful; operations see cycle-time gains.; |
+| | | | | | | |
+| | | | | | | 8/11/2025: Confirmed risk scoring rules; supports regional variations.; |
+| | | | | | | |
+| | | | | | | 8/20/2025: Shared onboarding plan; teams aligned on responsibilities. |
+| O5027 | EuroTrust Bank | 2025-12-15 | True | Stress Test Pro | | |	"I need a list of sales opportunities for product line \""Core Banking Suite\"" to accelerate. Consider the following opportunities:
+- open opportunities with expected close date in 2025
+- must be in *Proposal* state
+- must have at least one delivered sales activity 
+- the last sales note type must not be \""Risk\""
+- forecast must be set to True
+
+For each of them, return the following:
+- opportunity ID
+- customer name
+- expected close date
+- forecast flag
+- product_line
+- product name
+- a summary of sales notes","WITH notes AS (
+SELECT
+ opp_id, 
+ max_by(note_type, note_at) AS last_signal,
+ concat_ws(
+ ';
+
+',
+ transform(
+ array_sort(
+ collect_list(named_struct('d', note_at, 's',
+ concat(date_format(note_at, 'M/d/yyyy'), ': ', note_text)
+ ))
+ ),
+ x -> x.s
+ )
+ ) AS opp_notes
+FROM opportunity_notes
+GROUP BY opp_id
+), activities AS (
+ SELECT opp_id, count(*) AS num_activities
+ FROM sales_activities
+ GROUP BY opp_id
+) 
+
+SELECT o.opp_id, c.customer_name, o.expected_close_date, o.is_forecast, p.product_line, p.product_name, n.last_signal, n.opp_notes
+FROM customers c
+LEFT JOIN sales_opportunities o ON o.customer_id = c.customer_id
+LEFT JOIN notes n ON n.opp_id = o.opp_id
+LEFT JOIN activities a on a.opp_id = o.opp_id
+LEFT JOIN products p on o.product_id = p.product_id
+WHERE o.status = 'Open' AND Stage = 'Proposal' AND (n.last_signal IS NULL OR n.last_signal != 'risk') AND a.num_activities>=1 
+AND YEAR(o.expected_close_date)=2025 AND p.product_line=\""Core Banking Suite\""",| opp_id | customer_name | expected_close_date | is_forecast | product_line | product_name | last_signal | opp_notes |
+|:---------|:----------------|:----------------------|:--------------|:-------------------|:---------------|:--------------|:--------------------------------------------------------------------|
+| O5069 | Alpine Bank | 2025-11-02 | True | Core Banking Suite | Account Ledger | progress | 10/30/2025: Agreed on migration approach; phased cutover preferred. |	"Please provide a list of sales opportunities related to the product line ""Core Banking Suite"" that need to be accelerated. Include only those opportunities that meet the following criteria:
+- are currently open with an expected close date in 2025
+- are in the *Proposal* stage
+- have at least one completed sales activity
+- have a most recent sales note type that is not labeled ""Risk""
+- have the forecast flag set to True
+
+For each opportunity, please return the following details:
+- opportunity ID
+- customer name
+- expected close date
+- forecast status
+- product line
+- product name
+- a summary of the sales notes","WITH notes AS (
+SELECT
+ opp_id, 
+ max_by(note_type, note_at) AS last_signal,
+ concat_ws(
+ ';
+
+',
+ transform(
+ array_sort(
+ collect_list(named_struct('d', note_at, 's',
+ concat(date_format(note_at, 'M/d/yyyy'), ': ', note_text)
+ ))
+ ),
+ x -> x.s
+ )
+ ) AS opp_notes
+FROM opportunity_notes
+GROUP BY opp_id
+), activities AS (
+ SELECT opp_id, count(*) AS num_activities
+ FROM sales_activities
+ GROUP BY opp_id
+) 
+
+SELECT o.opp_id, c.customer_name, o.expected_close_date, o.is_forecast, p.product_line, p.product_name, n.last_signal, n.opp_notes
+FROM customers c
+LEFT JOIN sales_opportunities o ON o.customer_id = c.customer_id
+LEFT JOIN notes n ON n.opp_id = o.opp_id
+LEFT JOIN activities a on a.opp_id = o.opp_id
+LEFT JOIN products p on o.product_id = p.product_id
+WHERE o.status = 'Open' AND Stage = 'Proposal' AND (n.last_signal IS NULL OR n.last_signal != 'risk') AND a.num_activities>=1 
+AND YEAR(o.expected_close_date)=2025 AND p.product_line=\""Core Banking Suite\""",| opp_id | customer_name | expected_close_date | is_forecast | product_line | product_name | last_signal | opp_notes |
+|:---------|:----------------|:----------------------|:--------------|:-------------------|:---------------|:--------------|:--------------------------------------------------------------------|
+| O5069 | Alpine Bank | 2025-11-02 | True | Core Banking Suite | Account Ledger | progress | 10/30/2025: Agreed on migration approach; phased cutover preferred. |	"Provide a list of sales opportunities for the ""Core Banking Suite"" product line that require acceleration. Include only those opportunities that satisfy these conditions:
+- currently open with an expected close date in 2025
+- in the *Proposal* phase
+- have at least one completed sales activity
+- the latest sales note type is not ""Risk""
+- forecast flag is set to True
+
+For each opportunity, return the following information:
+- opportunity ID
+- customer name
+- expected close date
+- forecast indicator
+- product line
+- product name
+- a summary of sales notes","WITH notes AS (
+SELECT
+ opp_id, 
+ max_by(note_type, note_at) AS last_signal,
+ concat_ws(
+ ';
+
+',
+ transform(
+ array_sort(
+ collect_list(named_struct('d', note_at, 's',
+ concat(date_format(note_at, 'M/d/yyyy'), ': ', note_text)
+ ))
+ ),
+ x -> x.s
+ )
+ ) AS opp_notes
+FROM opportunity_notes
+GROUP BY opp_id
+), activities AS (
+ SELECT opp_id, count(*) AS num_activities
+ FROM sales_activities
+ GROUP BY opp_id
+) 
+
+SELECT o.opp_id, c.customer_name, o.expected_close_date, o.is_forecast, p.product_line, p.product_name, n.last_signal, n.opp_notes
+FROM customers c
+LEFT JOIN sales_opportunities o ON o.customer_id = c.customer_id
+LEFT JOIN notes n ON n.opp_id = o.opp_id
+LEFT JOIN activities a on a.opp_id = o.opp_id
+LEFT JOIN products p on o.product_id = p.product_id
+WHERE o.status = 'Open' AND Stage = 'Proposal' AND (n.last_signal IS NULL OR n.last_signal != 'risk') AND a.num_activities>=1 
+AND YEAR(o.expected_close_date)=2025 AND p.product_line=\""Core Banking Suite\""",| opp_id | customer_name | expected_close_date | is_forecast | product_line | product_name | last_signal | opp_notes |
+|:---------|:----------------|:----------------------|:--------------|:-------------------|:---------------|:--------------|:--------------------------------------------------------------------|
+| O5069 | Alpine Bank | 2025-11-02 | True | Core Banking Suite | Account Ledger | progress | 10/30/2025: Agreed on migration approach; phased cutover preferred. |	"I need a list of sales opportunities for product line \""Core Banking Suite\"" to accelerate. Consider the following opportunities:
+- open opportunities with expected close date in 2025
+- must be in *Proposal* state
+- must have at least one delivered sales activity of type demo
+- forecast must be set to True
+
+For each of them, return the following:
+- opportunity ID
+- customer name
+- expected close date
+- forecast flag
+- product_line
+- product name
+- a summary of sales notes","WITH activities AS (
+ SELECT opp_id, count(*) AS num_activities
+ FROM sales_activities
+ WHERE type IN ('demo')
+ GROUP BY opp_id
+) 
+SELECT o.opp_id, c.customer_name, o.expected_close_date, o.is_forecast, p.product_name
+FROM customers c
+LEFT JOIN sales_opportunities o ON o.customer_id = c.customer_id
+LEFT JOIN activities a on a.opp_id = o.opp_id
+LEFT JOIN products p on o.product_id = p.product_id
+WHERE o.status = 'Open' AND Stage = 'Proposal' AND a.num_activities>=1 AND YEAR(o.expected_close_date)=2025",| opp_id | customer_name | expected_close_date | is_forecast | product_name |
+|:---------|:---------------------|:----------------------|:--------------|:-----------------|
+| O5055 | Mediterraneo Credito | 2025-08-24 | True | KYC Orchestrator |	"Please provide a list of sales opportunities related to the ""Core Banking Suite"" product line that are aimed at speeding up progress. Include only those opportunities that meet these criteria:
+- currently open with an expected close date in 2025
+- in the *Proposal* stage
+- have at least one completed sales activity categorized as a demo
+- forecast flag is marked as True
+
+For each opportunity, please return the following details:
+- opportunity ID
+- customer name
+- expected close date
+- forecast status
+- product line
+- product name
+- a brief summary of sales notes","WITH activities AS (
+ SELECT opp_id, count(*) AS num_activities
+ FROM sales_activities
+ WHERE type IN ('demo')
+ GROUP BY opp_id
+) 
+SELECT o.opp_id, c.customer_name, o.expected_close_date, o.is_forecast, p.product_name
+FROM customers c
+LEFT JOIN sales_opportunities o ON o.customer_id = c.customer_id
+LEFT JOIN activities a on a.opp_id = o.opp_id
+LEFT JOIN products p on o.product_id = p.product_id
+WHERE o.status = 'Open' AND Stage = 'Proposal' AND a.num_activities>=1 AND YEAR(o.expected_close_date)=2025",| opp_id | customer_name | expected_close_date | is_forecast | product_name |
+|:---------|:---------------------|:----------------------|:--------------|:-----------------|
+| O5055 | Mediterraneo Credito | 2025-08-24 | True | KYC Orchestrator |	"Generate a list of sales opportunities for the ""Core Banking Suite"" product line that need to be expedited. Include only those opportunities that satisfy the following conditions:
+- open opportunities with an expected close date in 2025
+- currently in the *Proposal* phase
+- have at least one completed sales activity of the demo type
+- forecast flag set to True
+
+For each opportunity, provide the following information:
+- opportunity ID
+- customer name
+- expected close date
+- forecast indicator
+- product line
+- product name
+- a concise summary of sales notes","WITH activities AS (
+ SELECT opp_id, count(*) AS num_activities
+ FROM sales_activities
+ WHERE type IN ('demo')
+ GROUP BY opp_id
+) 
+SELECT o.opp_id, c.customer_name, o.expected_close_date, o.is_forecast, p.product_name
+FROM customers c
+LEFT JOIN sales_opportunities o ON o.customer_id = c.customer_id
+LEFT JOIN activities a on a.opp_id = o.opp_id
+LEFT JOIN products p on o.product_id = p.product_id
+WHERE o.status = 'Open' AND Stage = 'Proposal' AND a.num_activities>=1 AND YEAR(o.expected_close_date)=2025",| opp_id | customer_name | expected_close_date | is_forecast | product_name |
+|:---------|:---------------------|:----------------------|:--------------|:-----------------|
+| O5055 | Mediterraneo Credito | 2025-08-24 | True | KYC Orchestrator |	
