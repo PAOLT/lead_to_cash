@@ -1,0 +1,168 @@
+note_id	opp_id	note_at	note_type	note_text	tags
+N000005	O5063	2025-09-07	risk	Risk: credit policy changes pending; requirements still moving.	risk;core_banking_suite;loan_origination;at_risk
+N000006	O5064	2026-01-07	neutral	Shared integration checklist and required endpoint specs.	integration;payments;real-time_payments
+N000007	O5064	2026-01-17	risk	Risk: scheme certification timeline tight for planned go-live.	timeline;risk;golive;certification;payments;real-time_payments;at_risk
+N000010	O5065	2025-11-11	risk	Risk: credit policy changes pending; requirements still moving.	risk;core_banking_suite;loan_origination;at_risk
+N000011	O5066	2025-08-02	neutral	Awaiting network participation confirmation from compliance.	compliance;payments;real-time_payments
+N000013	O5066	2025-10-27	risk	Risk: scheme certification timeline tight for planned go-live.	timeline;risk;golive;certification;payments;real-time_payments;at_risk
+N000014	O5066	2025-11-16	risk	Concern: fraud controls need enhancement before launch.	fraud;payments;real-time_payments;at_risk
+N000018	O5068	2026-02-22	risk	Timeline risk: parallel project competing for same analysts.	timeline;risk;stress_test_pro;at_risk
+N000020	O5072	2026-02-12	neutral	Awaiting network participation confirmation from compliance.	compliance;payments;real-time_payments
+N000021	O5072	2026-03-04	risk	Concern: fraud controls need enhancement before launch.	fraud;payments;real-time_payments;at_risk
+N000022	O5073	2025-12-05	neutral	Captured current onboarding SLA and exception rates.	risk;kyc_orchestrator
+N000023	O5073	2025-12-09	risk	Concern: data residency requirement needs hosting clarification.	data;risk;kyc_orchestrator;at_risk
+N000027	O5075	2025-08-11	neutral	Scheduled workshop on model governance and monitoring.	golive;risk;aml_monitor
+N000029	O5075	2025-08-16	risk	Data access approvals delayed; impacts pilot timeline.	pilot;timeline;data;risk;aml_monitor;at_risk
+N000030	O5075	2025-08-19	risk	Risk: false positive targets aggressive; may need longer tuning.	risk;aml_monitor;at_risk;positive
+N000031	O5075	2025-09-02	risk	Concern: regulator audit upcoming; team bandwidth limited.	audit;risk;aml_monitor;at_risk
+N000032	O5009	2025-10-23	neutral	Requested chart-of-accounts sample and reconciliation reports.	core_banking_suite;account_ledger
+N000034	O5009	2025-12-15	risk	Competitor pushing discount; pricing pressure increasing.	pricing;competitor;core_banking_suite;account_ledger;at_risk
+N000040	O5012	2025-09-25	neutral	Captured current onboarding SLA and exception rates.	risk;kyc_orchestrator
+N000041	O5012	2025-09-29	risk	Concern: data residency requirement needs hosting clarification.	data;risk;kyc_orchestrator;at_risk
+N000054	O5017	2026-03-05	neutral	Collected current cash forecast spreadsheet and approval steps.	payments;treasury_manager
+N000056	O5017	2026-03-07	risk	Stakeholder change in treasury; decision timeline uncertain.	timeline;payments;treasury_manager;at_risk
+N000064	O5049	2025-09-30	neutral	Scheduled session on payment factory and controls.	payments;treasury_manager
+N000066	O5049	2025-10-19	risk	Concern: integration with TMS vendor unclear; needs joint session.	integration;payments;treasury_manager;at_risk
+N000067	O5050	2026-01-28	neutral	Shared integration checklist and required endpoint specs.	integration;payments;real-time_payments
+N000069	O5050	2026-02-06	risk	Risk: scheme certification timeline tight for planned go-live.	timeline;risk;golive;certification;payments;real-time_payments;at_risk
+N000070	O5050	2026-02-27	risk	Vendor risk review flagged third-party dependency.	risk;payments;real-time_payments;at_risk
+N000077	O5001	2025-07-30	neutral	Requested chart-of-accounts sample and reconciliation reports.	core_banking_suite;account_ledger
+N000079	O5001	2025-08-20	risk	Competitor pushing discount; pricing pressure increasing.	pricing;competitor;core_banking_suite;account_ledger;at_risk
+N000080	O5001	2025-09-03	risk	Concern: data quality gaps discovered in trial balance extracts.	data;core_banking_suite;account_ledger;at_risk
+N000081	O5001	2025-09-10	risk	Risk: legacy customizations complicate migration scope and testing.	risk;migration;core_banking_suite;account_ledger;at_risk
+N000087	O5006	2025-12-27	neutral	Requested sample portfolios and current stress scenarios.	risk;stress_test_pro
+N000089	O5006	2026-03-03	risk	Timeline risk: parallel project competing for same analysts.	timeline;risk;stress_test_pro;at_risk
+N000101	O5058	2025-09-30	neutral	Scheduled session on payment factory and controls.	payments;treasury_manager
+N000102	O5058	2025-10-01	risk	Stakeholder change in treasury; decision timeline uncertain.	timeline;payments;treasury_manager;at_risk
+N000104	O5059	2026-03-23	risk	Timeline risk: parallel project competing for same analysts.	timeline;risk;stress_test_pro;at_risk
+N000113	O5038	2025-12-21	risk	Vendor risk review flagged third-party dependency.	risk;payments;real-time_payments;at_risk
+N000114	O5040	2025-11-29	risk	Concern: source CRM latency may affect real-time experiences.	latency;core_banking_suite;customer_360;at_risk
+N000115	O5041	2026-01-29	neutral	Scheduled meeting with compliance to validate control points.	compliance;risk;kyc_orchestrator
+N000117	O5041	2026-02-21	risk	Risk: sanctions screening vendor contract renewal may change inputs.	risk;kyc_orchestrator;at_risk
+N000118	O5042	2025-07-21	neutral	Collected current cash forecast spreadsheet and approval steps.	payments;treasury_manager
+N000120	O5042	2025-09-11	risk	Risk: FX module scope expanding; may require add-on budget.	budget;risk;payments;treasury_manager;at_risk
+N000121	O5044	2025-09-28	neutral	Waiting for IT to confirm target architecture and access.	core_banking_suite;account_ledger
+N000123	O5044	2025-10-28	risk	Risk: legacy customizations complicate migration scope and testing.	risk;migration;core_banking_suite;account_ledger;at_risk
+N000127	O5031	2025-09-16	neutral	Captured data sources list and ownership for onboarding plan.	data;core_banking_suite;customer_360
+N000129	O5031	2025-09-29	risk	Data sharing approvals pending; could delay pilot start.	pilot;data;core_banking_suite;customer_360
+N000130	O5031	2025-10-04	risk	Risk: consent management requirements need legal clarification.	legal;risk;core_banking_suite;customer_360;at_risk
+N000131	O5032	2026-03-05	neutral	Waiting for IT to confirm target architecture and access.	core_banking_suite;account_ledger
+N000132	O5032	2026-03-07	risk	Risk: legacy customizations complicate migration scope and testing.	risk;migration;core_banking_suite;account_ledger;at_risk
+N000133	O5033	2026-02-23	risk	Budget approval delayed; CFO requests revised payback assumptions.	budget;core_banking_suite;loan_origination;at_risk
+N000145	O5020	2025-07-05	neutral	Collected current process maps and pain points from SME.	core_banking_suite;loan_origination
+N000147	O5020	2025-07-26	risk	Risk: credit policy changes pending; requirements still moving.	risk;core_banking_suite;loan_origination;at_risk
+N000148	O5021	2026-02-19	neutral	Scheduled meeting with compliance to validate control points.	compliance;risk;kyc_orchestrator
+N000150	O5021	2026-02-26	risk	Concern: data residency requirement needs hosting clarification.	data;risk;kyc_orchestrator;at_risk
+N000151	O5021	2026-03-01	risk	Risk: sanctions screening vendor contract renewal may change inputs.	risk;kyc_orchestrator;at_risk
+N000157	O5024	2025-10-25	neutral	Requested sample portfolios and current stress scenarios.	risk;stress_test_pro
+N000159	O5024	2025-11-05	risk	Concern: data lineage gaps could slow audit signoff.	audit;data;risk;stress_test_pro;at_risk
+N000160	O5024	2025-12-03	risk	Risk: model validation committee requests extra documentation.	risk;stress_test_pro;at_risk
+N000161	O5024	2025-12-06	risk	Timeline risk: parallel project competing for same analysts.	timeline;risk;stress_test_pro;at_risk
+N000001	O5063	2025-08-05	progress	Legal review started; procurement timeline looks manageable.	procurement;legal;timeline;core_banking_suite;loan_origination
+N000002	O5063	2025-08-18	progress	Validated underwriting workflow; team likes configurable rules.	core_banking_suite;loan_origination
+N000003	O5063	2025-08-30	progress	Shared ROI model; faster approvals resonates with leadership.	roi;core_banking_suite;loan_origination;positive
+N000004	O5063	2025-09-06	progress	Demo covered borrower portal; strong engagement from operations.	demo;core_banking_suite;loan_origination;positive
+N000008	O5065	2025-10-10	progress	Validated underwriting workflow; team likes configurable rules.	core_banking_suite;loan_origination
+N000009	O5065	2025-10-19	progress	Shared ROI model; faster approvals resonates with leadership.	roi;core_banking_suite;loan_origination;positive
+N000012	O5066	2025-09-11	progress	Latency tests reviewed; meets instant payment SLA.	latency;payments;real-time_payments
+N000015	O5067	2025-11-20	progress	Procurement moving; security review nearly complete.	security;procurement;risk;aml_monitor
+N000016	O5067	2025-11-22	progress	Confirmed case management integration path.	integration;risk;aml_monitor
+N000017	O5067	2025-12-18	progress	Validated typology coverage; compliance satisfied with scenarios.	compliance;risk;aml_monitor
+N000019	O5069	2025-10-30	progress	Agreed on migration approach; phased cutover preferred.	migration;core_banking_suite;account_ledger
+N000024	O5074	2025-10-09	progress	Procurement engaged; contract redlines progressing.	procurement;payments;real-time_payments;positive
+N000025	O5074	2025-10-28	progress	RTP rails walkthrough completed; treasury sees settlement benefits.	payments;real-time_payments
+N000026	O5074	2025-11-10	progress	Confirmed ISO 20022 mapping; minimal gaps identified.	iso20022;payments;real-time_payments;at_risk
+N000028	O5075	2025-08-12	progress	Confirmed case management integration path.	integration;risk;aml_monitor
+N000033	O5009	2025-11-06	progress	Confirmed multi-entity needs; solution supports consolidation.	core_banking_suite;account_ledger
+N000035	O5010	2025-10-28	progress	Validated typology coverage; compliance satisfied with scenarios.	compliance;risk;aml_monitor
+N000036	O5010	2025-11-03	progress	Pilot dataset received; model tuning underway.	pilot;data;risk;aml_monitor
+N000037	O5010	2025-11-05	progress	Alert triage demo positive; analysts like explainable scoring.	demo;risk;aml_monitor;positive
+N000038	O5010	2025-11-09	progress	Confirmed case management integration path.	integration;risk;aml_monitor
+N000039	O5010	2025-11-14	progress	Procurement moving; security review nearly complete.	security;procurement;risk;aml_monitor
+N000042	O5013	2025-10-17	progress	Drafted proposal aligned to regulatory reporting requirements.	core_banking_suite;account_ledger;positive
+N000043	O5013	2025-10-24	progress	Confirmed multi-entity needs; solution supports consolidation.	core_banking_suite;account_ledger
+N000044	O5014	2025-10-06	progress	Confirmed multi-entity needs; solution supports consolidation.	core_banking_suite;account_ledger
+N000045	O5014	2025-11-11	progress	Performance benchmarks shared; meets daily batch window.	performance;core_banking_suite;account_ledger
+N000046	O5014	2025-11-19	progress	Ledger demo showed real-time posting; finance team impressed.	demo;core_banking_suite;account_ledger;positive
+N000050	O5015	2025-09-15	progress	Data ingestion demo succeeded; identity resolution looks solid.	demo;data;core_banking_suite;customer_360
+N000051	O5015	2025-09-17	progress	Pilot scope agreed; success metrics documented.	pilot;core_banking_suite;customer_360
+N000052	O5016	2025-09-02	progress	Performance test results acceptable for quarterly runs.	performance;risk;stress_test_pro
+N000053	O5016	2025-10-27	progress	Validated Basel reporting outputs; minor tweaks requested.	basel;risk;stress_test_pro
+N000055	O5017	2026-03-05	progress	Negotiation progressing; signoff path identified.	golive;payments;treasury_manager;positive
+N000057	O5045	2026-01-16	progress	Scenario engine demo strong; risk team likes flexible assumptions.	demo;risk;stress_test_pro;at_risk;positive
+N000058	O5045	2026-01-18	progress	Validated Basel reporting outputs; minor tweaks requested.	basel;risk;stress_test_pro
+N000059	O5045	2026-02-02	progress	Commercial terms discussed; next step is final approval.	risk;stress_test_pro
+N000060	O5045	2026-02-19	progress	Performance test results acceptable for quarterly runs.	performance;risk;stress_test_pro
+N000061	O5046	2025-10-30	progress	Validated typology coverage; compliance satisfied with scenarios.	compliance;risk;aml_monitor
+N000062	O5046	2025-11-03	progress	Procurement moving; security review nearly complete.	security;procurement;risk;aml_monitor
+N000063	O5047	2026-01-17	progress	Data ingestion demo succeeded; identity resolution looks solid.	demo;data;core_banking_suite;customer_360
+N000065	O5049	2025-10-01	progress	Cash positioning demo matched requirements; strong treasury support.	demo;payments;treasury_manager;positive
+N000068	O5050	2026-02-05	progress	RTP rails walkthrough completed; treasury sees settlement benefits.	payments;real-time_payments
+N000071	O5051	2025-07-30	progress	Proposal drafted; awaiting compliance final review.	compliance;risk;kyc_orchestrator
+N000072	O5051	2025-08-08	progress	Shared onboarding plan; teams aligned on responsibilities.	risk;kyc_orchestrator;positive
+N000073	O5051	2025-08-12	progress	Validated document verification partners; good coverage.	golive;risk;kyc_orchestrator
+N000074	O5000	2026-01-28	progress	Demo covered borrower portal; strong engagement from operations.	demo;core_banking_suite;loan_origination;positive
+N000075	O5000	2026-01-29	progress	Shared ROI model; faster approvals resonates with leadership.	roi;core_banking_suite;loan_origination;positive
+N000076	O5000	2026-02-02	progress	Validated underwriting workflow; team likes configurable rules.	core_banking_suite;loan_origination
+N000078	O5001	2025-08-06	progress	Performance benchmarks shared; meets daily batch window.	performance;core_banking_suite;account_ledger
+N000082	O5003	2026-01-04	progress	Validated underwriting workflow; team likes configurable rules.	core_banking_suite;loan_origination
+N000083	O5003	2026-01-25	progress	Legal review started; procurement timeline looks manageable.	procurement;legal;timeline;core_banking_suite;loan_origination
+N000084	O5004	2025-10-08	progress	Data ingestion demo succeeded; identity resolution looks solid.	demo;data;core_banking_suite;customer_360
+N000085	O5004	2025-10-12	progress	Pilot scope agreed; success metrics documented.	pilot;core_banking_suite;customer_360
+N000088	O5006	2026-01-23	progress	Commercial terms discussed; next step is final approval.	risk;stress_test_pro
+N000091	O5007	2026-02-23	progress	Pilot scope agreed; success metrics documented.	pilot;core_banking_suite;customer_360
+N000092	O5055	2025-07-19	progress	Proposal drafted; awaiting compliance final review.	compliance;risk;kyc_orchestrator
+N000093	O5055	2025-08-01	progress	KYC workflow walkthrough successful; operations see cycle-time gains.	risk;kyc_orchestrator
+N000094	O5055	2025-08-11	progress	Confirmed risk scoring rules; supports regional variations.	risk;kyc_orchestrator;at_risk
+N000095	O5055	2025-08-20	progress	Shared onboarding plan; teams aligned on responsibilities.	risk;kyc_orchestrator;positive
+N000097	O5056	2025-11-24	progress	Pilot scope agreed; success metrics documented.	pilot;core_banking_suite;customer_360
+N000099	O5057	2026-01-30	progress	Sent business case; expected savings validated.	payments;treasury_manager
+N000100	O5057	2026-02-02	progress	Confirmed bank connectivity options; SWIFT integration feasible.	integration;swift;payments;treasury_manager
+N000103	O5059	2026-03-13	progress	Agreed pilot scope using last year portfolios.	pilot;risk;stress_test_pro
+N000105	O5062	2025-12-17	progress	Validated Basel reporting outputs; minor tweaks requested.	basel;risk;stress_test_pro
+N000106	O5062	2026-02-02	progress	Performance test results acceptable for quarterly runs.	performance;risk;stress_test_pro
+N000107	O5062	2026-02-14	progress	Agreed pilot scope using last year portfolios.	pilot;risk;stress_test_pro
+N000109	O5037	2025-10-24	progress	Pilot scope agreed; success metrics documented.	pilot;core_banking_suite;customer_360
+N000110	O5037	2025-10-27	progress	Data ingestion demo succeeded; identity resolution looks solid.	demo;data;core_banking_suite;customer_360
+N000112	O5037	2025-11-06	progress	Data ingestion demo succeeded; identity resolution looks solid.	demo;data;core_banking_suite;customer_360
+N000116	O5041	2026-01-30	progress	Shared onboarding plan; teams aligned on responsibilities.	risk;kyc_orchestrator;positive
+N000119	O5042	2025-08-06	progress	Negotiation progressing; signoff path identified.	golive;payments;treasury_manager;positive
+N000122	O5044	2025-10-22	progress	Performance benchmarks shared; meets daily batch window.	performance;core_banking_suite;account_ledger
+N000124	O5029	2025-07-11	progress	Negotiation progressing; signoff path identified.	golive;payments;treasury_manager;positive
+N000125	O5029	2025-07-12	progress	Cash positioning demo matched requirements; strong treasury support.	demo;payments;treasury_manager;positive
+N000126	O5029	2025-07-26	progress	Confirmed bank connectivity options; SWIFT integration feasible.	integration;swift;payments;treasury_manager
+N000134	O5034	2025-11-24	progress	Demo covered borrower portal; strong engagement from operations.	demo;core_banking_suite;loan_origination;positive
+N000135	O5034	2025-11-27	progress	Legal review started; procurement timeline looks manageable.	procurement;legal;timeline;core_banking_suite;loan_origination
+N000136	O5034	2025-11-28	progress	Sent security questionnaire; expecting quick turnaround.	security;core_banking_suite;loan_origination
+N000137	O5018	2026-02-22	progress	Ledger demo showed real-time posting; finance team impressed.	demo;core_banking_suite;account_ledger;positive
+N000138	O5018	2026-02-26	progress	Drafted proposal aligned to regulatory reporting requirements.	core_banking_suite;account_ledger;positive
+N000139	O5018	2026-03-21	progress	Confirmed multi-entity needs; solution supports consolidation.	core_banking_suite;account_ledger
+N000140	O5018	2026-03-25	progress	Agreed on migration approach; phased cutover preferred.	migration;core_banking_suite;account_ledger
+N000141	O5018	2026-03-29	progress	Drafted proposal aligned to regulatory reporting requirements.	core_banking_suite;account_ledger;positive
+N000142	O5019	2025-07-21	progress	Agreed on migration approach; phased cutover preferred.	migration;core_banking_suite;account_ledger
+N000143	O5019	2025-07-23	progress	Performance benchmarks shared; meets daily batch window.	performance;core_banking_suite;account_ledger
+N000144	O5019	2025-07-28	progress	Ledger demo showed real-time posting; finance team impressed.	demo;core_banking_suite;account_ledger;positive
+N000146	O5020	2025-07-10	progress	Legal review started; procurement timeline looks manageable.	procurement;legal;timeline;core_banking_suite;loan_origination
+N000149	O5021	2026-02-25	progress	Shared onboarding plan; teams aligned on responsibilities.	risk;kyc_orchestrator;positive
+N000152	O5022	2025-12-17	progress	Performance benchmarks shared; meets daily batch window.	performance;core_banking_suite;account_ledger
+N000153	O5022	2025-12-24	progress	Confirmed multi-entity needs; solution supports consolidation.	core_banking_suite;account_ledger
+N000154	O5022	2026-01-04	progress	Ledger demo showed real-time posting; finance team impressed.	demo;core_banking_suite;account_ledger;positive
+N000155	O5023	2025-12-27	progress	Demo covered borrower portal; strong engagement from operations.	demo;core_banking_suite;loan_origination;positive
+N000156	O5023	2026-01-01	progress	Shared ROI model; faster approvals resonates with leadership.	roi;core_banking_suite;loan_origination;positive
+N000158	O5024	2025-10-29	progress	Performance test results acceptable for quarterly runs.	performance;risk;stress_test_pro
+N000162	O5025	2026-02-19	progress	Scenario engine demo strong; risk team likes flexible assumptions.	demo;risk;stress_test_pro;at_risk;positive
+N000163	O5025	2026-03-02	progress	Validated Basel reporting outputs; minor tweaks requested.	basel;risk;stress_test_pro
+N000164	O5026	2025-11-22	progress	Confirmed case management integration path.	integration;risk;aml_monitor
+N000165	O5026	2025-12-11	progress	Alert triage demo positive; analysts like explainable scoring.	demo;risk;aml_monitor;positive
+N000166	O5026	2025-12-25	progress	Procurement moving; security review nearly complete.	security;procurement;risk;aml_monitor
+N000167	O5026	2026-01-02	progress	Validated typology coverage; compliance satisfied with scenarios.	compliance;risk;aml_monitor
+N000047	O5015	2025-09-05	progress	Connected with marketing lead; use cases prioritized quickly.	core_banking_suite;customer_360
+N000048	O5015	2025-09-12	progress	Proposal sent; expecting feedback after steering committee.	core_banking_suite;customer_360
+N000049	O5015	2025-09-14	progress	Stakeholders liked unified profile and segmentation capabilities.	core_banking_suite;customer_360
+N000086	O5004	2025-10-27	progress	Proposal sent; expecting feedback after steering committee.	core_banking_suite;customer_360
+N000090	O5007	2026-02-15	progress	Proposal sent; expecting feedback after steering committee.	core_banking_suite;customer_360
+N000096	O5056	2025-11-06	progress	Stakeholders liked unified profile and segmentation capabilities.	core_banking_suite;customer_360
+N000098	O5056	2025-11-27	progress	Connected with marketing lead; use cases prioritized quickly.	core_banking_suite;customer_360
+N000108	O5037	2025-10-23	progress	Proposal sent; expecting feedback after steering committee.	core_banking_suite;customer_360
+N000111	O5037	2025-10-29	progress	Stakeholders liked unified profile and segmentation capabilities.	core_banking_suite;customer_360
+N000128	O5031	2025-09-22	progress	Stakeholders liked unified profile and segmentation capabilities.	core_banking_suite;customer_360

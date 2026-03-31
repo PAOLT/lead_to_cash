@@ -1,0 +1,204 @@
+activity_id	opp_id	activity_at	description	type	contact_name
+A60175	O5062	2026-01-11	Proposal shared with legal	call	IT Manager
+A60176	O5062	2026-01-05	Security questionnaire sent	meeting	Head of Compliance
+A60177	O5062	2026-02-28	Proposal shared with legal	email	IT Manager
+A60178	O5062	2026-03-04	Proposal shared with legal	call	CIO
+A60179	O5064	2025-12-17	Intro call with bank stakeholders	demo	IT Manager
+A60180	O5064	2025-12-18	Negotiation on pricing	call	Procurement
+A60181	O5064	2026-02-17	Management review scheduled	meeting	Procurement
+A60182	O5064	2025-12-15	Security questionnaire sent	email	CIO
+A60183	O5065	2025-11-01	Management review scheduled	demo	Head of Compliance
+A60184	O5066	2025-10-22	Negotiation on pricing	call	Head of Compliance
+A60185	O5066	2025-08-21	Security questionnaire sent	meeting	Procurement
+A60186	O5066	2025-10-21	Demo delivered to ops team	meeting	Procurement
+A60187	O5066	2025-09-07	Security questionnaire sent	email	Procurement
+A60188	O5066	2025-09-19	Management review scheduled	meeting	Procurement
+A60189	O5067	2026-01-07	Intro call with bank stakeholders	call	Procurement
+A60190	O5067	2026-02-02	Intro call with bank stakeholders	demo	Procurement
+A60191	O5067	2025-11-18	Proposal shared with legal	demo	Head of Compliance
+A60192	O5069	2025-11-08	Intro call with bank stakeholders	meeting	Head of Compliance
+A60193	O5069	2025-10-10	Management review scheduled	email	IT Manager
+A60194	O5070	2026-02-06	Negotiation on pricing	call	Head of Compliance
+A60195	O5070	2026-03-06	Security questionnaire sent	call	IT Manager
+A60196	O5072	2026-03-01	Demo delivered to ops team	demo	Procurement
+A60197	O5072	2026-01-20	Negotiation on pricing	call	IT Manager
+A60198	O5073	2025-12-27	Management review scheduled	demo	Head of Compliance
+A60199	O5073	2025-12-08	Intro call with bank stakeholders	email	IT Manager
+A60200	O5073	2025-12-18	Management review scheduled	call	CIO
+A60201	O5074	2025-11-16	Security questionnaire sent	meeting	Head of Compliance
+A60202	O5075	2025-10-28	Demo delivered to ops team	email	CIO
+A60050	O5015	2025-11-17	Security questionnaire sent	email	CIO
+A60051	O5016	2025-08-29	Proposal shared with legal	demo	Head of Compliance
+A60052	O5016	2025-11-10	Proposal shared with legal	email	Procurement
+A60053	O5016	2025-09-24	Demo delivered to ops team	meeting	CIO
+A60054	O5017	2026-03-08	Management review scheduled	email	CIO
+A60055	O5017	2026-03-08	Proposal shared with legal	meeting	IT Manager
+A60056	O5018	2026-03-08	Intro call with bank stakeholders	call	Head of Compliance
+A60057	O5018	2026-03-08	Management review scheduled	demo	IT Manager
+A60058	O5018	2026-03-01	Demo delivered to ops team	meeting	CIO
+A60059	O5018	2026-03-08	Demo delivered to ops team	call	IT Manager
+A60060	O5019	2025-09-05	Negotiation on pricing	meeting	IT Manager
+A60061	O5019	2025-09-08	Proposal shared with legal	call	IT Manager
+A60062	O5020	2025-07-12	Proposal shared with legal	call	Procurement
+A60063	O5020	2025-09-28	Proposal shared with legal	call	Procurement
+A60064	O5020	2025-08-28	Negotiation on pricing	meeting	CIO
+A60065	O5020	2025-09-01	Demo delivered to ops team	demo	Head of Compliance
+A60066	O5020	2025-08-22	Security questionnaire sent	email	Head of Compliance
+A60067	O5022	2026-02-06	Security questionnaire sent	demo	Head of Compliance
+A60068	O5022	2025-12-09	Demo delivered to ops team	email	Head of Compliance
+A60069	O5022	2025-11-30	Demo delivered to ops team	call	IT Manager
+A60070	O5023	2026-02-03	Demo delivered to ops team	demo	CIO
+A60071	O5023	2026-01-25	Security questionnaire sent	call	Head of Compliance
+A60072	O5024	2025-12-18	Demo delivered to ops team	call	Procurement
+A60073	O5024	2025-11-25	Demo delivered to ops team	meeting	Procurement
+A60074	O5025	2026-02-24	Demo delivered to ops team	call	Procurement
+A60100	O5033	2026-03-06	Proposal shared with legal	meeting	Head of Compliance
+A60101	O5034	2026-01-23	Intro call with bank stakeholders	call	IT Manager
+A60102	O5034	2026-02-09	Demo delivered to ops team	email	IT Manager
+A60103	O5034	2026-01-03	Intro call with bank stakeholders	demo	IT Manager
+A60104	O5034	2026-02-09	Security questionnaire sent	email	Procurement
+A60105	O5035	2025-10-27	Security questionnaire sent	meeting	Procurement
+A60106	O5036	2026-03-08	Demo delivered to ops team	call	Head of Compliance
+A60107	O5036	2026-03-04	Negotiation on pricing	email	CIO
+A60108	O5036	2026-01-18	Negotiation on pricing	call	CIO
+A60109	O5038	2025-09-14	Demo delivered to ops team	email	Head of Compliance
+A60110	O5038	2025-09-17	Security questionnaire sent	demo	Head of Compliance
+A60111	O5038	2025-12-08	Intro call with bank stakeholders	email	Head of Compliance
+A60112	O5039	2025-10-05	Security questionnaire sent	call	CIO
+A60113	O5039	2025-09-21	Security questionnaire sent	email	Procurement
+A60114	O5039	2025-10-24	Proposal shared with legal	demo	Head of Compliance
+A60115	O5039	2025-11-07	Negotiation on pricing	call	Procurement
+A60116	O5041	2026-03-08	Negotiation on pricing	meeting	CIO
+A60117	O5042	2025-09-09	Proposal shared with legal	call	Procurement
+A60118	O5042	2025-08-19	Proposal shared with legal	call	IT Manager
+A60119	O5043	2026-01-26	Demo delivered to ops team	meeting	Head of Compliance
+A60120	O5043	2025-11-30	Management review scheduled	demo	Procurement
+A60121	O5043	2025-11-26	Demo delivered to ops team	demo	Head of Compliance
+A60122	O5043	2026-01-18	Proposal shared with legal	demo	CIO
+A60123	O5043	2025-11-15	Intro call with bank stakeholders	meeting	CIO
+A60124	O5044	2025-11-09	Demo delivered to ops team	demo	CIO
+A60125	O5044	2025-11-26	Negotiation on pricing	meeting	CIO
+A60126	O5045	2026-01-17	Intro call with bank stakeholders	demo	IT Manager
+A60127	O5045	2026-03-08	Intro call with bank stakeholders	email	Procurement
+A60128	O5045	2026-03-08	Proposal shared with legal	demo	Procurement
+A60129	O5045	2026-02-15	Proposal shared with legal	meeting	Procurement
+A60130	O5045	2026-03-03	Demo delivered to ops team	meeting	IT Manager
+A60131	O5046	2025-12-31	Demo delivered to ops team	call	Procurement
+A60132	O5046	2025-11-04	Security questionnaire sent	meeting	IT Manager
+A60133	O5046	2025-10-30	Demo delivered to ops team	demo	IT Manager
+A60134	O5046	2025-10-06	Demo delivered to ops team	meeting	IT Manager
+A60135	O5047	2026-01-14	Management review scheduled	demo	CIO
+A60136	O5047	2026-01-29	Proposal shared with legal	meeting	CIO
+A60137	O5047	2026-02-28	Management review scheduled	email	Procurement
+A60138	O5048	2026-03-08	Security questionnaire sent	demo	Head of Compliance
+A60139	O5048	2026-03-08	Proposal shared with legal	email	IT Manager
+A60140	O5049	2025-12-02	Security questionnaire sent	meeting	CIO
+A60141	O5049	2025-09-23	Demo delivered to ops team	email	Head of Compliance
+A60142	O5049	2025-10-23	Proposal shared with legal	email	Procurement
+A60143	O5050	2026-02-09	Intro call with bank stakeholders	demo	Head of Compliance
+A60144	O5051	2025-07-28	Intro call with bank stakeholders	meeting	CIO
+A60145	O5051	2025-08-04	Proposal shared with legal	demo	CIO
+A60146	O5051	2025-10-13	Negotiation on pricing	email	Head of Compliance
+A60147	O5051	2025-08-22	Management review scheduled	email	IT Manager
+A60148	O5052	2025-08-12	Security questionnaire sent	meeting	Head of Compliance
+A60149	O5052	2025-10-06	Security questionnaire sent	demo	IT Manager
+A60150	O5052	2025-09-27	Management review scheduled	meeting	Procurement
+A60151	O5052	2025-08-22	Negotiation on pricing	demo	CIO
+A60152	O5053	2025-10-12	Negotiation on pricing	call	IT Manager
+A60153	O5053	2025-11-06	Proposal shared with legal	call	IT Manager
+A60154	O5054	2025-08-03	Demo delivered to ops team	meeting	IT Manager
+A60155	O5054	2025-07-31	Proposal shared with legal	call	IT Manager
+A60156	O5054	2025-09-21	Demo delivered to ops team	email	Procurement
+A60157	O5055	2025-08-22	Management review scheduled	meeting	Head of Compliance
+A60158	O5055	2025-08-29	Intro call with bank stakeholders	demo	CIO
+A60159	O5055	2025-09-25	Intro call with bank stakeholders	demo	CIO
+A60160	O5056	2025-12-04	Negotiation on pricing	email	IT Manager
+A60161	O5057	2026-01-29	Security questionnaire sent	meeting	Head of Compliance
+A60162	O5057	2026-02-13	Proposal shared with legal	meeting	CIO
+A60163	O5057	2026-02-04	Management review scheduled	demo	IT Manager
+A60164	O5058	2025-10-09	Management review scheduled	email	Procurement
+A60165	O5058	2025-09-10	Management review scheduled	call	CIO
+A60166	O5058	2025-09-22	Negotiation on pricing	email	Head of Compliance
+A60167	O5059	2026-03-08	Negotiation on pricing	demo	CIO
+A60168	O5059	2026-03-08	Security questionnaire sent	meeting	Head of Compliance
+A60169	O5059	2026-03-08	Intro call with bank stakeholders	demo	Head of Compliance
+A60170	O5059	2026-03-08	Intro call with bank stakeholders	email	CIO
+A60171	O5061	2026-02-09	Security questionnaire sent	meeting	Head of Compliance
+A60172	O5061	2026-03-08	Demo delivered to ops team	email	Procurement
+A60173	O5061	2026-03-03	Proposal shared with legal	demo	CIO
+A60174	O5061	2026-03-08	Demo delivered to ops team	meeting	Procurement
+A60075	O5025	2026-02-28	Security questionnaire sent	demo	Procurement
+A60076	O5025	2026-03-08	Intro call with bank stakeholders	call	CIO
+A60077	O5025	2026-03-08	Management review scheduled	call	IT Manager
+A60078	O5026	2025-12-25	Demo delivered to ops team	meeting	CIO
+A60079	O5026	2026-01-07	Proposal shared with legal	call	Head of Compliance
+A60080	O5026	2026-02-04	Management review scheduled	demo	Head of Compliance
+A60081	O5026	2026-01-14	Demo delivered to ops team	demo	Head of Compliance
+A60082	O5027	2026-01-08	Proposal shared with legal	meeting	IT Manager
+A60083	O5028	2025-11-30	Security questionnaire sent	demo	IT Manager
+A60084	O5028	2025-12-14	Negotiation on pricing	email	CIO
+A60085	O5028	2025-11-27	Proposal shared with legal	meeting	Head of Compliance
+A60086	O5028	2025-11-27	Negotiation on pricing	email	Procurement
+A60087	O5029	2025-08-07	Demo delivered to ops team	demo	Head of Compliance
+A60088	O5029	2025-07-23	Proposal shared with legal	call	Head of Compliance
+A60089	O5029	2025-08-25	Proposal shared with legal	call	IT Manager
+A60090	O5029	2025-09-27	Negotiation on pricing	meeting	Head of Compliance
+A60091	O5029	2025-09-16	Demo delivered to ops team	meeting	CIO
+A60092	O5030	2025-09-26	Security questionnaire sent	call	Procurement
+A60093	O5030	2025-07-22	Demo delivered to ops team	meeting	IT Manager
+A60094	O5030	2025-09-11	Demo delivered to ops team	demo	IT Manager
+A60095	O5031	2025-10-25	Negotiation on pricing	demo	CIO
+A60096	O5032	2026-03-08	Security questionnaire sent	call	CIO
+A60097	O5033	2026-03-08	Proposal shared with legal	call	IT Manager
+A60098	O5033	2026-03-08	Negotiation on pricing	meeting	Procurement
+A60099	O5033	2026-03-08	Management review scheduled	call	IT Manager
+A60025	O5008	2026-01-09	Security questionnaire sent	email	Head of Compliance
+A60026	O5008	2026-01-15	Management review scheduled	meeting	Procurement
+A60027	O5009	2025-11-20	Intro call with bank stakeholders	call	Head of Compliance
+A60028	O5009	2025-09-24	Proposal shared with legal	email	Procurement
+A60029	O5009	2025-12-03	Security questionnaire sent	email	CIO
+A60030	O5009	2025-09-29	Demo delivered to ops team	meeting	Head of Compliance
+A60031	O5009	2025-11-15	Intro call with bank stakeholders	email	Head of Compliance
+A60032	O5011	2026-02-11	Negotiation on pricing	demo	Head of Compliance
+A60033	O5011	2025-12-15	Intro call with bank stakeholders	meeting	Procurement
+A60034	O5011	2026-02-01	Negotiation on pricing	meeting	Head of Compliance
+A60035	O5012	2025-10-15	Management review scheduled	demo	Head of Compliance
+A60036	O5012	2025-09-01	Security questionnaire sent	email	Procurement
+A60037	O5012	2025-10-31	Demo delivered to ops team	demo	Procurement
+A60038	O5012	2025-08-20	Proposal shared with legal	meeting	IT Manager
+A60039	O5012	2025-10-31	Management review scheduled	email	IT Manager
+A60040	O5013	2025-11-08	Demo delivered to ops team	call	Procurement
+A60041	O5013	2025-11-02	Security questionnaire sent	call	Procurement
+A60042	O5013	2025-12-03	Intro call with bank stakeholders	demo	IT Manager
+A60043	O5013	2025-11-06	Security questionnaire sent	email	CIO
+A60044	O5013	2025-11-24	Negotiation on pricing	meeting	Procurement
+A60045	O5014	2025-10-30	Management review scheduled	demo	Head of Compliance
+A60046	O5014	2025-09-28	Negotiation on pricing	demo	CIO
+A60047	O5014	2025-09-14	Demo delivered to ops team	call	IT Manager
+A60048	O5014	2025-08-27	Negotiation on pricing	email	Procurement
+A60049	O5015	2025-11-20	Intro call with bank stakeholders	email	IT Manager
+A60000	O5000	2026-01-26	Management review scheduled	call	CIO
+A60001	O5000	2026-01-26	Management review scheduled	call	IT Manager
+A60002	O5000	2026-03-08	Negotiation on pricing	call	Procurement
+A60003	O5000	2026-03-08	Management review scheduled	demo	Head of Compliance
+A60004	O5001	2025-08-09	Security questionnaire sent	call	Procurement
+A60005	O5001	2025-08-10	Intro call with bank stakeholders	meeting	Head of Compliance
+A60006	O5001	2025-10-12	Demo delivered to ops team	email	Head of Compliance
+A60007	O5002	2025-09-11	Intro call with bank stakeholders	call	CIO
+A60008	O5002	2025-08-26	Security questionnaire sent	meeting	Head of Compliance
+A60009	O5003	2026-01-09	Intro call with bank stakeholders	demo	CIO
+A60010	O5003	2026-02-09	Proposal shared with legal	email	IT Manager
+A60011	O5003	2026-01-17	Intro call with bank stakeholders	call	CIO
+A60012	O5004	2025-11-06	Demo delivered to ops team	call	IT Manager
+A60013	O5004	2025-11-14	Negotiation on pricing	email	IT Manager
+A60014	O5005	2026-03-08	Security questionnaire sent	meeting	Head of Compliance
+A60015	O5005	2026-03-08	Negotiation on pricing	email	CIO
+A60016	O5005	2026-03-08	Management review scheduled	demo	IT Manager
+A60017	O5005	2026-03-08	Intro call with bank stakeholders	meeting	IT Manager
+A60018	O5006	2026-02-26	Management review scheduled	call	IT Manager
+A60019	O5006	2026-03-08	Management review scheduled	demo	IT Manager
+A60020	O5006	2026-02-04	Management review scheduled	meeting	Head of Compliance
+A60021	O5006	2026-03-03	Security questionnaire sent	call	CIO
+A60022	O5007	2026-02-11	Security questionnaire sent	demo	IT Manager
+A60023	O5007	2026-03-08	Demo delivered to ops team	call	IT Manager
+A60024	O5008	2025-10-28	Security questionnaire sent	call	CIO

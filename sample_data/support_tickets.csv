@@ -1,0 +1,221 @@
+ticket_id	customer_id	product_id	status	opened_at	closed_at	severity	priority	channel	title	sla_breach_flag	assigned_group
+T1189	C005	P007	Closed	2026-01-19	2026-02-04	Medium	P3	Portal	Issue on Real-Time Payments	False	AML Specialists
+T1190	C005	P003	Closed	2025-12-02	2025-12-28	Critical	P1	Portal	Issue on Customer 360	False	AML Specialists
+T1191	C005	P006	Open	2025-09-04		Medium	P3	Portal	Issue on Stress Test Pro	False	L2 Support
+T1192	C005	P002	Open	2026-01-21		Low	P4	Email	Issue on Loan Origination	False	L2 Support
+T1193	C005	P002	Closed	2025-09-26	2025-10-09	Low	P4	Portal	Issue on Loan Origination	False	AML Specialists
+T1194	C005	P006	Open	2025-11-30		High	P2	Email	Issue on Stress Test Pro	False	AML Specialists
+T1195	C005	P006	Open	2025-08-22		Medium	P3	Phone	Issue on Stress Test Pro	False	AML Specialists
+T1196	C005	P001	Closed	2025-08-22	2025-09-01	Critical	P1	Email	Issue on Account Ledger	False	L1 Support
+T1197	C005	P007	Closed	2025-08-17	2025-08-30	Low	P4	Email	Issue on Real-Time Payments	False	L1 Support
+T1198	C005	P002	Closed	2025-07-22	2025-08-17	Medium	P3	Phone	Issue on Loan Origination	False	L1 Support
+T1199	C005	P008	Open	2025-08-14		Low	P4	Portal	Issue on Treasury Manager	False	L1 Support
+T1200	C005	P004	Closed	2026-01-27	2026-02-23	Medium	P3	Email	Issue on AML Monitor	False	AML Specialists
+T1201	C005	P002	Closed	2025-10-08	2025-10-26	Low	P4	Email	Issue on Loan Origination	False	AML Specialists
+T1202	C005	P006	Closed	2026-02-10	2026-02-23	Medium	P3	Phone	Issue on Stress Test Pro	False	AML Specialists
+T1203	C005	P008	Closed	2026-02-21	2026-03-05	Low	P4	Email	Issue on Treasury Manager	False	L2 Support
+T1204	C005	P007	Closed	2025-12-02	2025-12-09	Medium	P3	Email	Issue on Real-Time Payments	False	AML Specialists
+T1205	C005	P001	Closed	2025-08-14	2025-09-10	Low	P4	Portal	Issue on Account Ledger	False	L1 Support
+T1206	C005	P008	Open	2025-07-13		Medium	P3	Email	Issue on Treasury Manager	False	L2 Support
+T1207	C005	P005	Open	2026-01-08		Low	P4	Portal	Issue on KYC Orchestrator	False	L2 Support
+T1208	C005	P003	Closed	2026-02-04	2026-02-11	High	P2	Phone	Issue on Customer 360	False	L1 Support
+T1209	C005	P008	Closed	2025-09-16	2025-10-13	Medium	P3	Phone	Issue on Treasury Manager	False	L1 Support
+T1210	C005	P006	Closed	2025-11-21	2025-12-11	Low	P4	Phone	Issue on Stress Test Pro	False	L1 Support
+T1211	C005	P004	Closed	2026-02-16	2026-03-08	High	P2	Phone	Issue on AML Monitor	False	L2 Support
+T1212	C005	P005	Closed	2026-02-02	2026-02-24	High	P2	Portal	Issue on KYC Orchestrator	False	L2 Support
+T1213	C005	P008	Closed	2025-08-02	2025-08-26	High	P2	Portal	Issue on Treasury Manager	False	AML Specialists
+T1214	C005	P005	Closed	2025-11-27	2025-12-25	Low	P4	Portal	Issue on KYC Orchestrator	False	AML Specialists
+T1215	C005	P007	Open	2025-11-23		Critical	P1	Phone	Issue on Real-Time Payments	True	L1 Support
+T1216	C005	P008	Closed	2025-09-24	2025-09-30	Low	P4	Portal	Issue on Treasury Manager	False	L1 Support
+T1217	C005	P008	Closed	2025-10-07	2025-10-25	Low	P4	Email	Issue on Treasury Manager	False	L1 Support
+T1218	C005	P006	Closed	2025-09-18	2025-10-01	Medium	P3	Email	Issue on Stress Test Pro	False	L1 Support
+T1219	C005	P001	Open	2025-09-15		Medium	P3	Phone	Issue on Account Ledger	False	AML Specialists
+T1054	C001	P001	Closed	2025-09-14	2025-09-28	Low	P4	Phone	Issue on Account Ledger	False	L2 Support
+T1055	C001	P005	Closed	2025-12-21	2025-12-24	Medium	P3	Email	Issue on KYC Orchestrator	False	AML Specialists
+T1056	C001	P004	Closed	2025-10-06	2025-10-25	Low	P4	Phone	Issue on AML Monitor	False	L2 Support
+T1057	C001	P007	Closed	2025-09-09	2025-10-07	Medium	P3	Phone	Issue on Real-Time Payments	False	L1 Support
+T1058	C001	P008	Closed	2025-07-09	2025-08-02	Low	P4	Email	Issue on Treasury Manager	False	L2 Support
+T1059	C002	P007	Closed	2025-07-04	2025-07-08	Medium	P3	Phone	Issue on Real-Time Payments	False	AML Specialists
+T1060	C002	P001	Open	2025-09-16		Low	P4	Portal	Issue on Account Ledger	False	AML Specialists
+T1061	C002	P007	Closed	2025-11-28	2025-12-03	High	P2	Phone	Issue on Real-Time Payments	False	L1 Support
+T1062	C002	P006	Closed	2025-07-16	2025-07-23	Critical	P1	Email	Issue on Stress Test Pro	False	L1 Support
+T1063	C002	P003	Closed	2025-08-03	2025-08-29	Low	P4	Phone	Issue on Customer 360	False	L1 Support
+T1064	C002	P001	Closed	2025-08-14	2025-08-19	Medium	P3	Phone	Issue on Account Ledger	False	L1 Support
+T1065	C002	P007	Closed	2025-10-18	2025-11-03	Medium	P3	Email	Issue on Real-Time Payments	False	L1 Support
+T1066	C002	P006	Closed	2025-12-03	2025-12-08	Low	P4	Phone	Issue on Stress Test Pro	False	AML Specialists
+T1067	C002	P008	Closed	2025-10-11	2025-10-15	Low	P4	Email	Issue on Treasury Manager	False	AML Specialists
+T1068	C002	P006	Closed	2026-01-24	2026-01-26	Medium	P3	Phone	Issue on Stress Test Pro	False	AML Specialists
+T1069	C002	P005	Closed	2025-09-29	2025-10-16	Low	P4	Phone	Issue on KYC Orchestrator	False	L2 Support
+T1070	C002	P002	Closed	2026-01-12	2026-01-20	High	P2	Phone	Issue on Loan Origination	False	AML Specialists
+T1071	C002	P007	Closed	2025-07-18	2025-08-08	Critical	P1	Portal	Issue on Real-Time Payments	False	AML Specialists
+T1072	C002	P005	Closed	2025-10-22	2025-11-07	Medium	P3	Email	Issue on KYC Orchestrator	False	L2 Support
+T1073	C002	P002	Closed	2025-09-11	2025-09-30	Medium	P3	Phone	Issue on Loan Origination	False	L2 Support
+T1074	C002	P004	Open	2025-10-10		Low	P4	Portal	Issue on AML Monitor	False	L2 Support
+T1075	C002	P002	Closed	2025-07-02	2025-07-16	Low	P4	Email	Issue on Loan Origination	False	AML Specialists
+T1076	C002	P008	Closed	2026-01-29	2026-02-10	Low	P4	Portal	Issue on Treasury Manager	False	L1 Support
+T1077	C002	P002	Closed	2025-11-13	2025-12-12	High	P2	Email	Issue on Loan Origination	False	AML Specialists
+T1078	C002	P003	Closed	2025-10-21	2025-11-05	Medium	P3	Email	Issue on Customer 360	False	AML Specialists
+T1079	C002	P006	Closed	2025-11-07	2025-11-22	Medium	P3	Portal	Issue on Stress Test Pro	False	L2 Support
+T1080	C002	P001	Open	2025-10-24		Medium	P3	Portal	Issue on Account Ledger	False	L2 Support
+T1000	C001	P005	Closed	2026-01-13	2026-01-17	Low	P4	Portal	Issue on KYC Orchestrator	False	L2 Support
+T1001	C001	P005	Closed	2026-03-06	2026-03-08	Medium	P3	Portal	Issue on KYC Orchestrator	False	AML Specialists
+T1002	C001	P008	Closed	2025-07-05	2025-07-17	High	P2	Email	Issue on Treasury Manager	False	L1 Support
+T1003	C001	P004	Closed	2026-02-10	2026-02-13	Low	P4	Email	Issue on AML Monitor	False	L1 Support
+T1004	C001	P007	Closed	2025-12-19	2026-01-03	High	P2	Email	Issue on Real-Time Payments	False	L1 Support
+T1005	C001	P004	Closed	2025-11-28	2025-12-01	Medium	P3	Portal	Issue on AML Monitor	False	L1 Support
+T1006	C001	P001	Closed	2026-02-06	2026-02-23	Low	P4	Phone	Issue on Account Ledger	False	L2 Support
+T1007	C001	P008	Closed	2026-01-23	2026-01-27	Low	P4	Email	Issue on Treasury Manager	False	L2 Support
+T1008	C001	P008	Closed	2025-08-05	2025-08-14	Medium	P3	Portal	Issue on Treasury Manager	False	L2 Support
+T1009	C001	P008	Closed	2025-09-12	2025-10-06	Critical	P1	Phone	Issue on Treasury Manager	False	AML Specialists
+T1010	C001	P004	Closed	2025-10-12	2025-11-10	Medium	P3	Phone	Issue on AML Monitor	False	AML Specialists
+T1011	C001	P002	Closed	2025-10-16	2025-11-04	Medium	P3	Email	Issue on Loan Origination	False	L1 Support
+T1012	C001	P002	Closed	2026-02-11	2026-02-21	Low	P4	Phone	Issue on Loan Origination	False	AML Specialists
+T1013	C001	P002	Closed	2026-02-13	2026-03-03	Low	P4	Email	Issue on Loan Origination	False	AML Specialists
+T1014	C001	P005	Closed	2025-11-07	2025-12-06	High	P2	Portal	Issue on KYC Orchestrator	False	L1 Support
+T1015	C001	P001	Closed	2025-09-17	2025-10-17	High	P2	Portal	Issue on Account Ledger	False	L2 Support
+T1016	C001	P007	Closed	2026-03-07	2026-03-08	High	P2	Portal	Issue on Real-Time Payments	False	L1 Support
+T1017	C001	P006	Open	2026-01-17		High	P2	Portal	Issue on Stress Test Pro	False	L2 Support
+T1018	C001	P001	Closed	2026-02-05	2026-02-12	High	P2	Email	Issue on Account Ledger	False	L2 Support
+T1019	C001	P002	Open	2026-03-05		Low	P4	Phone	Issue on Loan Origination	False	L2 Support
+T1020	C001	P007	Closed	2025-07-01	2025-07-27	Medium	P3	Phone	Issue on Real-Time Payments	False	AML Specialists
+T1021	C001	P007	Closed	2025-12-21	2025-12-27	Medium	P3	Email	Issue on Real-Time Payments	False	L2 Support
+T1022	C001	P005	Closed	2025-11-09	2025-11-29	Low	P4	Portal	Issue on KYC Orchestrator	False	AML Specialists
+T1023	C001	P004	Closed	2025-12-31	2026-01-16	Low	P4	Portal	Issue on AML Monitor	False	AML Specialists
+T1024	C001	P003	Open	2026-01-07		Medium	P3	Portal	Issue on Customer 360	False	AML Specialists
+T1025	C001	P004	Closed	2025-09-08	2025-10-07	Medium	P3	Portal	Issue on AML Monitor	False	L1 Support
+T1026	C001	P002	Closed	2025-10-15	2025-11-02	Medium	P3	Portal	Issue on Loan Origination	False	L1 Support
+T1081	C002	P005	Closed	2025-10-08	2025-10-19	Medium	P3	Portal	Issue on KYC Orchestrator	False	AML Specialists
+T1082	C002	P002	Closed	2025-09-18	2025-10-09	High	P2	Portal	Issue on Loan Origination	False	AML Specialists
+T1083	C002	P001	Closed	2025-12-17	2026-01-11	Medium	P3	Phone	Issue on Account Ledger	False	L2 Support
+T1084	C002	P001	Closed	2025-10-14	2025-11-07	Low	P4	Email	Issue on Account Ledger	False	AML Specialists
+T1085	C002	P008	Open	2025-10-27		High	P2	Email	Issue on Treasury Manager	False	L1 Support
+T1086	C002	P008	Closed	2026-02-09	2026-03-08	Low	P4	Phone	Issue on Treasury Manager	False	L1 Support
+T1087	C002	P008	Closed	2026-02-12	2026-02-13	Medium	P3	Email	Issue on Treasury Manager	False	AML Specialists
+T1088	C002	P006	Closed	2026-01-19	2026-01-21	Low	P4	Email	Issue on Stress Test Pro	False	AML Specialists
+T1089	C002	P001	Closed	2026-02-17	2026-02-26	Low	P4	Portal	Issue on Account Ledger	False	AML Specialists
+T1090	C002	P001	Closed	2025-12-05	2025-12-24	Medium	P3	Phone	Issue on Account Ledger	False	AML Specialists
+T1091	C002	P006	Open	2025-07-18		Medium	P3	Phone	Issue on Stress Test Pro	False	AML Specialists
+T1092	C002	P007	Closed	2026-02-09	2026-03-02	Low	P4	Email	Issue on Real-Time Payments	False	L2 Support
+T1093	C002	P008	Closed	2025-07-10	2025-07-12	High	P2	Portal	Issue on Treasury Manager	False	L2 Support
+T1094	C002	P001	Closed	2026-02-07	2026-02-16	Low	P4	Email	Issue on Account Ledger	False	L2 Support
+T1095	C002	P002	Closed	2025-10-19	2025-11-15	Low	P4	Email	Issue on Loan Origination	False	L2 Support
+T1096	C003	P006	Closed	2025-12-17	2026-01-09	Medium	P3	Phone	Issue on Stress Test Pro	False	L2 Support
+T1097	C003	P007	Closed	2026-02-18	2026-02-24	Critical	P1	Portal	Issue on Real-Time Payments	False	AML Specialists
+T1098	C003	P007	Closed	2025-12-13	2025-12-17	Low	P4	Portal	Issue on Real-Time Payments	False	L2 Support
+T1099	C003	P008	Closed	2026-01-24	2026-02-21	Critical	P1	Phone	Issue on Treasury Manager	False	L2 Support
+T1100	C003	P002	Open	2025-12-28		Medium	P3	Phone	Issue on Loan Origination	False	L2 Support
+T1101	C003	P003	Closed	2025-08-03	2025-09-02	High	P2	Portal	Issue on Customer 360	False	AML Specialists
+T1102	C003	P004	Closed	2026-03-08	2026-03-08	High	P2	Email	Issue on AML Monitor	False	L1 Support
+T1103	C003	P005	Closed	2026-02-14	2026-03-06	Medium	P3	Email	Issue on KYC Orchestrator	False	AML Specialists
+T1104	C003	P003	Closed	2026-02-07	2026-03-07	Low	P4	Email	Issue on Customer 360	False	L1 Support
+T1105	C003	P003	Open	2025-12-15		High	P2	Portal	Issue on Customer 360	False	L2 Support
+T1106	C003	P001	Closed	2026-01-10	2026-02-06	Medium	P3	Email	Issue on Account Ledger	False	L2 Support
+T1107	C003	P008	Open	2025-09-10		Medium	P3	Phone	Issue on Treasury Manager	False	L1 Support
+T1162	C004	P004	Closed	2025-11-04	2025-12-01	Low	P4	Phone	Issue on AML Monitor	False	AML Specialists
+T1163	C004	P001	Closed	2025-07-12	2025-08-07	High	P2	Portal	Issue on Account Ledger	False	L1 Support
+T1164	C004	P003	Closed	2026-02-11	2026-02-17	High	P2	Email	Issue on Customer 360	False	L1 Support
+T1165	C004	P008	Closed	2025-07-03	2025-07-14	High	P2	Email	Issue on Treasury Manager	False	AML Specialists
+T1166	C004	P002	Closed	2025-07-27	2025-08-25	Low	P4	Email	Issue on Loan Origination	False	L1 Support
+T1167	C004	P007	Open	2025-09-28		Low	P4	Portal	Issue on Real-Time Payments	False	L1 Support
+T1168	C004	P005	Closed	2025-08-22	2025-09-08	Low	P4	Email	Issue on KYC Orchestrator	False	L2 Support
+T1169	C004	P002	Closed	2025-07-04	2025-07-06	High	P2	Email	Issue on Loan Origination	False	AML Specialists
+T1170	C004	P005	Closed	2025-07-21	2025-07-28	Critical	P1	Portal	Issue on KYC Orchestrator	False	AML Specialists
+T1171	C004	P002	Closed	2026-02-22	2026-03-08	Medium	P3	Portal	Issue on Loan Origination	False	L2 Support
+T1172	C004	P002	Closed	2025-09-06	2025-09-25	Medium	P3	Email	Issue on Loan Origination	False	L2 Support
+T1173	C004	P001	Closed	2025-10-29	2025-11-28	Low	P4	Portal	Issue on Account Ledger	False	AML Specialists
+T1174	C004	P008	Closed	2026-02-07	2026-03-07	Low	P4	Portal	Issue on Treasury Manager	False	AML Specialists
+T1175	C004	P004	Closed	2025-08-08	2025-08-22	Low	P4	Phone	Issue on AML Monitor	False	L2 Support
+T1176	C004	P007	Open	2025-12-27		Medium	P3	Phone	Issue on Real-Time Payments	False	L1 Support
+T1177	C004	P006	Closed	2025-09-20	2025-09-28	Low	P4	Portal	Issue on Stress Test Pro	False	L1 Support
+T1178	C004	P005	Closed	2026-01-28	2026-02-17	Low	P4	Email	Issue on KYC Orchestrator	False	L1 Support
+T1179	C004	P004	Closed	2026-03-05	2026-03-08	Low	P4	Email	Issue on AML Monitor	False	L2 Support
+T1180	C004	P004	Closed	2025-07-25	2025-08-20	High	P2	Portal	Issue on AML Monitor	False	L1 Support
+T1181	C004	P004	Closed	2025-08-03	2025-08-16	Low	P4	Phone	Issue on AML Monitor	False	AML Specialists
+T1182	C004	P005	Open	2026-02-20		Low	P4	Portal	Issue on KYC Orchestrator	False	L1 Support
+T1183	C004	P003	Closed	2025-07-09	2025-07-29	Low	P4	Email	Issue on Customer 360	False	L2 Support
+T1184	C004	P001	Open	2025-10-06		Low	P4	Phone	Issue on Account Ledger	False	L2 Support
+T1185	C005	P005	Open	2025-07-15		Medium	P3	Email	Issue on KYC Orchestrator	False	AML Specialists
+T1186	C005	P005	Open	2025-11-14		High	P2	Portal	Issue on KYC Orchestrator	True	AML Specialists
+T1187	C005	P003	Open	2025-11-22		High	P2	Email	Issue on Customer 360	False	AML Specialists
+T1188	C005	P008	Closed	2025-07-01	2025-07-21	Low	P4	Portal	Issue on Treasury Manager	False	L2 Support
+T1108	C003	P006	Closed	2025-08-20	2025-09-02	Medium	P3	Portal	Issue on Stress Test Pro	False	L1 Support
+T1109	C003	P003	Closed	2026-01-12	2026-02-11	Medium	P3	Portal	Issue on Customer 360	False	L2 Support
+T1110	C003	P001	Open	2025-12-11		High	P2	Phone	Issue on Account Ledger	False	L1 Support
+T1111	C003	P007	Open	2026-01-25		High	P2	Portal	Issue on Real-Time Payments	False	AML Specialists
+T1112	C003	P007	Closed	2025-11-30	2025-12-18	Low	P4	Email	Issue on Real-Time Payments	False	AML Specialists
+T1113	C003	P007	Open	2025-10-10		Critical	P1	Email	Issue on Real-Time Payments	False	L1 Support
+T1114	C003	P005	Closed	2025-12-26	2025-12-30	Medium	P3	Phone	Issue on KYC Orchestrator	False	L1 Support
+T1115	C003	P001	Closed	2025-12-20	2025-12-24	Medium	P3	Portal	Issue on Account Ledger	False	L1 Support
+T1116	C003	P001	Closed	2025-08-14	2025-09-10	Low	P4	Portal	Issue on Account Ledger	False	L2 Support
+T1117	C003	P008	Closed	2026-02-19	2026-02-25	Medium	P3	Phone	Issue on Treasury Manager	False	L2 Support
+T1118	C003	P007	Closed	2026-02-12	2026-02-23	Low	P4	Phone	Issue on Real-Time Payments	False	AML Specialists
+T1119	C003	P005	Closed	2026-02-04	2026-02-26	Low	P4	Email	Issue on KYC Orchestrator	False	L1 Support
+T1120	C003	P006	Open	2026-01-17		High	P2	Portal	Issue on Stress Test Pro	False	L1 Support
+T1121	C003	P008	Closed	2026-01-12	2026-01-14	Medium	P3	Phone	Issue on Treasury Manager	False	L2 Support
+T1122	C003	P001	Closed	2026-02-05	2026-02-07	High	P2	Portal	Issue on Account Ledger	False	L2 Support
+T1123	C003	P005	Closed	2026-02-14	2026-03-07	Critical	P1	Phone	Issue on KYC Orchestrator	False	L2 Support
+T1124	C003	P006	Closed	2026-01-15	2026-01-20	Medium	P3	Portal	Issue on Stress Test Pro	False	L1 Support
+T1125	C003	P005	Closed	2026-02-08	2026-02-26	Low	P4	Portal	Issue on KYC Orchestrator	False	L1 Support
+T1126	C003	P002	Closed	2026-01-04	2026-01-27	High	P2	Portal	Issue on Loan Origination	False	AML Specialists
+T1127	C003	P007	Closed	2026-01-16	2026-02-13	High	P2	Portal	Issue on Real-Time Payments	False	AML Specialists
+T1128	C003	P003	Closed	2025-11-11	2025-11-21	Low	P4	Phone	Issue on Customer 360	False	AML Specialists
+T1129	C003	P007	Closed	2025-11-20	2025-12-03	Low	P4	Portal	Issue on Real-Time Payments	False	L2 Support
+T1130	C003	P004	Closed	2025-07-31	2025-08-25	Medium	P3	Portal	Issue on AML Monitor	False	AML Specialists
+T1131	C003	P008	Open	2025-09-20		Low	P4	Email	Issue on Treasury Manager	False	L1 Support
+T1132	C003	P006	Closed	2026-02-21	2026-03-08	Medium	P3	Email	Issue on Stress Test Pro	False	L2 Support
+T1133	C004	P008	Open	2025-08-17		Medium	P3	Phone	Issue on Treasury Manager	False	L1 Support
+T1134	C004	P001	Closed	2025-07-02	2025-07-16	Low	P4	Phone	Issue on Account Ledger	False	AML Specialists
+T1135	C004	P002	Closed	2025-11-12	2025-11-19	Medium	P3	Email	Issue on Loan Origination	False	L2 Support
+T1136	C004	P005	Open	2025-12-23		Low	P4	Phone	Issue on KYC Orchestrator	False	L1 Support
+T1137	C004	P007	Closed	2025-10-06	2025-10-22	Low	P4	Portal	Issue on Real-Time Payments	False	AML Specialists
+T1138	C004	P006	Open	2025-11-22		Critical	P1	Portal	Issue on Stress Test Pro	False	L1 Support
+T1139	C004	P002	Open	2025-12-23		High	P2	Portal	Issue on Loan Origination	False	L1 Support
+T1140	C004	P004	Open	2025-11-23		Low	P4	Phone	Issue on AML Monitor	False	L2 Support
+T1141	C004	P007	Open	2026-03-06		Low	P4	Email	Issue on Real-Time Payments	False	L2 Support
+T1142	C004	P002	Closed	2025-09-07	2025-09-30	High	P2	Portal	Issue on Loan Origination	False	AML Specialists
+T1143	C004	P007	Closed	2025-10-23	2025-11-09	Medium	P3	Portal	Issue on Real-Time Payments	False	L1 Support
+T1144	C004	P004	Closed	2025-11-24	2025-12-16	Low	P4	Portal	Issue on AML Monitor	False	L2 Support
+T1145	C004	P002	Closed	2025-10-01	2025-10-09	Medium	P3	Email	Issue on Loan Origination	False	AML Specialists
+T1146	C004	P004	Closed	2025-10-31	2025-11-13	Critical	P1	Email	Issue on AML Monitor	False	AML Specialists
+T1147	C004	P008	Closed	2025-08-05	2025-08-13	Low	P4	Portal	Issue on Treasury Manager	False	AML Specialists
+T1148	C004	P006	Open	2025-12-27		Medium	P3	Phone	Issue on Stress Test Pro	False	L1 Support
+T1149	C004	P004	Closed	2025-12-16	2025-12-22	Medium	P3	Portal	Issue on AML Monitor	False	AML Specialists
+T1150	C004	P002	Open	2026-01-29		Low	P4	Email	Issue on Loan Origination	False	L2 Support
+T1151	C004	P006	Closed	2025-12-13	2026-01-08	Low	P4	Phone	Issue on Stress Test Pro	False	L1 Support
+T1152	C004	P007	Closed	2025-10-08	2025-10-15	Low	P4	Phone	Issue on Real-Time Payments	False	L1 Support
+T1153	C004	P008	Closed	2025-12-06	2025-12-28	Medium	P3	Email	Issue on Treasury Manager	False	AML Specialists
+T1154	C004	P008	Closed	2025-12-10	2026-01-09	Medium	P3	Portal	Issue on Treasury Manager	False	AML Specialists
+T1155	C004	P008	Closed	2025-12-06	2025-12-18	Critical	P1	Email	Issue on Treasury Manager	False	L1 Support
+T1156	C004	P008	Closed	2025-10-15	2025-10-30	Medium	P3	Portal	Issue on Treasury Manager	False	AML Specialists
+T1157	C004	P004	Closed	2025-09-13	2025-09-21	Medium	P3	Portal	Issue on AML Monitor	False	L2 Support
+T1158	C004	P001	Closed	2025-10-24	2025-11-21	High	P2	Email	Issue on Account Ledger	False	L1 Support
+T1159	C004	P007	Closed	2025-08-12	2025-09-07	Low	P4	Portal	Issue on Real-Time Payments	False	L1 Support
+T1160	C004	P003	Open	2025-12-27		Low	P4	Phone	Issue on Customer 360	False	L2 Support
+T1161	C004	P005	Closed	2025-12-08	2025-12-23	Low	P4	Portal	Issue on KYC Orchestrator	False	L2 Support
+T1027	C001	P005	Closed	2025-10-20	2025-11-02	Low	P4	Phone	Issue on KYC Orchestrator	False	L2 Support
+T1028	C001	P007	Open	2025-09-03		Medium	P3	Phone	Issue on Real-Time Payments	False	AML Specialists
+T1029	C001	P006	Closed	2025-08-27	2025-09-21	Critical	P1	Portal	Issue on Stress Test Pro	False	L1 Support
+T1030	C001	P008	Closed	2025-12-19	2025-12-26	Medium	P3	Email	Issue on Treasury Manager	False	L2 Support
+T1031	C001	P002	Closed	2025-11-26	2025-12-06	Medium	P3	Email	Issue on Loan Origination	False	L2 Support
+T1032	C001	P008	Closed	2025-12-29	2026-01-04	Medium	P3	Phone	Issue on Treasury Manager	False	L2 Support
+T1033	C001	P008	Closed	2026-02-03	2026-02-19	Low	P4	Email	Issue on Treasury Manager	False	L2 Support
+T1034	C001	P007	Closed	2025-11-03	2025-11-11	Medium	P3	Phone	Issue on Real-Time Payments	False	AML Specialists
+T1035	C001	P006	Open	2025-10-17		Medium	P3	Email	Issue on Stress Test Pro	False	AML Specialists
+T1036	C001	P008	Closed	2025-09-09	2025-10-04	Medium	P3	Email	Issue on Treasury Manager	False	L1 Support
+T1037	C001	P001	Closed	2025-12-29	2026-01-07	Low	P4	Portal	Issue on Account Ledger	False	AML Specialists
+T1038	C001	P008	Closed	2025-09-26	2025-09-28	Low	P4	Email	Issue on Treasury Manager	False	L1 Support
+T1039	C001	P007	Closed	2025-11-03	2025-11-24	Medium	P3	Portal	Issue on Real-Time Payments	False	L1 Support
+T1040	C001	P002	Open	2026-02-28		Medium	P3	Email	Issue on Loan Origination	False	AML Specialists
+T1041	C001	P003	Closed	2025-08-31	2025-09-03	Low	P4	Email	Issue on Customer 360	False	L2 Support
+T1042	C001	P003	Closed	2025-07-19	2025-08-14	Low	P4	Phone	Issue on Customer 360	False	AML Specialists
+T1043	C001	P008	Closed	2025-10-21	2025-10-23	High	P2	Phone	Issue on Treasury Manager	False	L2 Support
+T1044	C001	P007	Open	2025-12-10		Critical	P1	Email	Issue on Real-Time Payments	False	L2 Support
+T1045	C001	P001	Closed	2025-10-25	2025-11-03	Low	P4	Email	Issue on Account Ledger	False	AML Specialists
+T1046	C001	P008	Closed	2025-10-14	2025-10-31	Low	P4	Email	Issue on Treasury Manager	False	AML Specialists
+T1047	C001	P005	Closed	2025-11-19	2025-12-03	Low	P4	Portal	Issue on KYC Orchestrator	False	L2 Support
+T1048	C001	P003	Open	2025-11-05		Low	P4	Phone	Issue on Customer 360	False	L2 Support
+T1049	C001	P007	Open	2025-09-26		Medium	P3	Portal	Issue on Real-Time Payments	False	L2 Support
+T1050	C001	P008	Open	2025-12-28		Low	P4	Phone	Issue on Treasury Manager	False	AML Specialists
+T1051	C001	P006	Closed	2026-02-08	2026-03-08	Medium	P3	Phone	Issue on Stress Test Pro	False	L2 Support
+T1052	C001	P003	Open	2025-10-13		Critical	P1	Email	Issue on Customer 360	True	L2 Support
+T1053	C001	P002	Open	2025-10-20		High	P2	Portal	Issue on Loan Origination	False	L2 Support

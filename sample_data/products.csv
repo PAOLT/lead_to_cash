@@ -1,0 +1,9 @@
+product_id	product_name	product_line
+P007	Real-Time Payments	Payments & Treasury
+P008	Treasury Manager	Payments & Treasury
+P002	Loan Origination	Core Banking Suite
+P005	KYC Orchestrator	Risk & Compliance
+P006	Stress Test Pro	Risk & Compliance
+P001	Account Ledger	Core Banking Suite
+P003	Customer 360	Core Banking Suite
+P004	AML Monitor	Risk & Compliance

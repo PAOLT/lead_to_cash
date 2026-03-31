@@ -1,0 +1,559 @@
+activity_id	ticket_id	activity_at	description	author	activity_type	minutes_spent
+SA20483	T1187	2025-11-27	Patch applied	agent.john	comment	12
+SA20484	T1187	2025-11-29	Escalated to L2	agent.ana	comment	72
+SA20485	T1188	2025-07-06	Provided workaround	agent.john	comment	23
+SA20486	T1188	2025-07-19	Awaiting customer response	agent.ana	comment	113
+SA20487	T1188	2025-07-17	Provided workaround	agent.john	worknote	95
+SA20488	T1188	2025-07-31	Awaiting customer response	agent.luca	escalation	17
+SA20489	T1188	2025-07-11	Provided workaround	agent.samir	comment	25
+SA20490	T1189	2026-02-10	Escalated to L2	agent.samir	comment	90
+SA20491	T1189	2026-02-06	Requested logs	agent.luca	worknote	98
+SA20492	T1189	2026-02-10	Provided workaround	agent.ana	comment	98
+SA20493	T1189	2026-01-19	Awaiting customer response	agent.luca	escalation	9
+SA20494	T1190	2025-12-05	Patch applied	agent.ana	worknote	100
+SA20495	T1190	2025-12-04	Requested logs	agent.samir	worknote	26
+SA20496	T1190	2025-12-22	Acknowledged issue	agent.samir	worknote	6
+SA20497	T1190	2025-12-10	Requested logs	agent.ana	escalation	13
+SA20498	T1191	2025-09-27	Patch applied	agent.ana	worknote	68
+SA20499	T1191	2025-10-02	Patch applied	agent.samir	escalation	53
+SA20500	T1191	2025-09-07	Patch applied	agent.ana	comment	62
+SA20501	T1194	2025-12-19	Patch applied	agent.ana	comment	17
+SA20502	T1195	2025-09-08	Provided workaround	agent.samir	worknote	35
+SA20503	T1195	2025-08-25	Acknowledged issue	agent.luca	escalation	75
+SA20504	T1195	2025-09-17	Patch applied	agent.ana	comment	51
+SA20505	T1195	2025-08-22	Patch applied	agent.john	worknote	110
+SA20506	T1195	2025-09-12	Awaiting customer response	agent.luca	comment	17
+SA20507	T1196	2025-09-16	Patch applied	agent.luca	worknote	119
+SA20508	T1196	2025-09-12	Provided workaround	agent.john	escalation	74
+SA20509	T1197	2025-08-31	Patch applied	agent.samir	comment	112
+SA20510	T1197	2025-08-25	Escalated to L2	agent.john	comment	101
+SA20511	T1198	2025-07-23	Patch applied	agent.luca	escalation	92
+SA20512	T1198	2025-08-18	Patch applied	agent.ana	worknote	43
+SA20513	T1198	2025-07-24	Patch applied	agent.john	escalation	78
+SA20514	T1198	2025-08-19	Escalated to L2	agent.ana	comment	101
+SA20515	T1199	2025-08-15	Patch applied	agent.john	escalation	60
+SA20516	T1201	2025-11-06	Acknowledged issue	agent.luca	comment	58
+SA20517	T1201	2025-10-12	Requested logs	agent.john	comment	77
+SA20518	T1201	2025-11-01	Acknowledged issue	agent.samir	escalation	117
+SA20519	T1202	2026-02-11	Requested logs	agent.samir	worknote	23
+SA20520	T1202	2026-03-01	Escalated to L2	agent.luca	comment	55
+SA20521	T1202	2026-03-08	Provided workaround	agent.ana	comment	100
+SA20522	T1203	2026-03-08	Patch applied	agent.john	comment	22
+SA20523	T1203	2026-03-02	Awaiting customer response	agent.luca	worknote	39
+SA20524	T1204	2025-12-26	Escalated to L2	agent.samir	comment	70
+SA20525	T1204	2025-12-27	Requested logs	agent.john	worknote	95
+SA20526	T1204	2025-12-18	Patch applied	agent.ana	escalation	117
+SA20527	T1206	2025-07-29	Patch applied	agent.john	escalation	8
+SA20528	T1206	2025-07-20	Provided workaround	agent.luca	escalation	62
+SA20529	T1206	2025-07-18	Patch applied	agent.samir	worknote	25
+SA20530	T1208	2026-02-10	Provided workaround	agent.luca	escalation	7
+SA20531	T1208	2026-03-03	Awaiting customer response	agent.john	worknote	21
+SA20532	T1208	2026-02-24	Requested logs	agent.john	comment	37
+SA20533	T1208	2026-02-23	Provided workaround	agent.samir	worknote	119
+SA20534	T1208	2026-02-16	Provided workaround	agent.luca	worknote	32
+SA20535	T1210	2025-11-23	Provided workaround	agent.samir	escalation	46
+SA20536	T1210	2025-12-18	Provided workaround	agent.samir	escalation	96
+SA20537	T1210	2025-12-21	Awaiting customer response	agent.samir	comment	24
+SA20538	T1211	2026-02-26	Awaiting customer response	agent.ana	escalation	8
+SA20539	T1211	2026-03-08	Patch applied	agent.samir	worknote	58
+SA20540	T1211	2026-02-28	Patch applied	agent.john	escalation	95
+SA20541	T1211	2026-03-06	Requested logs	agent.samir	escalation	96
+SA20542	T1211	2026-02-23	Awaiting customer response	agent.luca	escalation	50
+SA20543	T1213	2025-08-22	Acknowledged issue	agent.ana	worknote	33
+SA20544	T1213	2025-08-25	Provided workaround	agent.luca	worknote	52
+SA20545	T1214	2025-12-15	Escalated to L2	agent.john	worknote	118
+SA20546	T1214	2025-12-03	Escalated to L2	agent.john	escalation	53
+SA20547	T1214	2025-12-13	Provided workaround	agent.luca	comment	116
+SA20548	T1214	2025-12-24	Requested logs	agent.ana	comment	48
+SA20549	T1216	2025-10-02	Requested logs	agent.ana	escalation	102
+SA20550	T1216	2025-09-29	Patch applied	agent.john	comment	83
+SA20551	T1216	2025-10-07	Awaiting customer response	agent.luca	worknote	59
+SA20552	T1217	2025-10-31	Escalated to L2	agent.ana	comment	91
+SA20553	T1217	2025-10-07	Awaiting customer response	agent.ana	comment	93
+SA20554	T1219	2025-09-25	Patch applied	agent.ana	worknote	120
+SA20555	T1219	2025-09-30	Provided workaround	agent.ana	comment	108
+SA20556	T1219	2025-09-27	Acknowledged issue	agent.ana	comment	98
+SA20557	T1219	2025-09-19	Requested logs	agent.john	escalation	69
+SA20069	T1027	2025-10-30	Provided workaround	agent.luca	worknote	101
+SA20070	T1029	2025-09-02	Acknowledged issue	agent.ana	comment	21
+SA20071	T1030	2026-01-07	Escalated to L2	agent.john	comment	44
+SA20072	T1031	2025-12-02	Acknowledged issue	agent.ana	comment	94
+SA20073	T1031	2025-12-20	Provided workaround	agent.john	escalation	105
+SA20074	T1031	2025-11-27	Provided workaround	agent.luca	escalation	52
+SA20075	T1031	2025-11-28	Escalated to L2	agent.samir	comment	113
+SA20076	T1031	2025-12-09	Patch applied	agent.john	worknote	51
+SA20077	T1032	2026-01-23	Escalated to L2	agent.luca	worknote	60
+SA20078	T1032	2026-01-24	Awaiting customer response	agent.samir	worknote	114
+SA20079	T1032	2026-01-05	Acknowledged issue	agent.samir	worknote	36
+SA20080	T1032	2026-01-22	Patch applied	agent.luca	worknote	8
+SA20081	T1033	2026-03-03	Escalated to L2	agent.samir	escalation	6
+SA20082	T1033	2026-02-19	Requested logs	agent.john	comment	97
+SA20083	T1034	2025-11-17	Acknowledged issue	agent.john	worknote	33
+SA20084	T1034	2025-11-15	Awaiting customer response	agent.ana	worknote	89
+SA20085	T1034	2025-11-21	Provided workaround	agent.luca	escalation	72
+SA20086	T1035	2025-10-25	Provided workaround	agent.samir	comment	20
+SA20087	T1035	2025-11-09	Requested logs	agent.samir	comment	100
+SA20088	T1035	2025-11-03	Awaiting customer response	agent.ana	comment	32
+SA20089	T1036	2025-09-18	Requested logs	agent.samir	comment	43
+SA20090	T1037	2026-01-20	Requested logs	agent.luca	comment	116
+SA20091	T1037	2025-12-29	Escalated to L2	agent.samir	worknote	66
+SA20092	T1039	2025-12-03	Provided workaround	agent.john	comment	20
+SA20093	T1039	2025-11-20	Patch applied	agent.ana	escalation	53
+SA20094	T1039	2025-11-17	Patch applied	agent.samir	escalation	59
+SA20095	T1039	2025-11-12	Escalated to L2	agent.john	escalation	99
+SA20096	T1041	2025-09-19	Patch applied	agent.samir	comment	34
+SA20097	T1041	2025-09-09	Awaiting customer response	agent.samir	escalation	115
+SA20098	T1041	2025-09-14	Acknowledged issue	agent.ana	worknote	105
+SA20099	T1041	2025-09-25	Awaiting customer response	agent.ana	worknote	19
+SA20100	T1041	2025-09-17	Requested logs	agent.ana	worknote	110
+SA20101	T1042	2025-08-02	Acknowledged issue	agent.luca	escalation	43
+SA20102	T1042	2025-08-10	Patch applied	agent.samir	escalation	74
+SA20103	T1043	2025-10-29	Acknowledged issue	agent.john	comment	91
+SA20104	T1043	2025-11-16	Escalated to L2	agent.john	escalation	110
+SA20105	T1043	2025-10-29	Escalated to L2	agent.john	comment	65
+SA20106	T1043	2025-11-06	Awaiting customer response	agent.luca	worknote	28
+SA20107	T1044	2025-12-31	Acknowledged issue	agent.ana	worknote	57
+SA20108	T1044	2026-01-01	Patch applied	agent.samir	escalation	56
+SA20109	T1046	2025-11-07	Acknowledged issue	agent.ana	worknote	75
+SA20110	T1046	2025-10-18	Provided workaround	agent.luca	escalation	67
+SA20111	T1046	2025-10-17	Acknowledged issue	agent.ana	escalation	25
+SA20112	T1048	2025-12-01	Patch applied	agent.luca	comment	63
+SA20113	T1048	2025-11-22	Requested logs	agent.luca	comment	81
+SA20114	T1048	2025-11-21	Awaiting customer response	agent.ana	comment	40
+SA20115	T1049	2025-10-05	Escalated to L2	agent.luca	comment	62
+SA20116	T1049	2025-10-13	Patch applied	agent.samir	worknote	75
+SA20117	T1049	2025-10-20	Escalated to L2	agent.luca	worknote	46
+SA20118	T1049	2025-10-23	Requested logs	agent.ana	escalation	54
+SA20119	T1049	2025-10-03	Patch applied	agent.john	worknote	100
+SA20120	T1050	2026-01-12	Acknowledged issue	agent.ana	escalation	80
+SA20121	T1052	2025-11-04	Patch applied	agent.john	worknote	114
+SA20122	T1052	2025-11-03	Escalated to L2	agent.luca	worknote	85
+SA20123	T1052	2025-11-04	Patch applied	agent.john	escalation	13
+SA20124	T1052	2025-10-20	Awaiting customer response	agent.samir	comment	100
+SA20125	T1053	2025-11-11	Provided workaround	agent.john	comment	46
+SA20126	T1054	2025-10-05	Requested logs	agent.ana	comment	15
+SA20127	T1054	2025-10-03	Patch applied	agent.ana	worknote	79
+SA20128	T1054	2025-09-18	Requested logs	agent.luca	escalation	37
+SA20129	T1054	2025-09-28	Provided workaround	agent.john	worknote	120
+SA20130	T1055	2026-01-10	Patch applied	agent.samir	worknote	113
+SA20131	T1055	2025-12-30	Requested logs	agent.luca	worknote	18
+SA20132	T1057	2025-10-02	Patch applied	agent.samir	comment	82
+SA20133	T1057	2025-10-04	Provided workaround	agent.ana	escalation	29
+SA20134	T1057	2025-09-28	Provided workaround	agent.ana	escalation	17
+SA20135	T1057	2025-10-07	Awaiting customer response	agent.john	worknote	105
+SA20136	T1058	2025-07-22	Requested logs	agent.ana	comment	105
+SA20137	T1058	2025-07-26	Provided workaround	agent.samir	comment	37
+SA20345	T1134	2025-07-19	Provided workaround	agent.john	escalation	109
+SA20346	T1134	2025-07-24	Awaiting customer response	agent.luca	comment	18
+SA20347	T1135	2025-12-07	Patch applied	agent.john	worknote	56
+SA20348	T1135	2025-11-26	Escalated to L2	agent.ana	escalation	33
+SA20349	T1137	2025-10-08	Patch applied	agent.luca	escalation	105
+SA20350	T1138	2025-12-20	Awaiting customer response	agent.luca	worknote	10
+SA20351	T1139	2025-12-23	Requested logs	agent.ana	escalation	110
+SA20352	T1139	2026-01-04	Acknowledged issue	agent.samir	comment	77
+SA20353	T1140	2025-12-17	Awaiting customer response	agent.ana	escalation	97
+SA20354	T1140	2025-11-25	Escalated to L2	agent.samir	comment	17
+SA20355	T1140	2025-12-06	Requested logs	agent.john	worknote	82
+SA20356	T1141	2026-03-08	Provided workaround	agent.luca	worknote	28
+SA20357	T1141	2026-03-08	Escalated to L2	agent.luca	comment	103
+SA20358	T1141	2026-03-08	Provided workaround	agent.ana	escalation	14
+SA20359	T1142	2025-09-17	Provided workaround	agent.john	comment	5
+SA20360	T1142	2025-10-07	Provided workaround	agent.luca	worknote	102
+SA20361	T1142	2025-09-15	Acknowledged issue	agent.ana	comment	28
+SA20362	T1143	2025-11-09	Acknowledged issue	agent.samir	worknote	6
+SA20363	T1143	2025-11-01	Patch applied	agent.luca	comment	97
+SA20364	T1144	2025-12-02	Patch applied	agent.ana	comment	26
+SA20365	T1144	2025-12-07	Provided workaround	agent.luca	worknote	66
+SA20366	T1145	2025-10-07	Patch applied	agent.john	comment	43
+SA20367	T1145	2025-10-01	Patch applied	agent.samir	escalation	53
+SA20368	T1145	2025-10-26	Provided workaround	agent.luca	worknote	60
+SA20369	T1145	2025-10-27	Awaiting customer response	agent.ana	worknote	46
+SA20370	T1146	2025-11-20	Patch applied	agent.ana	worknote	53
+SA20371	T1146	2025-11-08	Patch applied	agent.samir	comment	77
+SA20372	T1146	2025-11-06	Escalated to L2	agent.ana	escalation	103
+SA20373	T1146	2025-11-17	Acknowledged issue	agent.luca	escalation	31
+SA20374	T1146	2025-11-14	Provided workaround	agent.john	worknote	91
+SA20375	T1147	2025-08-30	Patch applied	agent.john	worknote	81
+SA20376	T1147	2025-08-20	Escalated to L2	agent.luca	escalation	69
+SA20377	T1147	2025-09-03	Awaiting customer response	agent.luca	escalation	9
+SA20378	T1149	2026-01-06	Awaiting customer response	agent.luca	worknote	106
+SA20379	T1149	2025-12-29	Acknowledged issue	agent.john	comment	38
+SA20380	T1149	2025-12-23	Escalated to L2	agent.ana	worknote	52
+SA20381	T1149	2025-12-28	Patch applied	agent.ana	worknote	8
+SA20382	T1149	2025-12-31	Acknowledged issue	agent.samir	worknote	15
+SA20383	T1150	2026-02-23	Requested logs	agent.luca	worknote	65
+SA20384	T1150	2026-02-01	Patch applied	agent.luca	worknote	13
+SA20385	T1150	2026-02-07	Acknowledged issue	agent.john	comment	113
+SA20386	T1151	2025-12-18	Escalated to L2	agent.ana	worknote	76
+SA20387	T1151	2025-12-26	Patch applied	agent.ana	worknote	85
+SA20388	T1151	2025-12-18	Requested logs	agent.luca	worknote	8
+SA20389	T1151	2026-01-05	Escalated to L2	agent.ana	worknote	80
+SA20390	T1152	2025-10-11	Escalated to L2	agent.ana	worknote	46
+SA20391	T1152	2025-10-14	Patch applied	agent.john	worknote	90
+SA20392	T1152	2025-11-04	Patch applied	agent.samir	escalation	54
+SA20393	T1152	2025-10-27	Patch applied	agent.john	worknote	50
+SA20394	T1153	2025-12-08	Awaiting customer response	agent.ana	worknote	20
+SA20395	T1153	2025-12-13	Provided workaround	agent.john	comment	52
+SA20396	T1153	2025-12-28	Requested logs	agent.luca	worknote	81
+SA20397	T1153	2025-12-10	Escalated to L2	agent.luca	worknote	28
+SA20398	T1154	2025-12-25	Provided workaround	agent.ana	comment	45
+SA20399	T1155	2026-01-01	Patch applied	agent.luca	worknote	92
+SA20400	T1157	2025-10-06	Patch applied	agent.john	escalation	19
+SA20401	T1157	2025-09-21	Escalated to L2	agent.samir	escalation	110
+SA20402	T1157	2025-10-07	Acknowledged issue	agent.luca	escalation	32
+SA20403	T1157	2025-09-26	Acknowledged issue	agent.ana	worknote	116
+SA20404	T1158	2025-10-30	Awaiting customer response	agent.samir	escalation	83
+SA20405	T1159	2025-08-23	Escalated to L2	agent.samir	escalation	73
+SA20406	T1159	2025-08-17	Provided workaround	agent.samir	worknote	78
+SA20407	T1159	2025-08-20	Escalated to L2	agent.john	comment	101
+SA20408	T1159	2025-09-06	Patch applied	agent.john	worknote	115
+SA20409	T1160	2026-01-20	Awaiting customer response	agent.luca	worknote	23
+SA20410	T1161	2025-12-31	Provided workaround	agent.samir	worknote	67
+SA20411	T1161	2025-12-18	Escalated to L2	agent.john	escalation	16
+SA20412	T1161	2025-12-31	Patch applied	agent.samir	comment	106
+SA20413	T1161	2025-12-25	Patch applied	agent.ana	worknote	110
+SA20414	T1162	2025-11-22	Patch applied	agent.samir	escalation	102
+SA20415	T1163	2025-07-26	Patch applied	agent.john	worknote	30
+SA20416	T1164	2026-02-22	Provided workaround	agent.john	worknote	90
+SA20417	T1164	2026-03-08	Awaiting customer response	agent.ana	comment	55
+SA20418	T1164	2026-03-03	Provided workaround	agent.ana	worknote	88
+SA20419	T1164	2026-02-13	Awaiting customer response	agent.john	comment	32
+SA20420	T1164	2026-02-26	Acknowledged issue	agent.ana	escalation	33
+SA20421	T1165	2025-07-18	Acknowledged issue	agent.ana	worknote	16
+SA20422	T1166	2025-08-17	Requested logs	agent.john	escalation	77
+SA20423	T1166	2025-07-27	Escalated to L2	agent.ana	worknote	49
+SA20424	T1166	2025-08-19	Requested logs	agent.ana	worknote	83
+SA20425	T1166	2025-08-17	Patch applied	agent.ana	comment	119
+SA20426	T1166	2025-07-30	Requested logs	agent.john	escalation	98
+SA20427	T1167	2025-10-18	Acknowledged issue	agent.ana	escalation	81
+SA20428	T1167	2025-10-17	Awaiting customer response	agent.samir	escalation	8
+SA20429	T1168	2025-08-23	Requested logs	agent.luca	worknote	19
+SA20430	T1168	2025-08-29	Patch applied	agent.john	escalation	118
+SA20431	T1168	2025-08-22	Provided workaround	agent.samir	comment	54
+SA20432	T1168	2025-09-18	Escalated to L2	agent.luca	worknote	74
+SA20433	T1168	2025-09-12	Requested logs	agent.luca	comment	7
+SA20434	T1169	2025-07-24	Awaiting customer response	agent.luca	worknote	94
+SA20435	T1169	2025-07-16	Acknowledged issue	agent.ana	worknote	15
+SA20436	T1170	2025-08-02	Escalated to L2	agent.john	worknote	94
+SA20437	T1170	2025-08-03	Awaiting customer response	agent.ana	comment	36
+SA20438	T1171	2026-03-08	Awaiting customer response	agent.ana	comment	6
+SA20439	T1171	2026-03-08	Requested logs	agent.john	comment	68
+SA20440	T1171	2026-03-08	Provided workaround	agent.samir	comment	52
+SA20441	T1171	2026-02-26	Awaiting customer response	agent.samir	escalation	118
+SA20442	T1171	2026-02-25	Acknowledged issue	agent.samir	worknote	39
+SA20443	T1172	2025-09-17	Acknowledged issue	agent.luca	escalation	26
+SA20444	T1172	2025-09-17	Requested logs	agent.samir	comment	119
+SA20445	T1172	2025-09-24	Awaiting customer response	agent.john	comment	99
+SA20446	T1172	2025-09-22	Acknowledged issue	agent.john	comment	36
+SA20447	T1173	2025-11-21	Awaiting customer response	agent.luca	comment	46
+SA20448	T1173	2025-11-05	Patch applied	agent.samir	worknote	110
+SA20449	T1173	2025-10-31	Escalated to L2	agent.samir	comment	69
+SA20450	T1173	2025-11-19	Acknowledged issue	agent.ana	comment	107
+SA20451	T1173	2025-11-14	Acknowledged issue	agent.luca	comment	117
+SA20452	T1174	2026-02-07	Provided workaround	agent.ana	worknote	77
+SA20453	T1174	2026-03-04	Provided workaround	agent.ana	worknote	52
+SA20454	T1174	2026-02-25	Patch applied	agent.ana	escalation	120
+SA20455	T1175	2025-09-03	Awaiting customer response	agent.john	worknote	5
+SA20456	T1175	2025-09-01	Awaiting customer response	agent.luca	escalation	98
+SA20457	T1175	2025-08-17	Acknowledged issue	agent.ana	escalation	35
+SA20458	T1175	2025-08-21	Patch applied	agent.john	comment	96
+SA20459	T1175	2025-08-16	Acknowledged issue	agent.john	comment	119
+SA20460	T1176	2025-12-30	Escalated to L2	agent.ana	escalation	109
+SA20461	T1176	2026-01-08	Acknowledged issue	agent.john	worknote	89
+SA20462	T1176	2026-01-26	Requested logs	agent.ana	worknote	38
+SA20463	T1176	2026-01-23	Provided workaround	agent.luca	escalation	111
+SA20464	T1177	2025-09-23	Requested logs	agent.john	comment	62
+SA20465	T1177	2025-10-04	Provided workaround	agent.luca	comment	73
+SA20466	T1177	2025-10-01	Requested logs	agent.luca	worknote	64
+SA20467	T1177	2025-09-28	Acknowledged issue	agent.john	comment	108
+SA20468	T1179	2026-03-05	Patch applied	agent.luca	escalation	100
+SA20469	T1182	2026-03-06	Requested logs	agent.john	worknote	20
+SA20470	T1182	2026-02-21	Patch applied	agent.john	comment	78
+SA20471	T1182	2026-03-05	Awaiting customer response	agent.luca	worknote	8
+SA20472	T1182	2026-03-04	Awaiting customer response	agent.luca	comment	50
+SA20473	T1182	2026-02-26	Requested logs	agent.samir	worknote	62
+SA20474	T1183	2025-08-06	Escalated to L2	agent.luca	comment	16
+SA20475	T1183	2025-07-17	Patch applied	agent.ana	worknote	30
+SA20476	T1183	2025-07-29	Escalated to L2	agent.ana	escalation	107
+SA20477	T1184	2025-11-04	Escalated to L2	agent.samir	worknote	39
+SA20478	T1184	2025-10-11	Acknowledged issue	agent.samir	escalation	33
+SA20479	T1185	2025-07-20	Acknowledged issue	agent.ana	escalation	35
+SA20480	T1186	2025-11-25	Requested logs	agent.ana	comment	80
+SA20481	T1186	2025-11-24	Awaiting customer response	agent.samir	escalation	8
+SA20482	T1186	2025-12-06	Awaiting customer response	agent.samir	escalation	77
+SA20000	T1001	2026-03-08	Awaiting customer response	agent.ana	comment	52
+SA20001	T1001	2026-03-08	Requested logs	agent.john	escalation	46
+SA20002	T1003	2026-03-06	Requested logs	agent.ana	escalation	65
+SA20003	T1003	2026-03-08	Escalated to L2	agent.ana	worknote	72
+SA20004	T1003	2026-03-08	Escalated to L2	agent.luca	comment	74
+SA20005	T1003	2026-03-06	Awaiting customer response	agent.ana	escalation	44
+SA20006	T1004	2025-12-26	Acknowledged issue	agent.samir	comment	80
+SA20007	T1006	2026-02-23	Requested logs	agent.luca	comment	105
+SA20008	T1007	2026-02-05	Patch applied	agent.john	escalation	88
+SA20009	T1007	2026-02-12	Acknowledged issue	agent.john	worknote	98
+SA20010	T1007	2026-02-02	Acknowledged issue	agent.ana	comment	29
+SA20011	T1008	2025-08-08	Acknowledged issue	agent.john	comment	101
+SA20012	T1008	2025-09-01	Requested logs	agent.ana	worknote	67
+SA20013	T1008	2025-08-20	Requested logs	agent.luca	comment	26
+SA20014	T1008	2025-08-17	Acknowledged issue	agent.luca	worknote	105
+SA20015	T1009	2025-09-27	Requested logs	agent.ana	worknote	32
+SA20016	T1009	2025-10-12	Acknowledged issue	agent.john	escalation	45
+SA20017	T1009	2025-09-13	Acknowledged issue	agent.luca	escalation	114
+SA20018	T1009	2025-09-28	Requested logs	agent.john	escalation	15
+SA20019	T1009	2025-10-09	Requested logs	agent.john	escalation	13
+SA20020	T1011	2025-11-07	Provided workaround	agent.ana	worknote	55
+SA20021	T1011	2025-10-20	Awaiting customer response	agent.samir	worknote	45
+SA20022	T1011	2025-11-14	Acknowledged issue	agent.john	worknote	84
+SA20023	T1011	2025-11-03	Acknowledged issue	agent.john	escalation	32
+SA20024	T1011	2025-11-01	Provided workaround	agent.ana	worknote	117
+SA20025	T1012	2026-03-02	Awaiting customer response	agent.john	escalation	109
+SA20026	T1012	2026-02-28	Provided workaround	agent.john	comment	38
+SA20027	T1013	2026-03-07	Provided workaround	agent.ana	escalation	86
+SA20028	T1014	2025-11-20	Provided workaround	agent.john	comment	47
+SA20029	T1014	2025-12-01	Requested logs	agent.samir	comment	99
+SA20030	T1014	2025-11-21	Escalated to L2	agent.luca	escalation	6
+SA20031	T1014	2025-11-10	Acknowledged issue	agent.ana	escalation	9
+SA20032	T1014	2025-12-03	Provided workaround	agent.ana	worknote	21
+SA20033	T1015	2025-10-08	Requested logs	agent.john	worknote	104
+SA20034	T1016	2026-03-08	Patch applied	agent.john	comment	99
+SA20035	T1017	2026-02-11	Awaiting customer response	agent.john	worknote	116
+SA20036	T1018	2026-03-03	Requested logs	agent.ana	comment	89
+SA20037	T1018	2026-02-11	Patch applied	agent.samir	worknote	115
+SA20038	T1019	2026-03-08	Escalated to L2	agent.samir	comment	19
+SA20039	T1019	2026-03-08	Provided workaround	agent.ana	escalation	38
+SA20040	T1019	2026-03-06	Acknowledged issue	agent.luca	worknote	98
+SA20041	T1019	2026-03-08	Provided workaround	agent.luca	escalation	70
+SA20042	T1019	2026-03-08	Patch applied	agent.ana	worknote	10
+SA20043	T1020	2025-07-22	Requested logs	agent.samir	worknote	13
+SA20044	T1020	2025-07-31	Awaiting customer response	agent.samir	escalation	45
+SA20045	T1020	2025-07-22	Acknowledged issue	agent.samir	escalation	44
+SA20046	T1020	2025-07-22	Patch applied	agent.samir	worknote	94
+SA20047	T1020	2025-07-10	Escalated to L2	agent.ana	comment	58
+SA20048	T1021	2026-01-16	Acknowledged issue	agent.samir	worknote	31
+SA20049	T1021	2026-01-03	Escalated to L2	agent.samir	worknote	61
+SA20050	T1021	2026-01-04	Awaiting customer response	agent.ana	escalation	65
+SA20051	T1021	2026-01-15	Awaiting customer response	agent.ana	escalation	15
+SA20052	T1022	2025-11-16	Requested logs	agent.ana	comment	10
+SA20053	T1022	2025-11-16	Patch applied	agent.john	worknote	58
+SA20054	T1023	2025-12-31	Acknowledged issue	agent.luca	comment	27
+SA20055	T1023	2026-01-25	Awaiting customer response	agent.luca	comment	76
+SA20056	T1023	2026-01-07	Acknowledged issue	agent.luca	comment	107
+SA20057	T1023	2026-01-14	Awaiting customer response	agent.samir	worknote	83
+SA20058	T1023	2026-01-26	Awaiting customer response	agent.luca	escalation	62
+SA20059	T1024	2026-01-31	Escalated to L2	agent.luca	escalation	35
+SA20060	T1024	2026-01-15	Patch applied	agent.john	escalation	41
+SA20061	T1025	2025-09-20	Awaiting customer response	agent.ana	escalation	32
+SA20062	T1026	2025-10-27	Escalated to L2	agent.john	escalation	53
+SA20063	T1026	2025-10-30	Acknowledged issue	agent.samir	worknote	101
+SA20064	T1026	2025-10-27	Patch applied	agent.ana	worknote	33
+SA20065	T1027	2025-10-25	Patch applied	agent.ana	escalation	73
+SA20066	T1027	2025-10-20	Patch applied	agent.john	comment	87
+SA20067	T1027	2025-11-02	Requested logs	agent.luca	comment	11
+SA20068	T1027	2025-10-28	Patch applied	agent.samir	comment	63
+SA20276	T1109	2026-01-21	Patch applied	agent.john	worknote	47
+SA20277	T1109	2026-02-02	Acknowledged issue	agent.luca	escalation	44
+SA20278	T1110	2025-12-12	Escalated to L2	agent.luca	comment	72
+SA20279	T1110	2025-12-31	Awaiting customer response	agent.luca	comment	110
+SA20280	T1110	2026-01-01	Requested logs	agent.john	escalation	94
+SA20281	T1110	2025-12-14	Requested logs	agent.john	worknote	45
+SA20282	T1110	2025-12-24	Requested logs	agent.luca	escalation	31
+SA20283	T1111	2026-02-10	Requested logs	agent.samir	escalation	66
+SA20284	T1112	2025-12-21	Awaiting customer response	agent.samir	escalation	66
+SA20285	T1112	2025-12-06	Requested logs	agent.samir	escalation	43
+SA20286	T1112	2025-12-07	Provided workaround	agent.samir	escalation	31
+SA20287	T1112	2025-12-22	Awaiting customer response	agent.luca	worknote	66
+SA20288	T1112	2025-12-11	Escalated to L2	agent.samir	worknote	20
+SA20289	T1113	2025-11-09	Awaiting customer response	agent.john	worknote	61
+SA20290	T1113	2025-10-30	Provided workaround	agent.luca	comment	30
+SA20291	T1114	2025-12-27	Awaiting customer response	agent.ana	escalation	34
+SA20292	T1115	2026-01-18	Requested logs	agent.luca	escalation	117
+SA20293	T1115	2026-01-17	Patch applied	agent.luca	escalation	30
+SA20294	T1115	2026-01-13	Provided workaround	agent.samir	worknote	87
+SA20295	T1115	2025-12-21	Acknowledged issue	agent.ana	escalation	99
+SA20296	T1116	2025-08-19	Awaiting customer response	agent.samir	comment	6
+SA20297	T1116	2025-08-23	Escalated to L2	agent.john	worknote	41
+SA20298	T1116	2025-08-28	Awaiting customer response	agent.luca	comment	113
+SA20299	T1117	2026-02-24	Acknowledged issue	agent.samir	worknote	77
+SA20300	T1117	2026-03-08	Requested logs	agent.ana	escalation	114
+SA20301	T1117	2026-03-08	Patch applied	agent.luca	escalation	46
+SA20302	T1117	2026-02-21	Patch applied	agent.john	comment	22
+SA20303	T1117	2026-03-06	Provided workaround	agent.ana	comment	38
+SA20304	T1119	2026-02-25	Escalated to L2	agent.samir	escalation	20
+SA20305	T1119	2026-02-24	Provided workaround	agent.samir	escalation	33
+SA20306	T1119	2026-02-11	Requested logs	agent.luca	comment	63
+SA20307	T1120	2026-02-10	Escalated to L2	agent.john	escalation	62
+SA20308	T1120	2026-02-02	Awaiting customer response	agent.samir	comment	77
+SA20309	T1120	2026-01-20	Acknowledged issue	agent.ana	escalation	73
+SA20310	T1120	2026-01-21	Requested logs	agent.samir	escalation	61
+SA20311	T1120	2026-01-20	Awaiting customer response	agent.ana	escalation	79
+SA20312	T1121	2026-01-30	Acknowledged issue	agent.luca	escalation	108
+SA20313	T1121	2026-01-21	Awaiting customer response	agent.john	worknote	37
+SA20314	T1121	2026-02-07	Acknowledged issue	agent.ana	escalation	14
+SA20315	T1123	2026-03-08	Patch applied	agent.luca	worknote	53
+SA20316	T1123	2026-02-16	Awaiting customer response	agent.ana	escalation	115
+SA20317	T1125	2026-02-19	Requested logs	agent.samir	comment	117
+SA20318	T1125	2026-03-03	Acknowledged issue	agent.john	escalation	58
+SA20319	T1125	2026-02-27	Acknowledged issue	agent.ana	comment	13
+SA20320	T1127	2026-01-23	Awaiting customer response	agent.samir	escalation	81
+SA20321	T1127	2026-02-09	Awaiting customer response	agent.samir	comment	43
+SA20322	T1128	2025-12-10	Requested logs	agent.luca	escalation	68
+SA20323	T1128	2025-11-12	Provided workaround	agent.luca	escalation	45
+SA20324	T1128	2025-12-03	Patch applied	agent.luca	comment	43
+SA20325	T1128	2025-11-23	Requested logs	agent.luca	comment	113
+SA20326	T1128	2025-11-18	Provided workaround	agent.ana	worknote	12
+SA20327	T1129	2025-11-22	Patch applied	agent.samir	comment	73
+SA20328	T1129	2025-12-13	Requested logs	agent.john	worknote	53
+SA20329	T1129	2025-12-11	Escalated to L2	agent.john	comment	29
+SA20330	T1129	2025-12-15	Escalated to L2	agent.ana	worknote	31
+SA20331	T1129	2025-12-17	Provided workaround	agent.samir	comment	32
+SA20332	T1130	2025-08-22	Requested logs	agent.luca	comment	75
+SA20333	T1130	2025-08-10	Provided workaround	agent.luca	worknote	73
+SA20334	T1130	2025-08-20	Provided workaround	agent.samir	worknote	51
+SA20335	T1130	2025-08-16	Patch applied	agent.luca	comment	107
+SA20336	T1131	2025-10-17	Requested logs	agent.ana	comment	38
+SA20337	T1131	2025-10-07	Escalated to L2	agent.luca	worknote	24
+SA20338	T1131	2025-09-26	Provided workaround	agent.ana	worknote	77
+SA20339	T1131	2025-10-16	Requested logs	agent.luca	escalation	88
+SA20340	T1132	2026-03-08	Provided workaround	agent.ana	comment	97
+SA20341	T1133	2025-08-18	Acknowledged issue	agent.john	comment	57
+SA20342	T1133	2025-08-21	Awaiting customer response	agent.ana	comment	95
+SA20343	T1133	2025-08-21	Acknowledged issue	agent.ana	escalation	63
+SA20344	T1133	2025-08-28	Acknowledged issue	agent.luca	escalation	67
+SA20138	T1058	2025-08-07	Patch applied	agent.samir	escalation	116
+SA20139	T1058	2025-07-19	Acknowledged issue	agent.luca	comment	23
+SA20140	T1058	2025-08-02	Requested logs	agent.luca	escalation	51
+SA20141	T1059	2025-07-12	Escalated to L2	agent.luca	escalation	52
+SA20142	T1059	2025-07-07	Awaiting customer response	agent.ana	worknote	8
+SA20143	T1059	2025-07-23	Escalated to L2	agent.samir	escalation	33
+SA20144	T1059	2025-07-24	Acknowledged issue	agent.luca	escalation	43
+SA20145	T1059	2025-07-24	Patch applied	agent.john	comment	10
+SA20146	T1060	2025-09-28	Patch applied	agent.samir	escalation	100
+SA20147	T1061	2025-12-17	Patch applied	agent.samir	comment	93
+SA20148	T1061	2025-12-09	Requested logs	agent.luca	worknote	35
+SA20149	T1061	2025-12-25	Provided workaround	agent.john	escalation	52
+SA20150	T1062	2025-07-22	Awaiting customer response	agent.john	comment	105
+SA20151	T1062	2025-07-26	Requested logs	agent.ana	escalation	31
+SA20152	T1062	2025-07-18	Escalated to L2	agent.ana	escalation	32
+SA20153	T1062	2025-08-11	Requested logs	agent.samir	comment	105
+SA20154	T1062	2025-08-13	Escalated to L2	agent.john	worknote	114
+SA20155	T1063	2025-08-03	Provided workaround	agent.ana	escalation	46
+SA20156	T1064	2025-08-16	Patch applied	agent.luca	worknote	70
+SA20157	T1064	2025-09-01	Acknowledged issue	agent.luca	escalation	33
+SA20158	T1064	2025-09-13	Escalated to L2	agent.john	escalation	105
+SA20159	T1064	2025-09-12	Awaiting customer response	agent.samir	worknote	87
+SA20160	T1064	2025-09-13	Acknowledged issue	agent.john	worknote	113
+SA20161	T1066	2025-12-25	Provided workaround	agent.luca	escalation	72
+SA20162	T1066	2025-12-12	Patch applied	agent.luca	comment	106
+SA20163	T1066	2025-12-25	Acknowledged issue	agent.ana	worknote	62
+SA20164	T1066	2025-12-31	Requested logs	agent.luca	worknote	110
+SA20165	T1067	2025-10-22	Requested logs	agent.luca	comment	16
+SA20166	T1067	2025-11-06	Acknowledged issue	agent.john	worknote	17
+SA20167	T1068	2026-02-14	Acknowledged issue	agent.luca	worknote	116
+SA20168	T1068	2026-02-14	Patch applied	agent.john	worknote	81
+SA20169	T1069	2025-10-26	Acknowledged issue	agent.samir	escalation	52
+SA20170	T1070	2026-02-02	Awaiting customer response	agent.john	escalation	89
+SA20171	T1070	2026-02-07	Awaiting customer response	agent.samir	comment	28
+SA20172	T1070	2026-01-20	Awaiting customer response	agent.samir	worknote	49
+SA20173	T1070	2026-01-12	Requested logs	agent.ana	escalation	89
+SA20174	T1071	2025-07-24	Patch applied	agent.luca	worknote	48
+SA20175	T1071	2025-07-23	Provided workaround	agent.samir	escalation	46
+SA20176	T1071	2025-08-11	Escalated to L2	agent.john	comment	24
+SA20177	T1071	2025-07-23	Escalated to L2	agent.john	escalation	15
+SA20178	T1072	2025-11-15	Escalated to L2	agent.john	worknote	60
+SA20179	T1074	2025-11-03	Requested logs	agent.samir	worknote	46
+SA20180	T1075	2025-07-09	Escalated to L2	agent.samir	comment	55
+SA20181	T1075	2025-07-29	Awaiting customer response	agent.john	worknote	7
+SA20182	T1075	2025-07-16	Acknowledged issue	agent.samir	escalation	59
+SA20183	T1075	2025-07-20	Patch applied	agent.luca	worknote	19
+SA20184	T1075	2025-07-14	Acknowledged issue	agent.samir	comment	107
+SA20185	T1076	2026-02-16	Patch applied	agent.john	worknote	116
+SA20186	T1076	2026-02-07	Awaiting customer response	agent.samir	comment	47
+SA20187	T1076	2026-02-22	Requested logs	agent.john	escalation	86
+SA20188	T1077	2025-12-09	Requested logs	agent.ana	comment	23
+SA20189	T1077	2025-11-21	Requested logs	agent.ana	escalation	24
+SA20190	T1077	2025-12-07	Awaiting customer response	agent.john	comment	103
+SA20191	T1077	2025-12-03	Patch applied	agent.luca	escalation	102
+SA20192	T1077	2025-12-01	Patch applied	agent.samir	escalation	45
+SA20193	T1079	2025-11-09	Awaiting customer response	agent.john	escalation	81
+SA20194	T1079	2025-11-23	Patch applied	agent.luca	escalation	75
+SA20195	T1080	2025-11-08	Escalated to L2	agent.ana	comment	62
+SA20196	T1080	2025-10-27	Provided workaround	agent.john	escalation	87
+SA20197	T1080	2025-10-29	Acknowledged issue	agent.ana	escalation	61
+SA20198	T1080	2025-11-07	Escalated to L2	agent.ana	worknote	52
+SA20199	T1081	2025-10-18	Acknowledged issue	agent.samir	comment	76
+SA20200	T1081	2025-10-29	Patch applied	agent.samir	worknote	97
+SA20201	T1081	2025-11-04	Awaiting customer response	agent.ana	worknote	15
+SA20202	T1081	2025-10-26	Awaiting customer response	agent.ana	worknote	44
+SA20203	T1081	2025-11-07	Awaiting customer response	agent.luca	comment	81
+SA20204	T1082	2025-10-14	Awaiting customer response	agent.john	escalation	90
+SA20205	T1082	2025-10-01	Escalated to L2	agent.samir	comment	51
+SA20206	T1082	2025-09-27	Requested logs	agent.ana	worknote	103
+SA20207	T1082	2025-10-03	Requested logs	agent.ana	comment	24
+SA20208	T1082	2025-09-20	Provided workaround	agent.john	escalation	103
+SA20209	T1083	2025-12-22	Requested logs	agent.ana	escalation	61
+SA20210	T1084	2025-11-07	Awaiting customer response	agent.luca	comment	73
+SA20211	T1084	2025-10-21	Provided workaround	agent.luca	comment	52
+SA20212	T1085	2025-11-21	Escalated to L2	agent.ana	worknote	11
+SA20213	T1086	2026-02-11	Requested logs	agent.samir	worknote	120
+SA20214	T1086	2026-02-25	Requested logs	agent.luca	comment	33
+SA20215	T1087	2026-02-19	Patch applied	agent.john	worknote	33
+SA20216	T1087	2026-02-12	Provided workaround	agent.john	escalation	88
+SA20217	T1088	2026-02-12	Awaiting customer response	agent.luca	worknote	83
+SA20218	T1089	2026-03-08	Escalated to L2	agent.luca	comment	104
+SA20219	T1089	2026-02-26	Requested logs	agent.samir	comment	11
+SA20220	T1089	2026-02-24	Patch applied	agent.luca	comment	19
+SA20221	T1089	2026-03-08	Patch applied	agent.john	escalation	70
+SA20222	T1089	2026-03-07	Requested logs	agent.ana	worknote	59
+SA20223	T1092	2026-02-09	Provided workaround	agent.john	worknote	35
+SA20224	T1092	2026-03-04	Awaiting customer response	agent.john	escalation	99
+SA20225	T1092	2026-03-05	Provided workaround	agent.ana	comment	50
+SA20226	T1092	2026-02-26	Provided workaround	agent.ana	escalation	64
+SA20227	T1092	2026-03-03	Patch applied	agent.ana	comment	13
+SA20228	T1093	2025-07-26	Patch applied	agent.luca	worknote	9
+SA20229	T1093	2025-08-03	Awaiting customer response	agent.ana	worknote	50
+SA20230	T1094	2026-03-02	Patch applied	agent.luca	worknote	28
+SA20231	T1094	2026-02-22	Awaiting customer response	agent.luca	worknote	107
+SA20232	T1094	2026-02-23	Provided workaround	agent.john	escalation	59
+SA20233	T1096	2025-12-31	Acknowledged issue	agent.samir	escalation	60
+SA20234	T1096	2025-12-25	Awaiting customer response	agent.john	comment	90
+SA20235	T1097	2026-03-08	Patch applied	agent.john	comment	13
+SA20236	T1097	2026-02-25	Awaiting customer response	agent.samir	worknote	54
+SA20237	T1097	2026-03-08	Escalated to L2	agent.john	escalation	24
+SA20238	T1097	2026-03-08	Patch applied	agent.samir	worknote	61
+SA20239	T1097	2026-03-08	Acknowledged issue	agent.ana	escalation	51
+SA20240	T1098	2025-12-25	Escalated to L2	agent.john	worknote	104
+SA20241	T1098	2025-12-21	Awaiting customer response	agent.luca	comment	83
+SA20242	T1098	2025-12-22	Awaiting customer response	agent.luca	comment	20
+SA20243	T1098	2025-12-17	Acknowledged issue	agent.luca	comment	120
+SA20244	T1099	2026-01-26	Escalated to L2	agent.samir	worknote	113
+SA20245	T1099	2026-01-29	Awaiting customer response	agent.ana	worknote	70
+SA20246	T1099	2026-01-31	Acknowledged issue	agent.ana	comment	35
+SA20247	T1099	2026-02-18	Patch applied	agent.john	worknote	75
+SA20248	T1099	2026-02-11	Provided workaround	agent.luca	escalation	21
+SA20249	T1100	2026-01-23	Escalated to L2	agent.john	comment	45
+SA20250	T1100	2026-01-17	Acknowledged issue	agent.luca	worknote	92
+SA20251	T1100	2026-01-13	Provided workaround	agent.ana	escalation	86
+SA20252	T1101	2025-08-12	Requested logs	agent.ana	worknote	95
+SA20253	T1102	2026-03-08	Escalated to L2	agent.samir	comment	85
+SA20254	T1102	2026-03-08	Escalated to L2	agent.john	escalation	87
+SA20255	T1102	2026-03-08	Escalated to L2	agent.ana	comment	89
+SA20256	T1102	2026-03-08	Awaiting customer response	agent.samir	escalation	10
+SA20257	T1102	2026-03-08	Acknowledged issue	agent.john	comment	87
+SA20258	T1103	2026-02-23	Awaiting customer response	agent.samir	worknote	36
+SA20259	T1103	2026-03-08	Awaiting customer response	agent.luca	worknote	63
+SA20260	T1103	2026-02-16	Awaiting customer response	agent.john	comment	61
+SA20261	T1103	2026-02-27	Patch applied	agent.luca	comment	48
+SA20262	T1104	2026-02-23	Escalated to L2	agent.john	worknote	35
+SA20263	T1104	2026-02-21	Acknowledged issue	agent.samir	worknote	36
+SA20264	T1105	2026-01-07	Provided workaround	agent.ana	comment	68
+SA20265	T1105	2025-12-31	Patch applied	agent.luca	worknote	68
+SA20266	T1105	2025-12-15	Acknowledged issue	agent.luca	escalation	63
+SA20267	T1105	2026-01-14	Requested logs	agent.ana	escalation	50
+SA20268	T1106	2026-01-10	Acknowledged issue	agent.luca	comment	117
+SA20269	T1106	2026-01-18	Awaiting customer response	agent.samir	worknote	51
+SA20270	T1106	2026-01-11	Patch applied	agent.john	escalation	76
+SA20271	T1106	2026-01-16	Provided workaround	agent.samir	comment	54
+SA20272	T1107	2025-09-13	Patch applied	agent.samir	worknote	76
+SA20273	T1108	2025-09-11	Provided workaround	agent.luca	escalation	63
+SA20274	T1109	2026-02-04	Provided workaround	agent.samir	escalation	111
+SA20275	T1109	2026-01-28	Escalated to L2	agent.luca	escalation	77
