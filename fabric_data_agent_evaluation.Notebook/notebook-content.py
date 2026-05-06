@@ -43,9 +43,10 @@
 # CELL ********************
 
 import pandas as pd
-from fabric.dataagent.evaluation import evaluate_data_agent
-from fabric.dataagent.evaluation import get_evaluation_summary
-from fabric.dataagent.evaluation import get_evaluation_details
+from fabric.dataagent.evaluation import (evaluate_data_agent, 
+                                        get_evaluation_summary,
+                                        get_evaluation_details
+                                    )
 
 # METADATA ********************
 
@@ -92,20 +93,75 @@ display(df[:3])
 
 # CELL ********************
 
+# prompt = """
+# A user question and an expected answer are provided below. The expected answer is provided as a structured table. An actual answer given by an agent is also provided. You need to assess at what extent the actual answer is equivalent to the expected answer.
+# To do the assessment, use the following rules to provide a numeric score (i.e., 0, 1, 2, 3, 4, 5):
+
+# If the actual answer is empty, or it states that it was impossible to obtain an answer from the agent for whatever reason, answer with "0".
+
+# If the actual answer is a given answer, but it is not relevant to the user question, answer with "1".
+
+# If the actual answer is a given and it is relevant to the user question, consider the following cases:
+#     - if the actual answer and the expected answer cover completely different data points, answer with "2"
+#     - if the actual answer and the expected answer cover compatibe data points but they are numerically different, answer with "3"
+#     - if the actual answer and the expected answer cover almost the same data points with a few exceptions, answer with "4"
+#     - if the actual answer and the expected answer cover exactly the same data points, answer with "5"
+
+# Answer only with a single integer number (0 to 5)
+
+#     User question: 
+#     {query}
+
+#     Expected Answer:
+#     {expected_answer}
+# """
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 prompt = """
-Given the following Query and ground truth, please determine if the most recent answer is equivalent or satifies the ground truth.
-The ground truth is expressed as a table. Use the following rules:
-    - 1: Actual Answer is not relevant to Query
-    - 2: Actual Answer relevant to Query, but it is not coherent to  ground truth (i.e., they cover quite different data points)
-    - 3: Actual Answer relevant to Query, and it is almost coherent to  ground truth (i.e., they cover compatibe data points, but they are different)
-    - 4: Actual Answer relevant to Query, and it is mostly coherent to  ground truth (i.e., they cover almost the same  data points, with a few exceptions)
-    - 5: Actual Answer is relevant to Query and it is completely coherent to  ground truth (i.e., they cover exactly the same data points)
-Answer only with a score: 1,2,3,4, or 5.
+Given the following query and ground truth (provided as a structured table), please determine if the most recent answer is equivalent or satifies the ground truth. 
+You are an evaluator. Your task is to compare the most recent answer with an expected answer , and assign a similarity score from 0 to 5.
 
-    Query: {query}
+Evaluation criteria:
 
-    Expected Answer:
-    {expected_answer}
+Score = 0  
+The most recent answer is empty, missing, or explicitly states that no answer could be generated.
+
+Score = 1  
+The most recent answer is provided but is not relevant to the user question.
+
+Score = 2  
+The most recent answer is relevant, but it covers completely different data points than the ground truth.
+
+Score = 3  
+The most recent answer covers comparable data points, but there are significant numerical or factual discrepancies.
+
+Score = 4  
+The most recent answer largely matches the ground truth, with only minor omissions or deviations.
+
+Score = 5  
+The most recent answer fully matches the ground truth, covering the same data points accurately and completely.
+
+Instructions:
+- Focus only on semantic equivalence between the expected and the most recent answer.
+- Do not consider formatting differences unless they affect meaning.
+- Base your judgment strictly on the content provided.
+
+Output:
+Return only a single integer (0, 1, 2, 3, 4, or 5). Do not include any explanation.
+
+Inputs:
+
+Query: {query}
+
+Ground Truth: {expected_answer}
 """
 
 # METADATA ********************
@@ -121,6 +177,7 @@ print(f"Evaluating agent {data_agent_name}")
 evaluation_id = evaluate_data_agent(
     df,
     data_agent_name,
+    workspace_name=None,
     table_name=table_name,
     data_agent_stage=data_agent_stage,
     critic_prompt=prompt

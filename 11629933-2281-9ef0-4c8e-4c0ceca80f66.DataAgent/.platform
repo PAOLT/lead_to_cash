@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "DataAgent",
-    "displayName": "sales_agent_lh"
+    "displayName": "sales_agent_onto"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "cd7dca30-f1cf-b8c9-4087-bd9bebdf7bb5"
+    "logicalId": "11629933-2281-9ef0-4c8e-4c0ceca80f66"
   }
 }

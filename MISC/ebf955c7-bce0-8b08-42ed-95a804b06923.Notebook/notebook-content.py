@@ -6,14 +6,26 @@
 # META   "kernel_info": {
 # META     "name": "jupyter",
 # META     "jupyter_kernel_name": "python3.11"
+# META   },
+# META   "dependencies": {
+# META     "lakehouse": {
+# META       "default_lakehouse": "867de34a-41e2-44a4-83ed-789a8e3feb01",
+# META       "default_lakehouse_name": "ops_data",
+# META       "default_lakehouse_workspace_id": "beeadc18-d85e-4c30-89e9-fa6b3fc07736",
+# META       "known_lakehouses": [
+# META         {
+# META           "id": "867de34a-41e2-44a4-83ed-789a8e3feb01"
+# META         }
+# META       ]
+# META     }
 # META   }
 # META }
 
 # MARKDOWN ********************
 
-# # Fabric Data Agent Setup Using an Ontology
+# # Fabric Data Agent Setup (ONTO)
 # 
-# This notebook sets up and configures a Microsoft Fabric Data Agent on top of an IQ ontology. It defines global instructions to communicate business objectives and guide agent behavior, without requiring data-source-specific query instructions. The agent is then published for reuse by other agents via MCP.
+# This notebook creates and configures a **Microsoft Fabric Data Agent** over an Ontology. It configures **global instructions** so the agent understands its objectives. Finally, the agent is **published** so it can be used from other agents via MCP.
 
 # MARKDOWN ********************
 
@@ -53,10 +65,6 @@ from fabric.dataagent.client import (
 AGENT_DISPLAY_NAME = 'sales_agent_onto'
 ONTO_NAME = 'sales_onto'
 
-ENTITY_NAMES = ["customer", "sales_opportunity", "product", "sales_note", "sales_activity", "support_ticket", "support_activity"]
-RELS = ["customer --> sales_opportunity", "customer --> support_ticket"]
- 
-
 # METADATA ********************
 
 # META {
@@ -64,13 +72,12 @@ RELS = ["customer --> sales_opportunity", "customer --> support_ticket"]
 # META   "language_group": "jupyter_python"
 # META }
 
-# MARKDOWN ********************
-
-# ### Prompting
-
 # CELL ********************
 
+# ---- Agent instructions ----
 GLOBAL_INSTRUCTIONS = f'''
+
+
 # You are a Sales & Support Operations analyst for a financial software vendor serving banks. Your role is to answer business questions related to:
 - Sales pipeline health
 - Opportunity progression and risk
@@ -112,21 +119,9 @@ If a question requires refining these definitions, adapt them explicitly and sta
 - priority: P1 (high-priority), P2, P3, P4 (low-priority)
 '''
 
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "jupyter_python"
-# META }
-
-# CELL ********************
 
 MCP_INSTRUCTIONS = '''
-An agent providing a Sales & Support Operations Analyst for a financial software vendor serving banks. Agent's role is to answer business questions related to:
-- Sales pipeline health
-- Opportunity progression and risk
-- Customer renewals
-- Support performance and customer satisfaction
+Use this agent to answer to sales questions
 '''
 
 # METADATA ********************
@@ -138,7 +133,7 @@ An agent providing a Sales & Support Operations Analyst for a financial software
 
 # MARKDOWN ********************
 
-# ### Create and configure the Data Agent
+# ### Create and configure the data agent
 
 # CELL ********************
 
@@ -173,13 +168,24 @@ datasource = data_agent.add_datasource(ONTO_NAME, type="ontology")
 # META   "language_group": "jupyter_python"
 # META }
 
+# CELL ********************
+
+data_agent.get_configuration()
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "jupyter_python"
+# META }
+
 # MARKDOWN ********************
 
-# ### Publish the data agent (optional)
+# ### Publish the data agent
 
 # CELL ********************
 
-# data_agent.publish(description=MCP_INSTRUCTIONS)
+data_agent.publish(description=MCP_INSTRUCTIONS)
 
 # METADATA ********************
 
