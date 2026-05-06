@@ -56,7 +56,7 @@ from fabric.dataagent.evaluation import get_evaluation_details
 
 # CELL ********************
 
-data_agent_name = "sales_agent_lh"
+data_agent_name = "sales_agent_onto"
 
 # output table to store evaluation results
 table_name = f"evl.eval_{data_agent_name}"
