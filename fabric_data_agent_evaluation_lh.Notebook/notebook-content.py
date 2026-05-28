@@ -31,7 +31,7 @@
 
 # CELL ********************
 
-%pip install -U fabric-data-agent-sdk
+%pip install fabric-data-agent-sdk==0.1.21a0
 
 # METADATA ********************
 
@@ -43,10 +43,13 @@
 # CELL ********************
 
 import pandas as pd
+import ast
 from fabric.dataagent.evaluation import (evaluate_data_agent, 
                                         get_evaluation_summary,
-                                        get_evaluation_details
+                                        get_evaluation_details,
+                                        get_evaluation_summary_per_question
                                     )
+from fabric.dataagent.evaluation._storage import _get_data
 
 # METADATA ********************
 
@@ -64,6 +67,8 @@ table_name = f"evl.eval_{data_agent_name}"
 
 # "production" (default) or "sandbox"
 data_agent_stage = "sandbox"
+
+evaluation_id = None
 
 # METADATA ********************
 
@@ -87,34 +92,9 @@ display(df[:3])
 # META   "language_group": "synapse_pyspark"
 # META }
 
-# MARKDOWN ********************
-
-# ### Run evaluation
-
 # CELL ********************
 
-# prompt = """
-# A user question and an expected answer are provided below. The expected answer is provided as a structured table. An actual answer given by an agent is also provided. You need to assess at what extent the actual answer is equivalent to the expected answer.
-# To do the assessment, use the following rules to provide a numeric score (i.e., 0, 1, 2, 3, 4, 5):
-
-# If the actual answer is empty, or it states that it was impossible to obtain an answer from the agent for whatever reason, answer with "0".
-
-# If the actual answer is a given answer, but it is not relevant to the user question, answer with "1".
-
-# If the actual answer is a given and it is relevant to the user question, consider the following cases:
-#     - if the actual answer and the expected answer cover completely different data points, answer with "2"
-#     - if the actual answer and the expected answer cover compatibe data points but they are numerically different, answer with "3"
-#     - if the actual answer and the expected answer cover almost the same data points with a few exceptions, answer with "4"
-#     - if the actual answer and the expected answer cover exactly the same data points, answer with "5"
-
-# Answer only with a single integer number (0 to 5)
-
-#     User question: 
-#     {query}
-
-#     Expected Answer:
-#     {expected_answer}
-# """
+print(len(df))
 
 # METADATA ********************
 
@@ -122,6 +102,10 @@ display(df[:3])
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# MARKDOWN ********************
+
+# ### Run evaluation
 
 # CELL ********************
 
@@ -155,7 +139,9 @@ Instructions:
 - Base your judgment strictly on the content provided.
 
 Output:
-Return only a single integer (0, 1, 2, 3, 4, or 5). Do not include any explanation.
+Return a JSON object with the following key/value pairs:
+- score: a single integer (0, 1, 2, 3, 4, or 5) representing your assigned score following the evaluation criteria
+- reason: the explanation of your judgement.
 
 Inputs:
 
@@ -163,6 +149,17 @@ Query: {query}
 
 Ground Truth: {expected_answer}
 """
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#Return only a single integer (0, 1, 2, 3, 4, or 5). Do not include any explanation.
 
 # METADATA ********************
 
@@ -198,8 +195,25 @@ print(f"Unique ID for the current evaluation run: {evaluation_id}")
 
 # CELL ********************
 
-eval_results_df = get_evaluation_summary(table_name)
-display(eval_results_df)
+# eval_results_df = get_evaluation_summary(table_name)
+# display(eval_results_df)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# set an evaluatio_id
+if evaluation_id is None:
+    evaluation_id = '59c7e4e9-96d8-4c50-8330-fcc6c86c1c10'
+    print("Changing evaluation id --> ", end='')
+else:
+    print("Using evaluation id of the latest run --> ", end='')
+print(f"{evaluation_id}")
 
 # METADATA ********************
 
@@ -222,6 +236,7 @@ eval_details = get_evaluation_details(
     get_all_rows=get_all_rows,
     verbose=verbose
 )
+eval_details[:3]
 
 # METADATA ********************
 
@@ -232,7 +247,86 @@ eval_details = get_evaluation_details(
 
 # CELL ********************
 
-eval_details.iloc[0:][["question", "expected_answer", "actual_answer", "evaluation_message"]]
+# parsed_evaluation_messages = [
+#     ast.literal_eval(str(msg)) if isinstance(msg, str) else msg
+#     for msg in eval_details['evaluation_message']
+# ]
+
+# # parsed_evaluation_messages is now a Python list of dictionaries
+# for eval in parsed_evaluation_messages:
+#     print(f"{eval['score']}\t{eval['reason']}\n\n")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+def pprint(n:int=0):
+    question = str(eval_details.iloc[n]["question"])
+    expected_answer = str(eval_details.iloc[n]["expected_answer"])
+    actual_answer = str(eval_details.iloc[n]["actual_answer"])
+    eval_json = ast.literal_eval(str(eval_details.iloc[n]["evaluation_message"]))
+    eval_score = eval_json['score']
+    eval_reason = eval_json['reason']
+    thread_id = str(eval_details.iloc[n]["thread_id"])
+    print(f"User question #{n} with score {eval_score}\n\n***Judgement:\n{eval_reason}\n\n***Question:\n{question}\n\n***Expected answer\n{expected_answer}\n\n***Generated answer\n{actual_answer}\n")
+    print(f"\n\n***Use this thread_id to explore steps: {thread_id}")
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+pprint(1)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+def pprint_steps(thread_id, table_name):
+    
+    table_name = table_name if table_name[-6:]=='_steps' else table_name+'_steps'
+    df = _get_data(table_name)
+    df=df[df.thread_id == thread_id]
+    # print(f"\n\nfunction_names:\n{str(df.iloc[0]['function_names'])}")
+    # print(f"\n\nfunction_queries:\n{str(df.iloc[0]['function_queries'])}")
+    # print(f"\n\nfunction_outputs:\n{str(df.iloc[0]['function_outputs'])}")
+    sql_steps = str(df.iloc[0]['sql_steps'])
+    sql_steps = sql_steps[1:-1].split(",")
+    sql_steps = [s.strip() for s in sql_steps if s.strip()!="'None'"]
+    
+    print("\n\n***SQL_steps:\n")
+    for s in sql_steps:
+        print(s)
+    # print(f"\n\ndax_steps:\n{str(df.iloc[0]['dax_steps'])}")
+    # print(f"\n\nkql_steps:\n{str(df.iloc[0]['kql_steps'])}") 
+
+pprint_steps('thread_FwQ4VUJbANBI7BCnwXl2gQIg', table_name)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+df=_get_data(table_name+'_steps')
+df[df.thread_id == 'thread_FwQ4VUJbANBI7BCnwXl2gQIg']
 
 # METADATA ********************
 
