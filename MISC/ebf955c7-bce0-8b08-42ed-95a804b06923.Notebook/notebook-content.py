@@ -23,9 +23,9 @@
 
 # MARKDOWN ********************
 
-# # Fabric Data Agent Setup (LakeHouse)
+# # Fabric Data Agent Setup (ONTO)
 # 
-# This notebook creates and configures a **Microsoft Fabric Data Agent** over Lakehouse tables. It configures **global instructions** and **data‑source instructions** so the agent understands how to query your schema, Finally, the agent is **published** so it can be used from other agents via MCP.
+# This notebook creates and configures a **Microsoft Fabric Data Agent** over an Ontology. It configures **global instructions** so the agent understands its objectives. Finally, the agent is **published** so it can be used from other agents via MCP.
 
 # MARKDOWN ********************
 
@@ -51,7 +51,7 @@ from fabric.dataagent.client import (
     FabricDataAgentManagement,
     create_data_agent,
     delete_data_agent,
-) 
+)
 
 # METADATA ********************
 
@@ -62,15 +62,8 @@ from fabric.dataagent.client import (
 
 # CELL ********************
 
-AGENT_DISPLAY_NAME = 'sales_agent_lh'
-LAKEHOUSE_NAME = 'ops_data' 
-SCHEMA = 'dbo'
-
-TABLE_NAMES = [
-    'customers','products','csat_by_month',
-    'support_tickets','support_activities',
-    'sales_opportunities','sales_activities','opportunity_notes'
- ]
+AGENT_DISPLAY_NAME = 'sales_agent_onto'
+ONTO_NAME = 'sales_onto'
 
 # METADATA ********************
 
@@ -83,6 +76,7 @@ TABLE_NAMES = [
 
 # ---- Agent instructions ----
 GLOBAL_INSTRUCTIONS = f'''
+
 
 # You are a Sales & Support Operations analyst for a financial software vendor serving banks. Your role is to answer business questions related to:
 - Sales pipeline health
@@ -123,67 +117,8 @@ If a question requires refining these definitions, adapt them explicitly and sta
 - status: closed, open
 - severity: Medium, Low, Critical, High
 - priority: P1 (high-priority), P2, P3, P4 (low-priority)
-
 '''
 
-DATA_SOURCE_DESCRIPTION = '''
-This datasource provides data for the following entities:
-- customers master data and csat metrics
-- products master data
-- opportunities master data, activities and notes
-- support tickets master data and activities
-'''
-
-DATA_SOURCE_INSTRUCTIONS = '''
-# Tables and most relevant columns vailable in the LakeHouse.
-
-## CUSTOMERS 
-- provides customers master data
-- Columns: customer_id, customer_name, country
-
-## CSAT_BY_MONTH 
-- provides customer satisfaction (csat) metrics by month
-- Columns: customer_id, month, csat
-
-## PRODUCTS 
-- provides products master data
-- Columns: product_id, product_name, product_line
-
-## SALES_OPPORTUNITIES 
-- provides sales opportunities by product and customer
-- Columns: opp_id, customer_id, product_id, type, status, stage, opened_at, expected_close_date, closed_at, is_forecast, forecast_category, stage_last_changed_at, amount, currency, probability, renewal_term_months
-
-## SALES_ACTIVITIES 
-- provides the sales activities for a certain sales opportunity
-- Columns: activity_id, opp_id, activity_at, description, type, contact_name
-
-## OPPORTUNITY_NOTES
-- provides sale judjements and annotations
-- Columns: note_id, opp_id, note_at, note_type, note_text, tags
-
-## SUPPORT_TICKETS
-- provides master data about support tickets by customer and product
-- Columns: ticket_id, customer_id, product_id, status, opened_at, closed_at, severity, priority, channel, title
-
-## SUPPORT ACTIVITIES:
-- provides support operator activities for a certain support ticket
-- Columns: activity_id, ticket_id, activity_at, description, author, activity_type, minutes_spent 
-
-# How to join tables:
-- sales_opportunities o JOIN customers c on o.customer_id=c.customer_id
-- sales_opportunities o JOIN products p on o.product_id=c.product_id
-- sales_activities a JOIN sales_opportunities o on a.opp_id=o.opp_id
-- opportunity_notes n JOIN sales_opportunities o on n.opp_id=o.opp_id
-- support_tickets t JOIN customers c on t.customer_id=c.customer_id
-- support_tickets t JOIN products p on t.product_id=c.product_id
-- support_activities a JOIN support_tickets t on a.opp_id=t.opp_id
-- csat_by_month m JOIN customers c on m.customer_id=c.customer_id
-
-Modeling constraints:
-- Use support_tickets(severity, sla_breach_flag, status, opened_at, closed_at) with support_activities to derive last activity per ticket.
-- Use products.product_line to segment results by product line.
-- There is NO last_activity column on opportunities or tickets. When asked about "last activity" use MAX(activity_at) from the respective *activities* table.
-'''
 
 MCP_INSTRUCTIONS = '''
 Use this agent to answer to sales questions
@@ -224,55 +159,7 @@ data_agent.update_configuration(instructions=GLOBAL_INSTRUCTIONS)
 
 # CELL ********************
 
-datasource = data_agent.add_datasource(LAKEHOUSE_NAME, type="lakehouse")
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "jupyter_python"
-# META }
-
-# CELL ********************
-
-for t in TABLE_NAMES:
-    datasource.select(SCHEMA, t)
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "jupyter_python"
-# META }
-
-# CELL ********************
-
-datasource.pretty_print()
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "jupyter_python"
-# META }
-
-# CELL ********************
-
-datasource.update_configuration(instructions=DATA_SOURCE_INSTRUCTIONS, user_description=DATA_SOURCE_DESCRIPTION)
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "jupyter_python"
-# META }
-
-# CELL ********************
-
-# example_dict = {
-#     "How many customers does the company has?": "SELECT COUNT(*) AS NumberOfCustomers FROM dbo.customers"
-# }
-# datasource.add_fewshots(example_dict)
+datasource = data_agent.add_datasource(ONTO_NAME, type="ontology")
 
 # METADATA ********************
 
